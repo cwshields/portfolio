@@ -1,0 +1,11 @@
+@mixin flex-col-cen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin flex-col-spbtw {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

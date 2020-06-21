@@ -1,0 +1,114 @@
+@import "./mixins.scss";
+
+.page-wrap {
+  position: relative;
+  @include flex-col-cen;
+  align-items: center;
+  height: 100vh;
+  min-width: 900px;
+  width: 50vw;
+  .info-wrap {
+    @include flex-col-cen;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    font-family: "Montserrat-Reg";
+    .info {
+      display: flex;
+      position: relative;
+      justify-content: center;
+      .info-content {
+        height: 32vmin;
+        color: #2a2a2a;
+        margin-left: 6vmin;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .name {
+          font-size: 4.5vmin;
+          line-height: 6vmin;
+          text-transform: uppercase;
+        }
+        .first {
+          font-size: 5vmin;
+        }
+        .last {
+          font-size: 6vmin;
+        }
+        .email {
+          position: relative;
+          margin-top: -2vmin;
+          color: #257b96;
+          font-size: 2.6vmin;
+        }
+        .email:hover {
+          text-decoration: underline;
+        }
+        .media {
+          display: flex;
+          justify-content: space-between;
+        }
+        .media-link {
+          position: relative;
+          width: 5vmin;
+          height: 5vmin;
+        }
+        .media-link::after {
+          position: absolute;
+          background: #2a2a2a;
+          content: "";
+          bottom: -6px;
+          height: 2.5px;
+          left: 0;
+          width: 100%;
+          transform: scaleX(0);
+          transition: transform ease 0.1s;
+          will-change: transform;
+        }
+        .media-link:hover::after {
+          transform: scaleX(1);
+        }
+        .media-svg {
+          fill: #2a2a2a;
+        }
+      }
+    }
+    .desc-wrap {
+      display: flex;
+      justify-content: center;
+      .desc {
+        margin-top: 6vmin;
+        width: 75vmin;
+        font-size: 2vmin;
+      }
+    }
+    .project-link {
+      // needs to be in-line together
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      bottom: 25px;
+      .proj {
+        color: #2a2a2a;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+.arrow {
+  margin: 3px 6px 0px 0px;
+  fill: #2a2a2a;
+  width: 26px;
+  height: 26px;
+}
+.me {
+  height: 38vmin;
+  border-radius: 18px;
+  transform: rotate(-5deg);
+}
+.egg1 {
+  cursor: not-allowed;
+  bottom: 0;
+  position: absolute;
+  font-size: 5px;
+}

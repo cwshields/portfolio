@@ -1,0 +1,167 @@
+@import './mixins.scss';
+
+a {
+  text-decoration: none;
+}
+
+.wlcm-wrapper {
+  float: left;
+  @include flex-col-cen;
+  width: 20%;
+  height: 100vmin;
+  .wlcm-content {
+    margin-left: 5vw;
+    @include flex-col-cen;
+    font-family: "Montserrat-Bold";
+    text-transform: uppercase;
+    align-items: center;
+    min-width: 730px;
+    color: #333333;
+    img {
+      width: 160px;
+      height: 160px;
+      z-index: 3;
+    }
+    .wlcm-ln1 {
+      z-index: 3;
+      font-size: 4.7rem;
+    }
+    .wlcm-ln2 {
+      z-index: 3;
+      font-size: 2rem;
+    }
+    .wlcm-ln3 {
+      z-index: 3;
+      margin-top: 40px;
+      font-size: 1rem;
+    }
+  }
+}
+.logo-wrapper {
+  overflow: hidden;
+  position: relative; 
+  float: right;
+  width: 80%;
+  height: 100vh;
+  top: 0;
+  .logo {
+    opacity: 25%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+  .rbs {
+    width: 25vmin;
+    height: 25vmin;
+    left: 26vmin;
+    top: 14vmin;
+  }
+  .cSharp {
+    width: 25vmin;
+    height: 27vmin;
+    left: 58vmin;
+    top: 7vmin;
+  }
+  .vue {
+    width: 20vmin;
+    height: 18vmin;
+    left: 90vmin;
+    top: 13vmin;
+  }
+  .git {
+    width: 20vmin;
+    height: 20vmin;
+    left: 116vmin;
+    top: 12vmin;
+  }
+  .js {
+    width: 30vmin;
+    height: 30vmin;
+    left: 149vmin;
+    top: 12vmin;
+  }
+  .bootstrap {
+    width: 30vmin;
+    height: 25vmin;
+    left: 50vmin;
+    top: 39vmin;
+  }
+  .html {
+    width: 18vmin;
+    height: 20vmin;
+    left: 78vmin;
+    top: 37vmin;
+  }
+  .nodejs {
+    width: 17vmin;
+    height: 19vmin;
+    left: 104vmin;
+    top: 35vmin;
+  }
+  .ai {
+    width: 20vmin;
+    height: 20vmin;
+    left: 130vmin;
+    top: 45vmin;
+  }
+  .sql {
+    width: 21vmin;
+    height: 20vmin;
+    left: 160vmin;
+    top: 43vmin;
+  }
+  .sass {
+    width: 24vmin;
+    height: 17vmin;
+    left: 61vmin;
+    top: 64vmin;
+  }
+  .postman {
+    width: 22vmin;
+    height: 22vmin;
+    left: 91vmin;
+    top: 62vmin;
+  }
+  .css {
+    width: 17vmin;
+    height: 20vmin;
+    left: 120vmin;
+    top: 72vmin;
+  }
+  .react {
+    width: 40vmin;
+    height: 40vmin;
+    left: 160vmin;
+    top: 80vmin;
+  }
+  .github {
+    width: 20vmin;
+    height: 20vmin;
+    top: 100vmin;
+    left: 12vmin;
+  }
+  .ps {
+    width: 22vmin;
+    height: 22vmin;
+    top: 95vmin;
+    left: 40vmin;
+  }
+  .java {
+    width: 22vmin;
+    height: 26vmin;
+    top: 90vmin;
+    left: 66vmin;
+  }
+  .flutter {
+    opacity: 30%;
+    width: 21vmin;
+    height: 28vmin;
+    top: 92vmin;
+    left: 94vmin;
+  }
+  .dart {
+    width: 20vmin;
+    height: 20vmin;
+    top: 97vmin;
+    left: 125vmin;
+  }
+}

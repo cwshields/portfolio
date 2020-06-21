@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Montserrat-Reg";
+  src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Montserrat-SemiBold";
+  src: url(../fonts/Montserrat-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url(../fonts/Montserrat-Bold.ttf);
+}
+
+// Test code for code blocks
+
+// code {
+//   background-color: #2a2e36;
+//   color: #e0e0e0;
+//   border-radius: 4px;
+//   padding: 3px 5px;
+// }
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(200deg, #9ed4eb 0%, #7ED2A0 100%);
+}
