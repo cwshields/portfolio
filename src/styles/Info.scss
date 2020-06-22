@@ -1,114 +1,214 @@
 @import "./mixins.scss";
+@import "./variables.scss";
 
 .page-wrap {
-  position: relative;
-  @include flex-col-cen;
-  align-items: center;
-  height: 100vh;
-  min-width: 900px;
-  width: 50vw;
-  .info-wrap {
+  .left-wrap {
+    position: relative;
     @include flex-col-cen;
     align-items: center;
-    font-size: calc(10px + 2vmin);
-    font-family: "Montserrat-Reg";
-    .info {
-      display: flex;
-      position: relative;
-      justify-content: center;
-      .info-content {
-        height: 32vmin;
-        color: #2a2a2a;
-        margin-left: 6vmin;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        .name {
-          font-size: 4.5vmin;
-          line-height: 6vmin;
-          text-transform: uppercase;
-        }
-        .first {
-          font-size: 5vmin;
-        }
-        .last {
-          font-size: 6vmin;
-        }
-        .email {
-          position: relative;
-          margin-top: -2vmin;
-          color: #257b96;
-          font-size: 2.6vmin;
-        }
-        .email:hover {
-          text-decoration: underline;
-        }
-        .media {
-          display: flex;
-          justify-content: space-between;
-        }
-        .media-link {
-          position: relative;
-          width: 5vmin;
-          height: 5vmin;
-        }
-        .media-link::after {
-          position: absolute;
-          background: #2a2a2a;
-          content: "";
-          bottom: -6px;
-          height: 2.5px;
-          left: 0;
-          width: 100%;
-          transform: scaleX(0);
-          transition: transform ease 0.1s;
-          will-change: transform;
-        }
-        .media-link:hover::after {
-          transform: scaleX(1);
-        }
-        .media-svg {
-          fill: #2a2a2a;
-        }
-      }
-    }
-    .desc-wrap {
-      display: flex;
-      justify-content: center;
-      .desc {
-        margin-top: 6vmin;
-        width: 75vmin;
-        font-size: 2vmin;
-      }
-    }
-    .project-link {
-      // needs to be in-line together
-      padding: 10px;
-      display: flex;
+    height: 100vh;
+    width: 50vw;
+    float: left;
+    .info-wrap {
+      @include flex-col-cen;
       align-items: center;
-      position: absolute;
-      bottom: 25px;
-      .proj {
-        color: #2a2a2a;
-        font-size: 1.4rem;
+      font-size: calc(10px + 2vmin);
+      font-family: "Montserrat-Reg";
+      .info {
+        display: flex;
+        position: relative;
+        justify-content: center;
+        .me {
+          height: 38vmin;
+          border-radius: 18px;
+          transform: rotate(-5deg);
+        }
+        .egg1 {
+          cursor: not-allowed;
+          bottom: 0;
+          position: absolute;
+          font-size: 5px;
+        }
+        .info-content {
+          height: 32vmin;
+          color: #2a2a2a;
+          margin-left: 6vmin;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .name {
+            font-size: 4.5vmin;
+            line-height: 6vmin;
+            text-transform: uppercase;
+          }
+          .first {
+            font-size: 5vmin;
+          }
+          .last {
+            font-size: 6vmin;
+          }
+          .email {
+            position: relative;
+            margin-top: -2vmin;
+            color: #257b96;
+            font-size: 2.6vmin;
+          }
+          .email:hover {
+            text-decoration: underline;
+          }
+          .media {
+            display: flex;
+            justify-content: space-between;
+          }
+          .media-link {
+            position: relative;
+            width: 5vmin;
+            height: 5vmin;
+          }
+          .media-link::after {
+            position: absolute;
+            background: #2a2a2a;
+            content: "";
+            bottom: -6px;
+            height: 2.5px;
+            left: 0;
+            width: 100%;
+            transform: scaleX(0);
+            transition: transform ease 0.1s;
+            will-change: transform;
+          }
+          .media-link:hover::after {
+            transform: scaleX(1);
+          }
+          .media-svg {
+            fill: #2a2a2a;
+          }
+        }
+      }
+      .desc-wrap {
+        display: flex;
+        justify-content: center;
+        .desc {
+          margin-top: 6vmin;
+          width: 75vmin;
+          font-size: 2vmin;
+        }
+      }
+      .project-link {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: 25px;
+        .arrow {
+          margin: 3px 6px 0px 0px;
+          fill: #2a2a2a;
+          width: 26px;
+          height: 26px;
+        }
+        .proj {
+          color: #2a2a2a;
+          font-size: 1.4rem;
+        }
       }
     }
   }
-}
-.arrow {
-  margin: 3px 6px 0px 0px;
-  fill: #2a2a2a;
-  width: 26px;
-  height: 26px;
-}
-.me {
-  height: 38vmin;
-  border-radius: 18px;
-  transform: rotate(-5deg);
-}
-.egg1 {
-  cursor: not-allowed;
-  bottom: 0;
-  position: absolute;
-  font-size: 5px;
+  .stack-wrap {
+    @include flex-col-cen;
+    position: relative;
+    float: right;
+    width: 50%;
+    margin-top: 5vmin;
+    .logo {
+      height: 100%;
+      width: 12vmin;
+      z-index: 1;
+    }
+    .stack-sect {
+      opacity: 6%;
+      z-index: 0;
+      font-weight: 700;
+      font-size: 7vmin;
+      text-transform: uppercase;
+      position: absolute;
+    }
+    .frameworks-wrap {
+      @include flex-center;
+      .fw {
+        left: 18vmin;
+        top: -5vmin;
+      }
+      .react {
+        width: 15vmin;
+      }
+      .vue {
+        width: 15vmin;
+        margin-left: 10vmin;
+      }
+    }
+    .libraries-wrap {
+      @include flex-center;
+      margin-top: $stack-top-dist;
+      .lib {
+        font-size: 6.5vmin;
+        top: 18vmin;
+        left: 39vmin;
+      }
+      .bootstrap {
+        width: 16vmin;
+        height: 14vmin;
+      }
+      .sass {
+        width: 17vmin;
+        height: 13vmin;
+        margin-left: 7vmin;
+      }
+    }
+    .fundamentals-wrap {
+      @include flex-center;
+      margin-top: $stack-top-dist;
+      .funds {
+        top: 37vmin;
+        left: 12vmin;
+        font-size: 9vmin;
+      }
+      .css {
+        margin-left: 7vmin;
+      }
+      .js {
+        margin-left: 7vmin;
+      }
+      .cSharp {
+        margin-left: 7vmin;
+      }
+    }
+    .backend {
+      @include flex-center;
+      margin-top: $stack-top-dist;
+      .be {
+        top: 63vmin;
+        left: 31vmin;
+        font-size: 6vmin;
+      }
+      .nodejs {
+        margin-left: 9vmin;
+      }
+    }
+    .version-control {
+      @include flex-center;
+      margin-top: $stack-top-dist;
+      .vc {
+        top: 90vmin;
+        font-size: 5.2vmin;
+      }
+      .github {
+      }
+      .git {
+        margin-left: 50vmin;
+      }
+    }
+    .skillset {
+
+    }
+  }
 }
