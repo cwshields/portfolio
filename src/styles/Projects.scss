@@ -1,0 +1,35 @@
+@import "./mixins.scss";
+
+h1 {
+  margin: 1vmin 0 2vmin 0;
+}
+.projects-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  .projects-wrap {
+    margin: 12vmin;
+    .showcase-wrap {
+      margin-top: 8vmin;
+      height: 40vh;
+      display: flex;
+      width: 65vw;
+    }
+  }
+}
+.proj-img {
+  height: 400px;
+  width: 68vmin;
+  border-radius: 25px;
+}
+.desc {
+  line-height: 2vmin;
+  margin: 0 0 2vmin 0;
+}
+.text {
+  font-size: 1.6vmin;
+  margin-left: 3vmin;
+  display: flex;
+  flex-direction: column;
+}
