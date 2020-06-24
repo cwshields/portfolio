@@ -29,16 +29,16 @@
 }
 
 .back {
-  opacity: 60%;
+  opacity: 0.6;
   font-size: 1.2rem;
   color: #2a2a2a;
   top: 3vmin;
   left: 3vmin;
   display: flex;
-  position: absolute;
+  position: fixed;
   align-items: center;
   .arrow {
-    opacity: 70%;
+    opacity: 0.7;
     color: #2a2a2a;
     width: 30px;
     height: 30px;

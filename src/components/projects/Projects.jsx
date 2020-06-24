@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import '../../styles/Projects.scss';
 
 import afp from '../../images/AFPShowcase.png';
@@ -8,7 +9,7 @@ function Projects() {
   return (
     <div className="projects-page">
       <div className="projects-wrap">
-        <a href="/info" className="back">
+        <Link to="/info" className="back">
           <svg className="arrow"
             viewBox="0 0 75 75"
             xmlns="http://www.w3.org/2000/svg">
@@ -17,9 +18,9 @@ function Projects() {
                     1.207l-16.586 17.414c-.762.8-.731 2.066.069 2.828s2.067.731 2.828-.069l14.551-15.342v39.962c0 1.104.896 2 2 2z"/>
           </svg>
           <div>Back</div>
-        </a>
+        </Link>
         <div className="showcase-wrap">
-          <a src="https://www.andyfancherpresents.com/" alt="AFP-Showcase">
+          <a href="https://www.andyfancherpresents.com/" alt="AFP-Showcase">
             <img className="proj-img" src={afp} alt="afp-showcase.png"/>
           </a>
           <div className="text">
@@ -33,7 +34,7 @@ function Projects() {
           </div>
         </div>
         <div className="showcase-wrap">
-          <a src="http://drino.live/" alt="Drino-Showcase">
+          <a href="http://drino.live/" alt="Drino-Showcase">
             <img className="proj-img" src={drino} alt="drino-showcase.png"/>
           </a>
           <div className="text">

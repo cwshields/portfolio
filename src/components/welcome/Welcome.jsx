@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import cslogo from "../../images/CSLogo2.png";
 import "../../styles/Welcome.scss";
 
@@ -22,7 +23,6 @@ import css from "../../images/css-logo.png";
 import react from "../../images/react-logo.png";
 import flutter from "../../images/flutter-logo.png";
 import dart from "../../images/dart-logo.png";
-import { Link } from "react-router-dom";
 
 function Welcome() {
   return (

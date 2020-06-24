@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import me from "../../images/me.jpg";
 import "../../styles/Info.scss";
 
@@ -20,7 +21,7 @@ function Info() {
     <div className="info-wrapper">
       <div className="info-page-wrap">
         <div className="left-wrap">
-          <a href="/" className="back">
+          <Link to="/" className="back">
             <svg className="arrow"
               viewBox="0 0 75 75"
               xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +30,7 @@ function Info() {
   				            1.207l-16.586 17.414c-.762.8-.731 2.066.069 2.828s2.067.731 2.828-.069l14.551-15.342v39.962c0 1.104.896 2 2 2z"/>
             </svg>
             <div>Back</div>
-          </a>
+          </Link>
           <div className="info-wrap">
             <div className="info">
               <img src={me} className="me" alt="logo" />
@@ -113,7 +114,7 @@ function Info() {
                 </p>
               </div>
             </div>
-            <a href="/projects" className="project-link">
+            <Link to="/projects" className="project-link">
               <svg
                 className="arrow"
                 viewBox="0 0 64 64"
@@ -126,7 +127,7 @@ function Info() {
                 />
               </svg>
               <div className="proj">Projects</div>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="stack-wrap">
