@@ -3,7 +3,9 @@
 a {
   text-decoration: none;
 }
-
+.wlcm-page-wrap {
+  overflow: hidden;
+}
 .wlcm-wrapper {
   float: left;
   @include flex-col-cen;

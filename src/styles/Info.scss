@@ -1,18 +1,21 @@
 @import "./mixins.scss";
 @import "./variables.scss";
 
-.page-wrap {
+.info-wrapper {
+  overflow: hidden;
+}
+.info-page-wrap {
+  color: #2a2a2a;
   .left-wrap {
     position: relative;
     @include flex-col-cen;
     align-items: center;
     height: 100vh;
-    width: 50vw;
+    width: 50%;
     float: left;
     .info-wrap {
       @include flex-col-cen;
       align-items: center;
-      font-size: calc(10px + 2vmin);
       font-family: "Montserrat-Reg";
       .info {
         display: flex;
@@ -86,6 +89,9 @@
         }
       }
       .desc-wrap {
+        p {
+          margin: 0 0 2.5vmin 0;
+        }
         display: flex;
         justify-content: center;
         .desc {
@@ -108,23 +114,23 @@
         }
         .proj {
           color: #2a2a2a;
-          font-size: 1.4rem;
+          font-size: 1.5rem;
         }
       }
     }
   }
   .stack-wrap {
     @include flex-col-cen;
+    margin-top: 8vmin;
     position: relative;
     float: right;
     width: 50%;
-    margin-top: 5vmin;
     .logo {
       height: 100%;
       width: 12vmin;
       z-index: 1;
     }
-    .stack-sect {
+    .stack-text {
       opacity: 6%;
       z-index: 0;
       font-weight: 700;
@@ -134,6 +140,7 @@
     }
     .frameworks-wrap {
       @include flex-center;
+      position: relative;
       .fw {
         left: 18vmin;
         top: -5vmin;
@@ -148,11 +155,12 @@
     }
     .libraries-wrap {
       @include flex-center;
+      position: relative;
       margin-top: $stack-top-dist;
       .lib {
         font-size: 6.5vmin;
-        top: 18vmin;
-        left: 39vmin;
+        top: -5vmin;
+        left: 40vmin;
       }
       .bootstrap {
         width: 16vmin;
@@ -166,10 +174,11 @@
     }
     .fundamentals-wrap {
       @include flex-center;
+      position: relative;
       margin-top: $stack-top-dist;
       .funds {
-        top: 37vmin;
-        left: 12vmin;
+        top: -8vmin;
+        left: 4vmin;
         font-size: 9vmin;
       }
       .css {
@@ -184,9 +193,10 @@
     }
     .backend {
       @include flex-center;
+      position: relative;
       margin-top: $stack-top-dist;
       .be {
-        top: 63vmin;
+        top: -4vmin;
         left: 31vmin;
         font-size: 6vmin;
       }
@@ -196,19 +206,17 @@
     }
     .version-control {
       @include flex-center;
+      position: absolute;
+      left: 13vmin;
+      top: 77vmin;
       margin-top: $stack-top-dist;
       .vc {
-        top: 90vmin;
+        top: 1vmin;
         font-size: 5.2vmin;
       }
-      .github {
-      }
       .git {
-        margin-left: 50vmin;
+        margin-left: 51vmin;
       }
-    }
-    .skillset {
-
     }
   }
 }
