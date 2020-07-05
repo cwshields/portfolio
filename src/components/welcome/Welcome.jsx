@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import cslogo from "../../images/CSLogo2.png";
 import "../../styles/Welcome.scss";
 
 // Logos
+import cslogo from "../../images/cs-logo-light.png";
 import sass from "../../images/sass-logo.png";
 import html from "../../images/html-logo.png";
 import bootstrap from "../../images/bootstrap-logo.png";
