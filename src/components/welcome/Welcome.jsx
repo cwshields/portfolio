@@ -37,6 +37,9 @@ function Welcome() {
               I’m a Game and Web designer and developer who’s passion is to
               create
             </div>
+            <div className="wlcm-ln4">
+              Click anywhere to continue...
+            </div>
           </div>
         </div>
         <div className="logo-wrapper">

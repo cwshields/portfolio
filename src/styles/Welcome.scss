@@ -1,4 +1,4 @@
-@import './mixins.scss';
+@import "./mixins.scss";
 
 a {
   text-decoration: none;
@@ -7,41 +7,51 @@ a {
   overflow: hidden;
 }
 .wlcm-wrapper {
-  float: left;
   @include flex-col-cen;
+  font-family: "Montserrat-Bold";
+  float: left;
   width: 20%;
   height: 100vmin;
   .wlcm-content {
     margin-left: 5vw;
     @include flex-col-cen;
-    font-family: "Montserrat-Bold";
     text-transform: uppercase;
     align-items: center;
     min-width: 730px;
     color: #dfdfdf;
+    img,
+    .wlcm-ln1,
+    .wlcm-ln2,
+    .wlcm-ln3,
+    .wlcm-ln3 {
+      z-index: 3;
+    }
     img {
       width: 170px;
       height: 170px;
-      z-index: 3;
     }
     .wlcm-ln1 {
-      z-index: 3;
       font-size: 4.7rem;
     }
     .wlcm-ln2 {
-      z-index: 3;
       font-size: 2rem;
     }
     .wlcm-ln3 {
-      z-index: 3;
       margin-top: 40px;
+      font-size: 1rem;
+    }
+    .wlcm-ln4 {
+      text-transform: none;
+      color: #dfdfdf;
+      opacity: 0.3;
+      margin-top: 35px;
       font-size: 1rem;
     }
   }
 }
 .logo-wrapper {
   overflow: hidden;
-  position: relative; 
+  position: relative;
   float: right;
   width: 80%;
   height: 100vh;
@@ -139,12 +149,12 @@ a {
     width: 20vmin;
     height: 20vmin;
     top: 100vmin;
-    left: 12vmin;
+    left: 15vmin;
   }
   .ps {
-    width: 22vmin;
-    height: 22vmin;
-    top: 95vmin;
+    width: 20vmin;
+    height: 20vmin;
+    top: 96vmin;
     left: 40vmin;
   }
   .java {
