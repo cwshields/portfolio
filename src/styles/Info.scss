@@ -185,9 +185,9 @@
     }
     .fundamentals-wrap {
       .funds {
-        top: -1vmin;
-        left: 40%;
-        font-size: 7.5vmin;
+        top: -2vmin;
+        left: 34%;
+        font-size: 7.2vmin;
       }
       .csharp {
         padding-right: 0;
@@ -288,27 +288,99 @@
     .stack-wrap {
       float: left;
       width: 100%;
+      .frameworks-wrap {
+        margin-top: 5vmin;
+        .fw {
+          top: -1.5vmin;
+          font-size: 7vmin;
+          left: 45%;
+        }
+        .react {
+          width: 14vmin;
+        }
+        .vue {
+          width: 14vmin;
+          padding-right: 0;
+        }
+      }
+      .libraries-wrap {
+        .lib {
+          font-size: 6vmin;
+          top: -1vmin;
+          left: 60%;
+        }
+        .sass {
+          width: 14vmin;
+          padding-right: 0;
+        }
+      }
+      .fundamentals-wrap {
+        .funds {
+          font-size: 7.5vmin;
+        }
+        .csharp {
+          padding-right: 0;
+        }
+      }
+      .backend {
+        .be {
+          top: -1vmin;
+          left: 45%;
+        }
+        .sql {
+          width: 13vmin;
+        }
+        .nodejs {
+          width: 11vmin;
+          padding-right: 0;
+        }
+      }
+      .version-control {
+        .vc {
+          font-size: 4.6vmin;
+          top: 40%;
+          left: 70%;
+          width: 100%;
+        }
+        .github {
+          padding-right: 44vmin;
+        }
+        .git {
+          padding-right: 0;
+        }
+      }
     }
   }
   .project-link {
     left: 48%;
   }
+  .logo {
+    width: 13vmin;
+    height: 100%;
+    padding-right: 6vw;
+    z-index: 1;
+  }
 }
+
 
 @media (max-width: 950px) {
   .info-wrapper {
-    height: 200vh;
+    display: block;
+    height: 110vh;
     .left-wrap {
       float: left;
-      height: 100vw;
+      height: 80vw;
       width: 100%;
       .info-wrap {
-        width: 85%;
+        width: 72%;
         .desc {
-          font-size: 2.3vw;
+          font-size: 2.2vmin;
           margin-top: 4vw;
         }
       }
+    }
+    .stack-wrap {
+      height: 80vw;
     }
   }
 }
