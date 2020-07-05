@@ -1,221 +1,313 @@
 @import "./mixins.scss";
 @import "./variables.scss";
 
-.info-wrapper {
-  overflow: hidden;
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(-2deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-4deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(-2deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(-3deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(-2deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-4deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(-3deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-4deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(-2deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(-3deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-4deg);
+  }
 }
-.info-page-wrap {
-  color: #2a2a2a;
+
+.info-wrapper {
+  overflow-x: hidden;
+  height: 100vh;
+  position: relative;
   .left-wrap {
-    position: relative;
-    @include flex-col-cen;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    position: relative;
     height: 100vh;
-    width: 50%;
     float: left;
+    width: 50%;
     .info-wrap {
-      @include flex-col-cen;
-      align-items: center;
       font-family: "Montserrat-Reg";
+      padding: 0 5.5vw;
       .info {
         display: flex;
-        position: relative;
-        justify-content: center;
-        .me {
-          height: 38vmin;
-          border-radius: 18px;
-          transform: rotate(-5deg);
-        }
-        .egg1 {
-          cursor: not-allowed;
-          bottom: 0;
-          position: absolute;
-          font-size: 5px;
-        }
-        .info-content {
-          height: 32vmin;
-          color: #2a2a2a;
-          margin-left: 6vmin;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          .name {
-            font-size: 4.5vmin;
-            line-height: 6vmin;
-            text-transform: uppercase;
-          }
-          .first {
-            font-size: 5vmin;
-          }
-          .last {
-            font-size: 6vmin;
-          }
-          .email {
-            position: relative;
-            margin-top: -2vmin;
-            color: #257b96;
-            font-size: 2.6vmin;
-          }
-          .email:hover {
-            text-decoration: underline;
-          }
-          .media {
-            display: flex;
-            justify-content: space-between;
-          }
-          .media-link {
-            position: relative;
-            width: 5vmin;
-            height: 5vmin;
-          }
-          .media-link::after {
-            position: absolute;
-            background: #2a2a2a;
-            content: "";
-            bottom: -6px;
-            height: 2.5px;
-            left: 0;
+        .img-div {
+          position: relative;
+          flex: 1 1 50%;
+          .me {
+            display: block;
             width: 100%;
-            transform: scaleX(0);
-            transition: transform ease 0.1s;
-            will-change: transform;
+            border-radius: 2vmin;
+            transform: rotate(-4deg);
           }
-          .media-link:hover::after {
-            transform: scaleX(1);
+          .me-angry {
+            animation: shake 0.5s;
+            animation-iteration-count: infinite;
           }
-          .media-svg {
-            fill: #2a2a2a;
+          .egg1 {
+            color: #a5a5a51c;
+            cursor: not-allowed;
+            bottom: -8px;
+            right: 0;
+            position: absolute;
+            font-size: 6px;
+          }
+        }
+        .info-div {
+          flex: 1 1 50%;
+          padding-left: 40px;
+          .info-content {
+            @include flex-col-spbtw;
+            height: 100%;
+            .name {
+              line-height: 3.5vw;
+              text-transform: uppercase;
+              .first {
+                font-size: 3vw;
+              }
+              .last {
+                font-size: 4vw;
+              }
+            }
+            .email {
+              color: #6c98b8;
+              font-size: 1.5vw;
+            }
+            .email:hover {
+              text-decoration: underline;
+            }
+            .media {
+              @include flex(row, space-between, left);
+              .media-link {
+                position: relative;
+                width: 3vw;
+                height: 3vw;
+              }
+              .media-link::after {
+                position: absolute;
+                background: #dfdfdf;
+                content: "";
+                bottom: -6px;
+                height: 2.5px;
+                left: 0;
+                width: 100%;
+                transform: scaleX(0);
+                transition: transform ease 0.1s;
+                will-change: transform;
+              }
+              .media-link:hover::after {
+                transform: scaleX(1);
+              }
+              .media-svg {
+                fill: #dfdfdf;
+              }
+            }
           }
         }
       }
-      .desc-wrap {
-        p {
-          margin: 0 0 2.5vmin 0;
-        }
-        display: flex;
-        justify-content: center;
-        .desc {
-          margin-top: 6vmin;
-          width: 75vmin;
-          font-size: 2vmin;
-        }
-      }
-      .project-link {
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        position: absolute;
-        bottom: 25px;
-        .arrow {
-          margin: 3px 6px 0px 0px;
-          fill: #2a2a2a;
-          width: 26px;
-          height: 26px;
-        }
-        .proj {
-          color: #2a2a2a;
-          font-size: 1.5rem;
-        }
+      .desc {
+        font-size: 1.1vw;
+        margin-top: 4vw;
       }
     }
   }
+
   .stack-wrap {
-    @include flex-col-cen;
-    margin-top: 8vmin;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     float: right;
     width: 50%;
-    .logo {
-      height: 100%;
-      width: 12vmin;
-      z-index: 1;
+    height: 100vh;
+    .frameworks-wrap,
+    .libraries-wrap,
+    .fundamentals-wrap,
+    .backend,
+    .version-control {
+      position: relative;
+      display: flex;
+      align-items: center;
     }
-    .stack-text {
-      opacity: 0.06;
-      z-index: 0;
-      font-weight: 700;
-      font-size: 7vmin;
-      text-transform: uppercase;
-      position: absolute;
+    .frameworks-wrap,
+    .libraries-wrap,
+    .fundamentals-wrap,
+    .backend {
+      padding-bottom: 7.5vmin;
     }
     .frameworks-wrap {
-      @include flex-center;
-      position: relative;
+      margin-top: 7vmin;
       .fw {
-        left: 18vmin;
-        top: -5vmin;
+        top: -1.5vmin;
+        font-size: 7vmin;
+        left: 45%;
       }
       .react {
-        width: 15vmin;
+        width: 14vmin;
       }
       .vue {
-        width: 15vmin;
-        margin-left: 10vmin;
+        width: 14vmin;
+        padding-right: 0;
       }
     }
     .libraries-wrap {
-      @include flex-center;
-      position: relative;
-      margin-top: $stack-top-dist;
       .lib {
-        font-size: 6.5vmin;
-        top: -5vmin;
-        left: 40vmin;
-      }
-      .bootstrap {
-        width: 16vmin;
-        height: 14vmin;
+        top: -1vmin;
+        left: 60%;
       }
       .sass {
-        width: 17vmin;
-        height: 13vmin;
-        margin-left: 7vmin;
+        width: 14vmin;
+        padding-right: 0;
       }
     }
     .fundamentals-wrap {
-      @include flex-center;
-      position: relative;
-      margin-top: $stack-top-dist;
       .funds {
-        top: -8vmin;
-        left: 4vmin;
-        font-size: 9vmin;
+        top: -1vmin;
+        left: 40%;
+        font-size: 7.5vmin;
       }
-      .css {
-        margin-left: 7vmin;
-      }
-      .js {
-        margin-left: 7vmin;
-      }
-      .cSharp {
-        margin-left: 7vmin;
+      .csharp {
+        padding-right: 0;
       }
     }
     .backend {
-      @include flex-center;
-      position: relative;
-      margin-top: $stack-top-dist;
       .be {
-        top: -4vmin;
-        left: 31vmin;
-        font-size: 6vmin;
+        top: -1vmin;
+        left: 45%;
+      }
+      .sql {
+        width: 13vmin;
       }
       .nodejs {
-        margin-left: 9vmin;
+        width: 11vmin;
+        padding-right: 0;
       }
     }
     .version-control {
-      @include flex-center;
-      position: absolute;
-      left: 13vmin;
-      top: 77vmin;
-      margin-top: $stack-top-dist;
       .vc {
-        top: 1vmin;
-        font-size: 5.2vmin;
+        font-size: 4.6vmin;
+        top: 40%;
+        left: 68%;
+        width: 100%;
+      }
+      .github {
+        padding-right: 44vmin;
       }
       .git {
-        margin-left: 51vmin;
+        padding-right: 0;
+      }
+    }
+    .stack-text {
+      font-size: 5vmin;
+      font-weight: 600;
+      opacity: 0.08;
+      z-index: 0;
+      text-transform: uppercase;
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+.logo {
+  width: 11vmin;
+  height: 100%;
+  padding-right: 5vw;
+  z-index: 1;
+}
+
+@media (max-width: 1350px) {
+  .info-wrapper {
+    height: 215vh;
+    .left-wrap {
+      float: left;
+      width: 100%;
+      .info-wrap {
+        width: 70%;
+        font-size: 1.5vmin;
+        padding: 0 4vw;
+        .info {
+          .info-div {
+            .info-content {
+              .name {
+                line-height: 5vw;
+                .first {
+                  font-size: 4vw;
+                }
+                .last {
+                  font-size: 6.2vw;
+                }
+              }
+              .email {
+                font-size: 3vw;
+              }
+              .email:hover {
+                text-decoration: underline;
+              }
+              .media {
+                @include flex(row, space-between, left);
+                .media-link {
+                  position: relative;
+                  width: 5vw;
+                  height: 5vw;
+                }
+              }
+            }
+          }
+        }
+        .desc {
+          font-size: 1.8vw;
+          margin-top: 4vw;
+        }
+      }
+    }
+    .stack-wrap {
+      float: left;
+      width: 100%;
+    }
+  }
+  .project-link {
+    left: 48%;
+  }
+}
+
+@media (max-width: 950px) {
+  .info-wrapper {
+    height: 200vh;
+    .left-wrap {
+      float: left;
+      height: 100vw;
+      width: 100%;
+      .info-wrap {
+        width: 85%;
+        .desc {
+          font-size: 2.3vw;
+          margin-top: 4vw;
+        }
       }
     }
   }
