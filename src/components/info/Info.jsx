@@ -36,7 +36,7 @@ class Info extends Component {
     this.setState((state) => ({ mad: !state.mad }));
     setTimeout(() => {
       this.setState((state) => ({ mad: !state.mad }));
-    }, 800);
+    }, 1000);
   };
 
   getImageName = () => {
