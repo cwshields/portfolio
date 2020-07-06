@@ -373,10 +373,10 @@
 @media (max-width: 950px) {
   .info-wrapper {
     display: block;
-    height: 110vh;
+    height: 100%;
     .left-wrap {
       float: left;
-      height: 80vw;
+      height: 100vw;
       width: 100%;
       .info-wrap {
         width: 72%;
@@ -387,7 +387,12 @@
       }
     }
     .stack-wrap {
-      height: 80vw;
+      height: 100vw;
+    }
+    .project-link {
+      left: 90%;
+      position: inherit;
+      bottom: 0vmin;
     }
   }
 }

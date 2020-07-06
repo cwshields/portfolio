@@ -25,7 +25,7 @@ function Projects() {
         </Link>
         <div className="showcase-wrap">
           <div className="showcase">
-            <a href="https://www.andyfancherpresents.com/" alt="AFP-Showcase">
+            <a href="https://www.andyfancherpresents.com/" target="_blank" rel="noopener noreferrer" alt="AFP-Showcase">
               <img className="proj-img" src={afp} alt="afp-showcase.png" />
             </a>
           </div>
@@ -49,7 +49,7 @@ function Projects() {
         </div>
         <div className="showcase-wrap">
           <div className="showcase">
-            <a href="http://drino.live/" alt="Drino-Showcase">
+            <a href="http://drino.live/" target="_blank" rel="noopener noreferrer" alt="Drino-Showcase">
               <img className="proj-img" src={drino} alt="drino-showcase.png" />
             </a>
           </div>
