@@ -178,8 +178,14 @@
         top: -1vmin;
         left: 60%;
       }
+      .bootstrap {
+        width: 13vmin;
+      }
+      .rbs {
+        width: 12.5vmin;
+      }
       .sass {
-        width: 14vmin;
+        width: 16vmin;
         padding-right: 0;
       }
     }
@@ -194,15 +200,16 @@
       }
     }
     .backend {
+      padding-bottom: 4vmin;
       .be {
         top: -1vmin;
         left: 45%;
       }
       .sql {
-        width: 13vmin;
+        width: 13.3vmin;
       }
       .nodejs {
-        width: 11vmin;
+        width: 12vmin;
         padding-right: 0;
       }
     }
