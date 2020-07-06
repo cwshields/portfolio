@@ -6,47 +6,48 @@ a {
 .wlcm-page-wrap {
   overflow: hidden;
 }
-.wlcm-wrapper {
-  @include flex-col-cen;
-  font-family: "Montserrat-Bold";
+.left-wrapper {
   float: left;
   width: 20%;
-  height: 100vmin;
-  .wlcm-content {
-    margin-left: 5vw;
-    @include flex-col-cen;
-    text-transform: uppercase;
-    align-items: center;
-    min-width: 730px;
+  height: 100vh;
+}
+.wlcm-content {
+  font-family: "Montserrat-Bold";
+  height: 100vh;
+  width: 45vw;
+  margin-left: 0vh;
+  @include flex-col-cen;
+  text-transform: uppercase;
+  align-items: center;
+  text-align: center;
+  color: #dfdfdf;
+  img,
+  .wlcm-ln1,
+  .wlcm-ln2,
+  .wlcm-ln3,
+  .wlcm-ln3 {
+    z-index: 3;
+  }
+  img {
+    width: 170px;
+    height: 170px;
+  }
+  .wlcm-ln1 {
+    font-size: 4.7rem;
+  }
+  .wlcm-ln2 {
+    font-size: 2rem;
+  }
+  .wlcm-ln3 {
+    margin-top: 40px;
+    font-size: 1rem;
+  }
+  .wlcm-ln4 {
+    text-transform: none;
     color: #dfdfdf;
-    img,
-    .wlcm-ln1,
-    .wlcm-ln2,
-    .wlcm-ln3,
-    .wlcm-ln3 {
-      z-index: 3;
-    }
-    img {
-      width: 170px;
-      height: 170px;
-    }
-    .wlcm-ln1 {
-      font-size: 4.7rem;
-    }
-    .wlcm-ln2 {
-      font-size: 2rem;
-    }
-    .wlcm-ln3 {
-      margin-top: 40px;
-      font-size: 1rem;
-    }
-    .wlcm-ln4 {
-      text-transform: none;
-      color: #dfdfdf;
-      opacity: 0.3;
-      margin-top: 35px;
-      font-size: 1rem;
-    }
+    opacity: 0.3;
+    margin-top: 35px;
+    font-size: 1rem;
   }
 }
 .logo-wrapper {
@@ -61,119 +62,179 @@ a {
     position: absolute;
     transform: translate(-50%, -50%);
   }
-  .rbs {
-    width: 25vmin;
-    height: 25vmin;
-    left: 26vmin;
-    top: 14vmin;
+  .react {
+    width: 25vh;
+    height: 25vh;
+    left: 26vh;
+    top: 14vh;
   }
   .cSharp {
-    width: 25vmin;
-    height: 27vmin;
-    left: 58vmin;
-    top: 7vmin;
+    width: 25vh;
+    height: 27vh;
+    left: 58vh;
+    top: 7vh;
   }
   .vue {
-    width: 20vmin;
-    height: 18vmin;
-    left: 90vmin;
-    top: 13vmin;
+    width: 20vh;
+    height: 18vh;
+    left: 90vh;
+    top: 13vh;
   }
   .git {
-    width: 20vmin;
-    height: 20vmin;
-    left: 116vmin;
-    top: 12vmin;
+    width: 20vh;
+    height: 20vh;
+    left: 116vh;
+    top: 12vh;
   }
   .js {
-    width: 30vmin;
-    height: 30vmin;
-    left: 149vmin;
-    top: 12vmin;
+    width: 30vh;
+    height: 30vh;
+    left: 149vh;
+    top: 12vh;
   }
   .bootstrap {
-    width: 27vmin;
-    height: 24vmin;
-    left: 50vmin;
-    top: 39vmin;
+    width: 27vh;
+    height: 24vh;
+    left: 50vh;
+    top: 39vh;
   }
   .html {
-    width: 18vmin;
-    height: 20vmin;
-    left: 78vmin;
-    top: 37vmin;
+    width: 18vh;
+    height: 20vh;
+    left: 78vh;
+    top: 37vh;
   }
   .nodejs {
-    width: 17vmin;
-    height: 19vmin;
-    left: 104vmin;
-    top: 35vmin;
+    width: 17vh;
+    height: 19vh;
+    left: 104vh;
+    top: 35vh;
   }
   .ai {
-    width: 20vmin;
-    height: 20vmin;
-    left: 130vmin;
-    top: 45vmin;
+    width: 20vh;
+    height: 20vh;
+    left: 130vh;
+    top: 45vh;
   }
   .sql {
-    width: 21vmin;
-    height: 20vmin;
-    left: 160vmin;
-    top: 43vmin;
+    width: 21vh;
+    height: 20vh;
+    left: 160vh;
+    top: 43vh;
   }
   .sass {
-    width: 24vmin;
-    height: 17vmin;
-    left: 61vmin;
-    top: 64vmin;
+    width: 24vh;
+    height: 17vh;
+    left: 61vh;
+    top: 64vh;
   }
   .postman {
-    width: 22vmin;
-    height: 22vmin;
-    left: 91vmin;
-    top: 62vmin;
+    width: 22vh;
+    height: 22vh;
+    left: 91vh;
+    top: 62vh;
   }
   .css {
-    width: 17vmin;
-    height: 20vmin;
-    left: 120vmin;
-    top: 72vmin;
+    width: 17vh;
+    height: 20vh;
+    left: 120vh;
+    top: 72vh;
   }
-  .react {
-    width: 40vmin;
-    height: 40vmin;
-    left: 160vmin;
-    top: 80vmin;
+  .rbs {
+    width: 40vh;
+    height: 40vh;
+    left: 160vh;
+    top: 80vh;
   }
   .github {
-    width: 20vmin;
-    height: 20vmin;
-    top: 100vmin;
-    left: 15vmin;
+    width: 20vh;
+    height: 20vh;
+    top: 100vh;
+    left: 15vh;
   }
   .ps {
-    width: 20vmin;
-    height: 20vmin;
-    top: 96vmin;
-    left: 40vmin;
+    width: 20vh;
+    height: 20vh;
+    top: 96vh;
+    left: 40vh;
   }
   .java {
-    width: 22vmin;
-    height: 26vmin;
-    top: 90vmin;
-    left: 66vmin;
+    width: 22vh;
+    height: 26vh;
+    top: 90vh;
+    left: 66vh;
   }
   .flutter {
     opacity: 0.15;
-    width: 21vmin;
-    height: 28vmin;
-    top: 92vmin;
-    left: 94vmin;
+    width: 21vh;
+    height: 28vh;
+    top: 92vh;
+    left: 94vh;
   }
   .dart {
-    width: 20vmin;
-    height: 20vmin;
-    top: 97vmin;
-    left: 125vmin;
+    width: 20vh;
+    height: 20vh;
+    top: 97vh;
+    left: 125vh;
+  }
+}
+
+@media (max-width: 1550px) {
+  .left-wrapper {
+    width: 0%;
+  }
+  .wlcm-content {
+    width: 40vw;
+    margin-left: 8vh;
+  }
+}
+
+@media (max-width: 850px) {
+  .left-wrapper {
+    width: 0%;
+  }
+  .wlcm-content {
+    width: 52vw;
+    margin-left: 10vh;
+  }
+}
+
+@media (max-width: 607px) {
+  .left-wrapper {
+    width: 0%;
+  }
+  .wlcm-content {
+    width: 60vw;
+    margin-left: 10vh;
+    img {
+      width: 12rem;
+      height: 12rem;
+    }
+    .wlcm-ln1 {
+      font-size: 4.2rem;
+    }
+    .wlcm-ln2 {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media (max-width: 470px) {
+  .left-wrapper {
+    width: 0%;
+  }
+  .wlcm-content {
+    width: 84vw;
+    margin-left: 4.2vh;
+    .wlcm-ln1 {
+      font-size: 3.7rem;
+    }
+    .wlcm-ln2 {
+      font-size: 1.3rem;
+    }
+    .wlcm-ln3 {
+      margin-top: 48px;
+      font-size: 1rem;
+    }
   }
 }

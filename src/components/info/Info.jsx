@@ -60,7 +60,6 @@ class Info extends Component {
                         1.207l-16.586 17.414c-.762.8-.731 2.066.069 2.828s2.067.731 2.828-.069l14.551-15.342v39.962c0 1.104.896 2 2 2z"
               />
             </svg>
-            <div>Back</div>
           </Link>
           <div className="info-wrap">
             <div className="info">
