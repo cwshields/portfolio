@@ -34,13 +34,13 @@ function Projects() {
               When he was 9 years old, Andy Fancher, found WWII memorabilia that
               inspired him to know more, but little to no information was known
               about the veterans he found. It later inspired him to go on a 
-              mission to find untold stories of these heroes so the world could 
-              better know it’s heroes in what became Andy Fancher Presents. On 
+              mission to find the untold stories of these heroes so the world 
+              could better know them in what became Andy Fancher Presents. On 
               this platform, he could document these stories for the world to
               see and hear for themselves.
             </p>
             <p className="desc">
-              His journey inspired me knowing that so many amazing stories have
+              His journey inspired me, knowing that so many amazing stories have
               been lost over time, so I used how I could help to design this
               website for him in hopes it could help his journey be successful.
             </p>
