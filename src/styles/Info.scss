@@ -166,10 +166,12 @@
         left: 45%;
       }
       .react {
-        width: 14vmin;
+        width: auto;
+        height: 15vmin;
       }
       .vue {
-        width: 14vmin;
+        width: auto;
+        height: 14vmin;
         padding-right: 0;
       }
     }
@@ -179,24 +181,38 @@
         left: 60%;
       }
       .bootstrap {
-        width: 13vmin;
+        width: auto;
+        height: 12vmin;
       }
       .rbs {
-        width: 12.5vmin;
+        width: auto;
+        height: 12vmin;
+        
       }
       .sass {
-        width: 16vmin;
+        width: auto;
+        height: 12vmin;
         padding-right: 0;
       }
     }
     .fundamentals-wrap {
       .funds {
         top: -2vmin;
-        left: 34%;
+        left: 37%;
         font-size: 7.2vmin;
+      }
+      .html {
+        height: 13.5vmin;
+      }
+      .css {
+        height: 13.5vmin;
+      }
+      .js {
+        height: 13.5vmin;
       }
       .csharp {
         padding-right: 0;
+        height: 13.5vmin;
       }
     }
     .backend {
@@ -206,10 +222,10 @@
         left: 45%;
       }
       .sql {
-        width: 13.3vmin;
+        height: 12vmin;
       }
       .nodejs {
-        width: 12vmin;
+        height: 12vmin;
         padding-right: 0;
       }
     }
@@ -217,13 +233,15 @@
       .vc {
         font-size: 4.2vmin;
         top: 43%;
-        left: 67%;
+        left: 68%;
         width: 100%;
       }
       .github {
+        height: 11vmin;
         padding-right: 44vmin;
       }
       .git {
+        height: 11vmin;
         padding-right: 0;
       }
     }
@@ -242,8 +260,7 @@
   }
 }
 .logo {
-  width: 11vmin;
-  height: 100%;
+  width: auto;
   padding-right: 5vw;
   z-index: 1;
 }
