@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/Projects.scss";
 
-import afp from "../../images/AFPShowcase.webp";
-import drino from "../../images/DrinoShowcase.webp";
+import afp from "../../images/AFPShowcase.jpg";
+import drino from "../../images/DrinoShowcase.jpg";
 
 function Projects() {
   return (

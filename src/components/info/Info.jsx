@@ -2,21 +2,21 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/Info.scss";
 
-import meImg from "../../images/me.webp";
-import meAngryImg from "../../images/me-angry.webp";
-import sass from "../../images/sass-logo.webp";
-import html from "../../images/html-logo.webp";
-import bootstrap from "../../images/bootstrap-logo.webp";
-import vue from "../../images/vue-logo.webp";
-import github from "../../images/github-logo.webp";
-import nodejs from "../../images/nodejs-logo.webp";
-import git from "../../images/git-logo.webp";
-import js from "../../images/js-logo.webp";
-import sql from "../../images/mysql-logo.webp";
-import css from "../../images/css-logo.webp";
-import react from "../../images/react-logo.webp";
-import cSharp from "../../images/cSharp.webp";
-import rbs from "../../images/rbs-logo.webp";
+import meImg from "../../images/me.jpg";
+import meAngryImg from "../../images/me-angry.jpg";
+import sass from "../../images/sass-logo.png";
+import html from "../../images/html-logo.png";
+import bootstrap from "../../images/bootstrap-logo.png";
+import vue from "../../images/vue-logo.png";
+import github from "../../images/github-logo.png";
+import nodejs from "../../images/nodejs-logo.png";
+import git from "../../images/git-logo.png";
+import js from "../../images/js-logo.png";
+import sql from "../../images/mysql-logo.png";
+import css from "../../images/css-logo.png";
+import react from "../../images/react-logo.png";
+import cSharp from "../../images/cSharp.png";
+import rbs from "../../images/rbs-logo.png";
 
 const imagesPath = {
   meImg: meImg,
