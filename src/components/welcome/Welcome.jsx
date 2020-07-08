@@ -26,7 +26,7 @@ import dart from "../../images/dart-logo.png";
 
 function Welcome() {
   return (
-    <Link to="/info">
+    <Link to="/home">
       <div className="wlcm-page-wrap">
         <div className="left-wrapper">
           <div className="wlcm-content">

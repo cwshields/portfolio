@@ -39,7 +39,7 @@
 
 .info-wrapper {
   overflow-x: hidden;
-  height: 100vh;
+  height: 100%;
   position: relative;
   .left-wrap {
     display: flex;
@@ -176,10 +176,6 @@
       }
     }
     .libraries-wrap {
-      .lib {
-        top: -1vmin;
-        left: 60%;
-      }
       .bootstrap {
         width: auto;
         height: 12vmin;
@@ -265,7 +261,7 @@
   z-index: 1;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1430px) {
   .info-wrapper {
     height: 215vh;
     .left-wrap {
@@ -320,23 +316,11 @@
           font-size: 7vmin;
           left: 45%;
         }
-        .react {
-          width: 14vmin;
-        }
-        .vue {
-          width: 14vmin;
-          padding-right: 0;
-        }
       }
       .libraries-wrap {
         .lib {
           font-size: 6vmin;
           top: -1vmin;
-          left: 60%;
-        }
-        .sass {
-          width: 14vmin;
-          padding-right: 0;
         }
       }
       .fundamentals-wrap {
@@ -352,13 +336,6 @@
           top: -1vmin;
           left: 45%;
         }
-        .sql {
-          width: 13vmin;
-        }
-        .nodejs {
-          width: 11vmin;
-          padding-right: 0;
-        }
       }
       .version-control {
         .vc {
@@ -366,12 +343,6 @@
           top: 40%;
           left: 70%;
           width: 100%;
-        }
-        .github {
-          padding-right: 44vmin;
-        }
-        .git {
-          padding-right: 0;
         }
       }
     }
@@ -383,7 +354,6 @@
     }
   }
   .logo {
-    width: 13vmin;
     height: 100%;
     padding-right: 6vw;
     z-index: 1;
@@ -495,33 +465,38 @@
       .frameworks-wrap {
         .fw {
           font-size: 8vmin;
+          top: -1vmin;
           left: 55%;
         }
         .react {
-          width: 15vmin;
+          height: 20vmin;
         }
         .vue {
-          width: 15vmin;
+          height: 19vmin;
         }
       }
       .libraries-wrap {
         .lib {
           font-size: 7vmin;
-          top: -1vmin;
-          left: 60%;
+        }
+        .bootstrap {
+          height: 15vmin;
+        }
+        .rbs {
+          height: 15vmin;
         }
         .sass {
-          width: 16vmin;
+          height: 15vmin;
           padding-right: 0;
         }
       }
       .fundamentals-wrap {
         .funds {
-          left: 38%;
+          left: 50%;
           font-size: 8.5vmin;
         }
-        .csharp {
-          padding-right: 0;
+        .html, .css, .js, .csharp {
+          height: 18vmin;
         }
       }
       .backend {
@@ -530,36 +505,25 @@
           top: -1vmin;
           left: 45%;
         }
-        .sql {
-          width: 17vmin;
-        }
-        .nodejs {
-          width: 15vmin;
-          padding-right: 0;
+        .sql, .nodejs {
+          height: 16vmin;
         }
       }
       .version-control {
         .vc {
-          font-size: 5vmin;
+          font-size: 4.4vmin;
           top: 40%;
-          left: 70%;
+          left: 70.5%;
           width: 100%;
         }
         .github {
-          padding-right: 47vmin;
-          width: 16vmin;
+          height: 14vmin;
+          padding-right: 49vmin;
         }
         .git {
-          width: 16vmin;
-          padding-right: 0;
+          height: 15vmin;
         }
       }
-    }
-    .logo {
-      width: 15vmin;
-      height: 100%;
-      padding-right: 6vw;
-      z-index: 1;
     }
     .project-link {
       left: 85.4%;
