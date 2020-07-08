@@ -3,26 +3,26 @@ import { Link } from "react-router-dom";
 import "../../styles/Welcome.scss";
 
 // Logos
-import cslogo from "../../images/cs-logo-light.webp";
-import sass from "../../images/sass-logo.webp";
-import html from "../../images/html-logo.webp";
-import btstrap from "../../images/bootstrap-logo.webp";
-import cSharp from "../../images/cSharp.webp";
-import rbs from "../../images/rbs-logo.webp";
-import vue from "../../images/vue-logo.webp";
-import ps from "../../images/ps-logo.webp";
-import postman from "../../images/postman-logo.webp";
-import java from "../../images/java-logo.webp";
-import github from "../../images/github-logo.webp";
-import nodejs from "../../images/nodejs-logo.webp";
-import git from "../../images/git-logo.webp";
-import js from "../../images/js-logo.webp";
-import ai from "../../images/ai-logo.webp";
-import sql from "../../images/mysql-logo.webp";
-import css from "../../images/css-logo.webp";
-import react from "../../images/react-logo.webp";
-import flutter from "../../images/flutter-logo.webp";
-import dart from "../../images/dart-logo.webp";
+import cslogo from "../../images/cs-logo-light.png";
+import sass from "../../images/sass-logo.png";
+import html from "../../images/html-logo.png";
+import btstrap from "../../images/bootstrap-logo.png";
+import cSharp from "../../images/cSharp.png";
+import rbs from "../../images/rbs-logo.png";
+import vue from "../../images/vue-logo.png";
+import ps from "../../images/ps-logo.png";
+import postman from "../../images/postman-logo.png";
+import java from "../../images/java-logo.png";
+import github from "../../images/github-logo.png";
+import nodejs from "../../images/nodejs-logo.png";
+import git from "../../images/git-logo.png";
+import js from "../../images/js-logo.png";
+import ai from "../../images/ai-logo.png";
+import sql from "../../images/mysql-logo.png";
+import css from "../../images/css-logo.png";
+import react from "../../images/react-logo.png";
+import flutter from "../../images/flutter-logo.png";
+import dart from "../../images/dart-logo.png";
 
 function Welcome() {
   return (
