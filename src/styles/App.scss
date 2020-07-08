@@ -1,16 +1,19 @@
 @font-face {
   font-family: "Montserrat-Reg";
   src: url(../fonts/Montserrat-Regular.ttf);
+  font-display: swap
 }
 
 @font-face {
   font-family: "Montserrat-SemiBold";
   src: url(../fonts/Montserrat-SemiBold.ttf);
+  font-display: swap
 }
 
 @font-face {
   font-family: "Montserrat-Bold";
   src: url(../fonts/Montserrat-Bold.ttf);
+  font-display: swap
 }
 
 // Test code for code blocks
@@ -23,6 +26,7 @@
 // }
 
 .App {
+  font-family: "Montserrat-Reg", sans-serif;
   color: #dfdfdf;
   height: 100%;
   width: 100%;
@@ -104,7 +108,9 @@
 .project-link:hover .proj {
   font-size: 2.5vmin;
 }
-
+.media-link div {
+  display: none;
+}
 
 @media (max-width: 950px) {
   .project-link {
