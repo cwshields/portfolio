@@ -1,53 +1,55 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "../../styles/Home.scss";
-import "../../styles/Projects.scss";
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import "../../styles/Home.scss"
+import "../../styles/Projects.scss"
 
-import afp from "../../images/AFPShowcase.jpg";
-import drino from "../../images/DrinoShowcase.jpg";
-import meImg from "../../images/me.jpg";
-import meAngryImg from "../../images/me-angry.jpg";
-import sass from "../../images/sass-logo.png";
-import html from "../../images/html-logo.png";
-import bootstrap from "../../images/bootstrap-logo.png";
-import vue from "../../images/vue-logo.png";
-import github from "../../images/github-logo.png";
-import nodejs from "../../images/nodejs-logo.png";
-import git from "../../images/git-logo.png";
-import js from "../../images/js-logo.png";
-import sql from "../../images/mysql-logo.png";
-import css from "../../images/css-logo.png";
-import react from "../../images/react-logo.png";
-import cSharp from "../../images/cSharp.png";
-import rbs from "../../images/rbs-logo.png";
+import afp from "../../images/AFPShowcase.jpg"
+import drino from "../../images/DrinoShowcase.jpg"
+import meImg from "../../images/me.jpg"
+import meAngryImg from "../../images/me-angry.jpg"
+import sass from "../../images/sass-logo.png"
+import html from "../../images/html-logo.png"
+import bootstrap from "../../images/bootstrap-logo.png"
+import vue from "../../images/vue-logo.png"
+import github from "../../images/github-logo.png"
+import nodejs from "../../images/nodejs-logo.png"
+import git from "../../images/git-logo.png"
+import js from "../../images/js-logo.png"
+import sql from "../../images/mysql-logo.png"
+import css from "../../images/css-logo.png"
+import react from "../../images/react-logo.png"
+import cSharp from "../../images/cSharp.png"
+import rbs from "../../images/rbs-logo.png"
 
 const imagesPath = {
   meImg: meImg,
   meAngryImg: meAngryImg,
 };
 
+new Image().src = meAngryImg
+
 class Info extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       mad: false,
       imgClass: "me",
-    };
+    }
   }
 
   toggleImg = () => {
-    this.setState((state) => ({ mad: !state.mad }));
+    this.setState((state) => ({ mad: !state.mad }))
     setTimeout(() => {
-      this.setState((state) => ({ mad: !state.mad }));
+      this.setState((state) => ({ mad: !state.mad }))
     }, 1000);
-  };
+  }
 
   getImageName = () => {
-    return this.state.mad ? "meAngryImg" : "meImg";
-  };
+    return this.state.mad ? "meAngryImg" : "meImg"
+  }
 
   render() {
-    const imageName = this.getImageName();
+    const imageName = this.getImageName()
     return (
       <div>
         <div className="info-wrapper">
@@ -214,7 +216,33 @@ class Info extends Component {
               </a>
             </div>
             <div className="text">
-              <h1>Andy Fancher Presents</h1>
+              <div className="title-wrap">
+                <h1>Andy Fancher Presents</h1>
+                <a
+                  name="github"
+                  className="github-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://github.com/cwshields/AFP"
+                >
+                  <svg
+                    className="media-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                    aria-labelledby="github-link"
+                  >
+                    <path
+                      d="M255.968,5.329C114.624,5.329,0,120.401,0,262.353c0,113.536,73.344,209.856,175.104,243.872
+                      c12.8,2.368,17.472-5.568,17.472-12.384c0-6.112-0.224-22.272-0.352-43.712c-71.2,15.52-86.24-34.464-86.24-34.464 
+                      c-11.616-29.696-28.416-37.6-28.416-37.6c-23.264-15.936,1.728-15.616,1.728-15.616c25.696,1.824,39.2,26.496,39.2,26.496 
+                      c22.848,39.264,59.936,27.936,74.528,21.344c2.304-16.608,8.928-27.936,16.256-34.368 
+                      c-56.832-6.496-116.608-28.544-116.608-127.008c0-28.064,9.984-51.008,26.368-68.992c-2.656-6.496-11.424-32.64,2.496-68 
+                      c0,0,21.504-6.912,70.4,26.336c20.416-5.696,42.304-8.544,64.096-8.64c21.728,0.128,43.648,2.944,64.096,8.672 c48.864-33.248,70.336-26.336,70.336-26.336c13.952,35.392,5.184,61.504,2.56,68c16.416,17.984,26.304,40.928,26.304,68.992 c0,98.72-59.84,120.448-116.864,126.816c9.184,7.936,17.376,23.616,17.376,47.584c0,34.368-0.32,62.08-0.32,70.496 c0,6.88,4.608,14.88,17.6,12.352C438.72,472.145,512,375.857,512,262.353C512,120.401,397.376,5.329,255.968,5.329z"
+                    />
+                  </svg>
+                  <div id="github-link" className="display-none">Github Link</div>
+                </a>
+              </div>
               <p className="desc">
                 When he was 9 years old, Andy Fancher, found WWII memorabilia that
                 inspired him to know more, but little to no information was known
@@ -238,14 +266,43 @@ class Info extends Component {
               </a>
             </div>
             <div className="text">
-              <h1>Drino</h1>
+              <div className="title-wrap">
+                <h1>Drino</h1>
+                <a
+                  name="github"
+                  className="github-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://github.com/cwshields/drino-app"
+                >
+                  <svg
+                    className="media-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                    aria-labelledby="github-link"
+                  >
+                    <path
+                      d="M255.968,5.329C114.624,5.329,0,120.401,0,262.353c0,113.536,73.344,209.856,175.104,243.872
+                      c12.8,2.368,17.472-5.568,17.472-12.384c0-6.112-0.224-22.272-0.352-43.712c-71.2,15.52-86.24-34.464-86.24-34.464 c-11.616-29.696-28.416-37.6-28.416-37.6c-23.264-15.936,1.728-15.616,1.728-15.616c25.696,1.824,39.2,26.496,39.2,26.496 c22.848,39.264,59.936,27.936,74.528,21.344c2.304-16.608,8.928-27.936,16.256-34.368 c-56.832-6.496-116.608-28.544-116.608-127.008c0-28.064,9.984-51.008,26.368-68.992c-2.656-6.496-11.424-32.64,2.496-68 c0,0,21.504-6.912,70.4,26.336c20.416-5.696,42.304-8.544,64.096-8.64c21.728,0.128,43.648,2.944,64.096,8.672 c48.864-33.248,70.336-26.336,70.336-26.336c13.952,35.392,5.184,61.504,2.56,68c16.416,17.984,26.304,40.928,26.304,68.992 c0,98.72-59.84,120.448-116.864,126.816c9.184,7.936,17.376,23.616,17.376,47.584c0,34.368-0.32,62.08-0.32,70.496 c0,6.88,4.608,14.88,17.6,12.352C438.72,472.145,512,375.857,512,262.353C512,120.401,397.376,5.329,255.968,5.329z"
+                    />
+                  </svg>
+                  <div id="github-link" className="display-none">Github Link</div>
+                </a>
+              </div>
               <p className="desc">
-                This was a full-stack project I worked on for both sides of a
-                buisiness. It is a fully RESTful design that includes data
-                statistic capabilities, a customizable profile for employees, a
-                fully working contact form along with a inbox for messages, and a
-                editable list of employees.
+                This is a full-stack project I built for both sides of a
+                buisiness; customer/employee relations. It is a fully RESTful design that includes:
               </p>
+              <ul>
+                <li>Landing page</li>
+                <li>Login functionality</li>
+                <li>Data statistics</li>
+                <li>Customizable employee profile</li>
+                <li>Contact form</li>
+                <li>Administrator inbox</li>
+                <li>Employee information list</li>
+                <li>Template pages</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -255,4 +312,4 @@ class Info extends Component {
   }
 }
 
-export default Info;
+export default Info

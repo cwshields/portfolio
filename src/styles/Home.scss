@@ -92,7 +92,7 @@
               }
             }
             .email {
-              color: #6c98b8;
+              color: #74a3c4;
               font-size: 1.5vw;
             }
             .email:hover {
@@ -136,10 +136,7 @@
   }
 
   .stack-wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex(column, center, center);
     float: right;
     width: 50%;
     height: 100vh;
@@ -148,97 +145,110 @@
     .fundamentals-wrap,
     .backend,
     .version-control {
+      .fw, .react, .vue, 
+      .bootstrap, .rbs, .sass, 
+      .html, .css, .js, .csharp, 
+      .be, .sql, .nodejs, 
+      .github, .git {
+        position: absolute;
+        width: auto;
+        height: 12vmin;
+      }
+      padding-top: 6vmin;
+      height: 6vmin;
+      width: 10px;
       position: relative;
-      display: flex;
-      align-items: center;
     }
     .frameworks-wrap,
     .libraries-wrap,
     .fundamentals-wrap,
     .backend {
-      padding-bottom: 7.5vmin;
+      margin-bottom: 7.7vmin;
     }
     .frameworks-wrap {
-      margin-top: 7vmin;
+      margin-top: 8vmin;
       .fw {
-        top: -1.5vmin;
+        top: -6.5vmin;
+        left: -25vmin;
         font-size: 7vmin;
-        left: 45%;
       }
       .react {
-        width: auto;
+        left: -11vmin;
         height: 15vmin;
       }
       .vue {
-        width: auto;
+        left: 11vmin;
         height: 14vmin;
         padding-right: 0;
       }
     }
     .libraries-wrap {
-      .bootstrap {
-        width: auto;
-        height: 12vmin;
+      .lib{
+        top: -4vmin;
+        left: -10vmin;
       }
-      .rbs {
-        width: auto;
-        height: 12vmin;
-        
+      .bootstrap {
+        left: -19vmin;
       }
       .sass {
-        width: auto;
-        height: 12vmin;
-        padding-right: 0;
+        height: 11vmin;
+        left: 21vmin;
       }
     }
     .fundamentals-wrap {
+      height: 8vmin;
       .funds {
-        top: -2vmin;
-        left: 37%;
+        top: -7vmin;
+        left: -39vmin;
         font-size: 7.2vmin;
       }
       .html {
         height: 13.5vmin;
+        left: -28.5vmin;
       }
       .css {
         height: 13.5vmin;
+        left: -10vmin;
       }
       .js {
         height: 13.5vmin;
+        left: 10vmin;
       }
       .csharp {
-        padding-right: 0;
         height: 13.5vmin;
+        left: 28.5vmin;
       }
     }
     .backend {
-      padding-bottom: 4vmin;
+      height: 3vmin;
       .be {
-        top: -1vmin;
-        left: 45%;
+        top: -4vmin;
+        left: -12vmin;
       }
       .sql {
+        left: -10vmin;
         height: 12vmin;
       }
       .nodejs {
+        left: 10vmin;
         height: 12vmin;
-        padding-right: 0;
       }
     }
     .version-control {
+      height: 6vmin;
       .vc {
-        font-size: 4.2vmin;
-        top: 43%;
-        left: 68%;
-        width: 100%;
+        font-size: 4.1vmin;
+        top: 3vmin;
+        left: -20.5vmin;
+        width: 35vw;
       }
       .github {
         height: 11vmin;
-        padding-right: 44vmin;
+        left: -27.5vmin;
       }
       .git {
         height: 11vmin;
-        padding-right: 0;
+        left: 27.5vmin;
       }
     }
     .stack-text {
@@ -250,20 +260,42 @@
       text-transform: uppercase;
       position: absolute;
       top: -20px;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
   }
 }
 .logo {
+  transition: all 50ms ease;
   width: auto;
-  padding-right: 5vw;
   z-index: 1;
+  transform: translate(-50%, -50%);
+}
+
+.info-wrapper .stack-wrap .frameworks-wrap .react:hover {
+  height: 15.4vmin;
+}
+.info-wrapper .stack-wrap .frameworks-wrap .vue:hover {
+  height: 14.4vmin;
+}
+.info-wrapper .stack-wrap .libraries-wrap .logo:hover {
+  height: 12.4vmin;
+}
+.info-wrapper .stack-wrap .libraries-wrap .sass:hover {
+  height: 11.4vmin;
+}
+.info-wrapper .stack-wrap .fundamentals-wrap .logo:hover {
+  height: 13.8vmin;
+}
+.info-wrapper .stack-wrap .backend .logo:hover {
+  height: 12.4vmin;
+}
+.info-wrapper .stack-wrap .version-control .github:hover,
+.info-wrapper .stack-wrap .version-control .git:hover {
+  height: 11.3vmin;
 }
 
 @media (max-width: 1430px) {
   .info-wrapper {
-    height: 215vh;
+    height: 200vh;
     .left-wrap {
       float: left;
       width: 100%;
@@ -309,40 +341,12 @@
     .stack-wrap {
       float: left;
       width: 100%;
-      .frameworks-wrap {
-        margin-top: 5vmin;
-        .fw {
-          top: -1.5vmin;
-          font-size: 7vmin;
-          left: 45%;
-        }
-      }
-      .libraries-wrap {
-        .lib {
-          font-size: 6vmin;
-          top: -1vmin;
-        }
-      }
-      .fundamentals-wrap {
-        .funds {
-          font-size: 7.5vmin;
-        }
-        .csharp {
-          padding-right: 0;
-        }
-      }
-      .backend {
-        .be {
-          top: -1vmin;
-          left: 45%;
-        }
-      }
       .version-control {
         .vc {
-          font-size: 4.6vmin;
-          top: 40%;
-          left: 70%;
-          width: 100%;
+          font-size: 4.1vmin;
+          top: 25%;
+          left: -21vmin;
+          width: max-content;
         }
       }
     }
@@ -355,7 +359,6 @@
   }
   .logo {
     height: 100%;
-    padding-right: 6vw;
     z-index: 1;
   }
 }
@@ -518,7 +521,6 @@
         }
         .github {
           height: 14vmin;
-          padding-right: 49vmin;
         }
         .git {
           height: 15vmin;

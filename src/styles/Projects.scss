@@ -3,7 +3,6 @@
 h1, h2 {
   font-family: "Montserrat-SemiBold", sans-serif;
   font-weight: bolder;
-  margin: 1vmin 0 2vmin 0;
 }
 h2 {
   text-transform: uppercase;
@@ -16,7 +15,7 @@ h2 {
   justify-content: center;
   align-items: center;
   height: 20vmin;
-  background-color: #151e2793;
+  background-color: #1a2733;
   width: 100%;
   margin-top: 10vmin;
 }
@@ -31,6 +30,14 @@ h2 {
       margin-bottom: 10vmin;
       height: 50%;
       width: 80vmin;
+      .media-svg {
+        height: 3rem;
+        fill: #44b38b;
+        transition: all 150ms ease;
+      }
+      .media-svg:hover {
+        fill: #3fa17d;
+      }
       .showcase {
         overflow: hidden;
         border-radius: 16px;
@@ -40,10 +47,28 @@ h2 {
         padding: 6px 12px 0;
         width: 97%;
         font-size: 1.1rem;
+        .title-wrap {
+          margin: 1vmin 0 2vmin 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
         .desc {
           text-align: justify;
           line-height: 1.4em;
           margin: 0 0 1.4em 0;
+        }
+        ul {
+          list-style: none;
+          padding-left: 1.5rem;
+          align-items: center;
+        }
+        ul li::before {
+          content: "●";
+          font-size: 0.9rem;
+          line-height: 2rem;
+          color: #44b38b;
+          margin-right: 0.8rem;
         }
       }
       .showcase:hover {
@@ -55,11 +80,11 @@ h2 {
 .proj-img {
   width: 100%;
   transition: all 300ms ease;
-  transform: scale3d(1.03, 1.03, 1);
-  transform-origin: top;
+  transform: scale3d(1.035, 1.035, 1);
+  transform-origin: center;
 }
 .proj-img:hover {
-  transform: scale3d(1.01, 1.01, 1);
+  transform: scale3d(1.02, 1.02, 1);
   transition: transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
 }
 
@@ -77,6 +102,9 @@ h2 {
           padding: 0.5vmin 0.4vmin 0 1vmin;
           width: 97%;
           font-size: 2.3vh;
+          .title-wrap {
+            margin: 0;
+          }
         }
         .showcase:hover {
           border-radius: 20px;

@@ -30,7 +30,7 @@
   color: #dfdfdf;
   height: 100%;
   width: 100%;
-  background-image: linear-gradient(190deg, #223347 0%, #19212b 100%);
+  background-image: linear-gradient(200deg, #223347 0%, #19212b 100%);
 }
 
 ::-webkit-scrollbar {
@@ -52,7 +52,11 @@
 }
 ::-webkit-scrollbar-track {
   width: 22px;
-  background: linear-gradient(190deg, #1e3046 0%, #1c2733 100%);
+  background: #1a2733;
+}
+
+.display-none {
+  display: none;
 }
 
 .back {
@@ -107,9 +111,6 @@
 }
 .project-link:hover .proj {
   font-size: 2.5vmin;
-}
-.media-link div {
-  display: none;
 }
 
 @media (max-width: 950px) {
