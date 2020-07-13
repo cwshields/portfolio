@@ -468,18 +468,18 @@
       .frameworks-wrap {
         .fw {
           font-size: 8vmin;
-          top: -1vmin;
-          left: 55%;
+          top: -10vmin;
         }
         .react {
-          height: 20vmin;
+          height: 19vmin;
         }
         .vue {
-          height: 19vmin;
+          height: 18vmin;
         }
       }
       .libraries-wrap {
         .lib {
+          top: -7vmin;
           font-size: 7vmin;
         }
         .bootstrap {
@@ -490,12 +490,11 @@
         }
         .sass {
           height: 15vmin;
-          padding-right: 0;
         }
       }
       .fundamentals-wrap {
         .funds {
-          left: 50%;
+          top: -10vmin;
           font-size: 8.5vmin;
         }
         .html, .css, .js, .csharp {
@@ -505,8 +504,7 @@
       .backend {
         .be {
           font-size: 6vmin;
-          top: -1vmin;
-          left: 45%;
+          top: -6.5vmin;
         }
         .sql, .nodejs {
           height: 16vmin;
@@ -514,10 +512,9 @@
       }
       .version-control {
         .vc {
-          font-size: 4.4vmin;
-          top: 40%;
-          left: 70.5%;
-          width: 100%;
+          font-size: 3.8vmin;
+          left: -20vmin;
+          top: 50%;
         }
         .github {
           height: 14vmin;
