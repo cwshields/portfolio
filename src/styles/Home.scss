@@ -202,20 +202,19 @@
         left: -39vmin;
         font-size: 7.2vmin;
       }
-      .html {
+      .html, .css, .js, .csharp {
         height: 13.5vmin;
+      }
+      .html {
         left: -28.5vmin;
       }
       .css {
-        height: 13.5vmin;
         left: -10vmin;
       }
       .js {
-        height: 13.5vmin;
         left: 10vmin;
       }
       .csharp {
-        height: 13.5vmin;
         left: 28.5vmin;
       }
     }

@@ -8,7 +8,7 @@ h2 {
   text-transform: uppercase;
   opacity: 0.5;
   font-size: 2.5rem;
-  margin-bottom: 1vmin;
+  margin-bottom: 3rem;
 }
 .proj-wrap {
   display: flex;
@@ -25,7 +25,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   .projects-wrap {
-    margin: 8vmin 5vmin 12vmin;
+    margin: 8vmin 5vmin 6vmin;
     .showcase-wrap {
       margin-bottom: 10vmin;
       height: 50%;
@@ -91,7 +91,7 @@ h2 {
 @media (max-width: 900px) {
   .projects-page {
     .projects-wrap {
-      padding: 15vmin 0vmin;
+      padding: 10vmin 0vmin;
       .showcase-wrap {
         height: 60%;
         width: 91vmin;
@@ -117,8 +117,11 @@ h2 {
 @media (max-width: 550px) {
   .projects-page {
     height: 100%;
+    .proj-wrap {
+      height: 28vmin;
+    }
     .projects-wrap {
-      padding: 18vmin 0vmin;
+      padding: 8vmin 0vmin;
       .showcase-wrap {
         height: 60%;
         width: 91vmin;
