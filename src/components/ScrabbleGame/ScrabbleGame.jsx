@@ -176,10 +176,10 @@ class ScrabbleGame extends Component {
           </div>
           <div className="tutorial">
             <h3>How to play</h3>
-            To play, just type each letter in the tiles to make a word. When your 
-            word is complete, click submit to end your turn and start player 2's 
-            turn. Whoever gets to 100 points first wins. You can refresh the page to 
-            reset the board. Thanks for playing!
+            To play, just type each letter you currently have in the tiles to form a 
+            word. When your word is complete, click submit to end your turn and start 
+            player 2's turn. Whoever gets to 100 points first wins. You can refresh 
+            the page to reset the board. Thanks for playing!
           </div>
           <div className="turn">Player {p1turn ? 1 : 2 }'s turn</div>
           <div className="word-score">{wordScore}</div>
