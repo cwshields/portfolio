@@ -148,9 +148,9 @@ class ScrabbleGame extends Component {
         <div className="score">Score: {p1score}</div>
         <div className="letters">
           { p1inv.map((letter, index) => {
-            return <div key={index} className="letter">{letter}</div>
-          })
-        }
+              return <div key={index} className="letter">{letter}</div>
+            })
+          }
         </div>
         <div className="tile-wrap">
           <div className="tile-container">
@@ -173,6 +173,13 @@ class ScrabbleGame extends Component {
                 return tiles
               })
             }
+          </div>
+          <div className="tutorial">
+            <h3>How to play</h3>
+            To play, just type each letter in the tiles to make a word. When your 
+            word is complete, click submit to end your turn and start player 2's 
+            turn. Whoever gets to 100 points first wins. You can refresh the page to 
+            reset the board. Thanks for playing!
           </div>
           <div className="turn">Player {p1turn ? 1 : 2 }'s turn</div>
           <div className="word-score">{wordScore}</div>

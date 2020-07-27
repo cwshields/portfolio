@@ -70,21 +70,36 @@ input {
 input:active {
   border: none;
 }
+h3 {
+  margin: .5em 0 .9em;
+}
+.tutorial {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  position: absolute;
+  text-align: justify;
+  background-color: #19212bd7;
+  border-radius: 6px;
+  line-height: 1.45rem;
+  padding: 18px;
+  right: -260px;
+  font-size: large;
+  width: 200px;
+}
 .turn {
   position: absolute;
-  right: -192px;
-  bottom: 70px;
-  font-size: 21px;
+  right: -230px;
+  bottom: 230px;
+  font-size: 22px;
 }
 .word-score {
   position: absolute;
   font-size: 28px;
   bottom: 15px;
-  right: -55px;
+  right: -65px;
 }
 .submit {
   position: absolute;
-  right: -185px;
+  right: -200px;
   bottom: 10px;
   font-size: 17px;
   width: 110px;
