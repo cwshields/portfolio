@@ -1,0 +1,92 @@
+.scrabble-game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #f1f1f1;
+  height: 100vh;
+  background-image: linear-gradient(200deg, #223347 0%, #19212b 100%);
+  font-family: monospace;
+  font-size: 30px;
+  text-align: center;
+}
+.letters-score {
+  display: flex;
+  align-items: center;
+}
+.letters {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  margin: 20px 0;
+}
+.letter {
+  border: 2px solid #434957;
+  border-radius: 6px;
+  width: 17px;
+  height: 35px;
+  padding: 3px 12px;
+  margin-left: 6px;
+}
+.score {
+  font-size: 25px;
+}
+.tile-wrap {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.tile-container {
+  min-width: 628px;
+  max-width: 628px;
+  margin-right: -7px;
+}
+.tile-div {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 0 7px 7px 0;
+  border-radius: 5px;
+  background-color: #363b44;
+  border: 1px solid #7f848b;
+}
+.tile {
+  width: 50px;
+  height: 50px;
+}
+input {
+  font-family: monospace;
+  color: #f1f1f1;
+  background-color: #363b44;
+  text-transform: uppercase;
+  padding-left: 14px;
+  margin-top: 1px;
+  font-size: 30px;
+  border: none;
+  height: 44px;
+  width: 30px;
+}
+input:active {
+  border: none;
+}
+.turn {
+  position: absolute;
+  right: -192px;
+  bottom: 70px;
+  font-size: 21px;
+}
+.word-score {
+  position: absolute;
+  font-size: 28px;
+  bottom: 15px;
+  right: -55px;
+}
+.submit {
+  position: absolute;
+  right: -185px;
+  bottom: 10px;
+  font-size: 17px;
+  width: 110px;
+  height: 40px;
+}
