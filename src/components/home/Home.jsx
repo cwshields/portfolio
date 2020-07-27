@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Link } from "react-router-dom"
 import "../../styles/Home.scss"
 import "../../styles/Projects.scss"
 
@@ -153,6 +154,9 @@ class Info extends Component {
                 </p>
                 <p>
                   Scroll down to check out some of my work!
+                </p>
+                <p>
+                  Beta: <Link className="scrabble-link" to="/scrabble-game">Words with Friends clone</Link>
                 </p>
               </div>
             </div>

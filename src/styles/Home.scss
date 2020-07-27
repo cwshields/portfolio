@@ -131,6 +131,15 @@
         text-align: justify;
         font-size: 1.2vw;
         margin-top: 4vw;
+        p {
+          .scrabble-link {
+            color: #74a3c4;
+            font-size: 1.1vw;
+          }
+          .scrabble-link:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }
