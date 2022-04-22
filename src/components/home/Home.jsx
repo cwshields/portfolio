@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import "../../styles/Home.scss"
 import "../../styles/Projects.scss"
 
-import afp from "../../images/AFPShowcase.jpg"
+// import afp from "../../images/AFPShowcase.jpg"
 import drino from "../../images/DrinoShowcase.jpg"
 import meImg from "../../images/me.jpg"
 import meAngryImg from "../../images/me-angry.jpg"
@@ -197,7 +197,7 @@ class Info extends Component {
           <h2>Projects</h2>
         </div>
         <div className="projects-wrap">
-          <div className="showcase-wrap">
+          {/* <div className="showcase-wrap">
             <div className="showcase">
               <a href="https://www.andyfancherpresents.com/" target="_blank" rel="noopener noreferrer" alt="AFP-Showcase">
                 <img className="proj-img" src={afp} alt="afp-showcase.png" />
@@ -246,7 +246,7 @@ class Info extends Component {
                 website for him in hopes it could help his journey be successful.
               </p>
             </div>
-          </div>
+          </div> */}
           <div className="showcase-wrap">
             <div className="showcase">
               <a href="http://drino.live/" target="_blank" rel="noopener noreferrer" alt="Drino-Showcase">

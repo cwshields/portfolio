@@ -34,7 +34,7 @@ function Welcome() {
             <div className="wlcm-ln1">welcome</div>
             <div className="wlcm-ln2">to my portfolio</div>
             <div className="wlcm-ln3">
-              I’m a Game and Web designer and developer whose passion is to
+              I’m a Web designer and developer whose passion is to
               create
             </div>
             <div className="wlcm-ln4">Click anywhere to continue...</div>
