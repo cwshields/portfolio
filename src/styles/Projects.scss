@@ -26,7 +26,11 @@ h2 {
   flex-direction: column;
   align-items: center;
   .projects-wrap {
-    margin: 8vmin 5vmin 6vmin;
+    margin: 8vmin 5vmin 0;
+    h3 {
+      font-size: 27px;
+      margin: 14vmin 0 8vmin;
+    }
     .showcase-wrap {
       margin-bottom: 10vmin;
       height: 50%;
