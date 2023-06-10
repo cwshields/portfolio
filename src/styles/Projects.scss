@@ -1,6 +1,7 @@
 @import "./mixins.scss";
 
-h1, h2 {
+h1,
+h2 {
   font-family: "Montserrat-SemiBold", sans-serif;
   font-weight: bolder;
 }
@@ -8,9 +9,9 @@ h2 {
   text-transform: uppercase;
   opacity: 0.5;
   font-size: 2.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.25rem;
 }
-.proj-wrap {
+.header-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,6 +75,22 @@ h2 {
       .showcase:hover {
         border-radius: 20px;
       }
+      .project-footer-wrap {
+        margin: 3vmin 0 2vmin 0;
+        background-color: #f2f5fb;
+        padding: 10px 10px 10px 4px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        #logo-fr {
+          height: 67px;
+          width: auto;
+        }
+        #logo-pdi {
+          height: 70px;
+        }
+      }
     }
   }
 }
@@ -134,6 +151,10 @@ h2 {
           padding: 3vmin 0.4vmin 1vmin;
           width: 97%;
           font-size: 2.3vh;
+        }
+        .project-footer-wrap {
+          display: flex;
+          flex-direction: column;
         }
       }
     }
