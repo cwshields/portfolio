@@ -346,18 +346,11 @@ class Info extends Component {
               <h3>Older Projects:</h3>
               <div className="showcase-wrap">
                 <div className="showcase">
-                  <a
-                    href="http://drino.live/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    alt="Drino-Showcase"
-                  >
-                    <img
-                      className="proj-img"
-                      src={drino}
-                      alt="drino-showcase.png"
-                    />
-                  </a>
+                  <img
+                    className="proj-img"
+                    src={drino}
+                    alt="drino-showcase.png"
+                  />
                 </div>
                 <div className="text">
                   <div className="title-wrap">
@@ -404,18 +397,7 @@ class Info extends Component {
               </div>
               <div className="showcase-wrap">
                 <div className="showcase">
-                  <a
-                    href="https://www.andyfancherpresents.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    alt="AFP-Showcase"
-                  >
-                    <img
-                      className="proj-img"
-                      src={afp}
-                      alt="afp-showcase.png"
-                    />
-                  </a>
+                  <img className="proj-img" src={afp} alt="afp-showcase.png" />
                 </div>
                 <div className="text">
                   <div className="title-wrap">
@@ -495,7 +477,7 @@ class Info extends Component {
                     In 2019, I graduated from DevMountain from the Full-stack
                     Web Development course. While I was there I learned a myriad
                     of technologies and development techniques in order to
-                    thrive in the field of web development. 
+                    thrive in the field of web development.
                   </p>
                   What I learned:
                   <ul>
