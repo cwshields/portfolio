@@ -3,26 +3,26 @@ import { Link } from "react-router-dom";
 import "../../styles/Welcome.scss";
 
 // Logos
-import cslogo from "../../images/cs-logo-light.png";
-import sass from "../../images/sass-logo.png";
-import html from "../../images/html-logo.png";
-import btstrap from "../../images/bootstrap-logo.png";
-import cSharp from "../../images/cSharp.png";
-import rbs from "../../images/rbs-logo.png";
-import vue from "../../images/vue-logo.png";
-import ps from "../../images/ps-logo.png";
-import postman from "../../images/postman-logo.png";
-import java from "../../images/java-logo.png";
-import github from "../../images/github-logo.png";
-import nodejs from "../../images/nodejs-logo.png";
-import git from "../../images/git-logo.png";
-import js from "../../images/js-logo.png";
-import ai from "../../images/ai-logo.png";
-import sql from "../../images/mysql-logo.png";
-import css from "../../images/css-logo.png";
-import react from "../../images/react-logo.png";
-import flutter from "../../images/flutter-logo.png";
-import dart from "../../images/dart-logo.png";
+import cslogo from "../../images/logos/cs-logo-light.png";
+import sass from "../../images/logos/sass-logo.png";
+import html from "../../images/logos/html-logo.png";
+import btstrap from "../../images/logos/bootstrap-logo.png";
+import cSharp from "../../images/logos/cSharp.png";
+import rbs from "../../images/logos/rbs-logo.png";
+import vue from "../../images/logos/vue-logo.png";
+import ps from "../../images/logos/ps-logo.png";
+import postman from "../../images/logos/postman-logo.png";
+import java from "../../images/logos/java-logo.png";
+import github from "../../images/logos/github-logo.png";
+import nodejs from "../../images/logos/nodejs-logo.png";
+import git from "../../images/logos/git-logo.png";
+import js from "../../images/logos/js-logo.png";
+import ai from "../../images/logos/ai-logo.png";
+import sql from "../../images/logos/mysql-logo.png";
+import css from "../../images/logos/css-logo.png";
+import react from "../../images/logos/react-logo.png";
+import flutter from "../../images/logos/flutter-logo.png";
+import dart from "../../images/logos/dart-logo.png";
 
 function Welcome() {
   return (
@@ -34,7 +34,7 @@ function Welcome() {
             <div className="wlcm-ln1">welcome</div>
             <div className="wlcm-ln2">to my portfolio</div>
             <div className="wlcm-ln3">
-              I’m a Web designer and developer whose passion is to
+              I'm a Web designer and developer whose passion is to
               create
             </div>
             <div className="wlcm-ln4">Click anywhere to continue...</div>

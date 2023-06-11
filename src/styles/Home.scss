@@ -134,7 +134,7 @@
         p {
           .scrabble-link {
             color: #74a3c4;
-            font-size: 1.1vw;
+            font-size: 20px;
           }
           .scrabble-link:hover {
             text-decoration: underline;
@@ -279,26 +279,26 @@
 }
 
 .info-wrapper .stack-wrap .frameworks-wrap .react:hover {
-  height: 15.4vmin;
+  height: 15.5vmin;
 }
 .info-wrapper .stack-wrap .frameworks-wrap .vue:hover {
-  height: 14.4vmin;
+  height: 14.5vmin;
 }
 .info-wrapper .stack-wrap .libraries-wrap .logo:hover {
-  height: 12.4vmin;
+  height: 12.5vmin;
 }
 .info-wrapper .stack-wrap .libraries-wrap .sass:hover {
-  height: 11.4vmin;
+  height: 11.5vmin;
 }
 .info-wrapper .stack-wrap .fundamentals-wrap .logo:hover {
-  height: 13.8vmin;
+  height: 13.9vmin;
 }
 .info-wrapper .stack-wrap .backend .logo:hover {
-  height: 12.4vmin;
+  height: 12.5vmin;
 }
 .info-wrapper .stack-wrap .version-control .github:hover,
 .info-wrapper .stack-wrap .version-control .git:hover {
-  height: 11.3vmin;
+  height: 11.4vmin;
 }
 
 @media (max-width: 1430px) {
