@@ -153,7 +153,7 @@ const Home = () => {
             <img className="html logo" src={html} alt="HTML" />
             <img className="css logo" src={css} alt="CSS.png" />
             <img className="js logo" src={js} alt="JavaScript" />
-            <img className="csharp logo" src={typescript} alt="Typescript" />
+            <img className="typescript logo" src={typescript} alt="Typescript" />
           </div>
           <div className="backend">
             <div className="be stack-text">backend</div>

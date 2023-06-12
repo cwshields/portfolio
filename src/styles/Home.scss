@@ -157,7 +157,7 @@
     .design-wrap {
       .fw, .react, .vue, 
       .bootstrap, .rbs, .sass, 
-      .html, .css, .js, .csharp, 
+      .html, .css, .js, .typescript, 
       .be, .sql, .nodejs, 
       .github, .git, 
       .figma, .ai {
@@ -201,6 +201,9 @@
       .bootstrap {
         left: -19vmin;
       }
+      .rbs {
+        height: 12vmin;
+      }
       .sass {
         height: 11vmin;
         left: 21vmin;
@@ -213,8 +216,8 @@
         left: -39vmin;
         font-size: 7.2vmin;
       }
-      .html, .css, .js, .csharp {
-        height: 13.5vmin;
+      .html, .css, .js, .typescript {
+        height: 13vmin;
       }
       .html {
         left: -28.5vmin;
@@ -225,7 +228,7 @@
       .js {
         left: 10vmin;
       }
-      .csharp {
+      .typescript {
         left: 28.5vmin;
       }
     }
@@ -302,10 +305,10 @@
 }
 
 .info-wrapper .stack-wrap .frameworks-wrap .react:hover {
-  height: 15.5vmin;
+  height: 14.8vmin;
 }
 .info-wrapper .stack-wrap .frameworks-wrap .vue:hover {
-  height: 14.5vmin;
+  height: 13.7vmin;
 }
 .info-wrapper .stack-wrap .libraries-wrap .logo:hover {
   height: 12.5vmin;
@@ -324,7 +327,7 @@
   height: 11.4vmin;
 }
 .info-wrapper .stack-wrap .design-wrap .figma:hover {
-  height: 12.8vmin;
+  height: 12.7vmin;
 }
 .info-wrapper .stack-wrap .design-wrap .ai:hover {
   height: 10.4vmin;
@@ -392,6 +395,12 @@
         }
         .ai {
           height: 9vmin;
+        }
+        .figma:hover {
+          height: 10.8vmin;
+        }
+        .ai:hover {
+          height: 9.6vmin;
         }
       }
     }
@@ -542,7 +551,7 @@
           top: -10vmin;
           font-size: 8.5vmin;
         }
-        .html, .css, .js, .csharp {
+        .html, .css, .js, .typescript {
           height: 18vmin;
         }
       }
