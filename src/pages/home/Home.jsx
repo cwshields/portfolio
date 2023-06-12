@@ -22,7 +22,6 @@ import js from "../../images/logos/js-logo.png";
 import sql from "../../images/logos/mysql-logo.png";
 import aws from "../../images/logos/aws-logo.png";
 import figma from "../../images/logos/figma-logo.png";
-import xd from "../../images/logos/adobe-xd-logo.png";
 import ai from "../../images/logos/ai-logo.png";
 import css from "../../images/logos/css-logo.png";
 import react from "../../images/logos/react-logo.png";
