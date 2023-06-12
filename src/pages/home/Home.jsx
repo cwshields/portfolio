@@ -20,6 +20,10 @@ import nodejs from "../../images/logos/nodejs-logo.png";
 import git from "../../images/logos/git-logo.png";
 import js from "../../images/logos/js-logo.png";
 import sql from "../../images/logos/mysql-logo.png";
+import aws from "../../images/logos/aws-logo.png";
+import figma from "../../images/logos/figma-logo.png";
+import xd from "../../images/logos/adobe-xd-logo.png";
+import ai from "../../images/logos/ai-logo.png";
 import css from "../../images/logos/css-logo.png";
 import react from "../../images/logos/react-logo.png";
 import typescript from "../../images/logos/typescript_logo.png";
@@ -156,6 +160,12 @@ const Home = () => {
             <div className="be stack-text">backend</div>
             <img className="sql logo" src={sql} alt="SQL" />
             <img className="nodejs logo" src={nodejs} alt="NodeJS" />
+            <img className="aws logo" src={aws} alt="AWS" />
+          </div>
+          <div className="design-wrap">
+            <div className="design stack-text">design</div>
+            <img className="figma logo" src={figma} alt="Figma" />
+            <img className="ai logo" src={ai} alt="Illustrator" />
           </div>
           <div className="version-control">
             <div className="vc stack-text">version control</div>

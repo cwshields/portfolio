@@ -7,7 +7,7 @@ import cslogo from "../../images/logos/cs-logo-light.png";
 import sass from "../../images/logos/sass-logo.png";
 import html from "../../images/logos/html-logo.png";
 import btstrap from "../../images/logos/bootstrap-logo.png";
-import cSharp from "../../images/logos/cSharp.png";
+import figma from "../../images/logos/figma-logo.png";
 import rbs from "../../images/logos/rbs-logo.png";
 import vue from "../../images/logos/vue-logo.png";
 import ps from "../../images/logos/ps-logo.png";
@@ -42,7 +42,7 @@ function Welcome() {
         </div>
         <div className="logo-wrapper">
           <img className="react logo" src={react} alt="react-logo.png" />
-          <img className="cSharp logo" src={cSharp} alt="C#.png" />
+          <img className="cSharp logo" src={figma} alt="C#.png" />
           <img className="bootstrap logo" src={btstrap} alt="btstp-logo.png" />
           <img className="html logo" src={html} alt="html-logo.png" />
           <img className="vue logo" src={vue} alt="vue-logo.png" />

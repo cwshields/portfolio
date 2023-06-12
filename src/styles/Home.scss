@@ -153,18 +153,20 @@
     .libraries-wrap,
     .fundamentals-wrap,
     .backend,
-    .version-control {
+    .version-control, 
+    .design-wrap {
       .fw, .react, .vue, 
       .bootstrap, .rbs, .sass, 
       .html, .css, .js, .csharp, 
       .be, .sql, .nodejs, 
-      .github, .git {
+      .github, .git, 
+      .figma, .ai {
         position: absolute;
         width: auto;
         height: 12vmin;
       }
-      padding-top: 6vmin;
-      height: 6vmin;
+      padding-top: 5vmin;
+      height: 5vmin;
       width: 10px;
       position: relative;
     }
@@ -183,17 +185,17 @@
       }
       .react {
         left: -11vmin;
-        height: 15vmin;
+        height: 14vmin;
       }
       .vue {
         left: 11vmin;
-        height: 14vmin;
+        height: 13vmin;
         padding-right: 0;
       }
     }
     .libraries-wrap {
       .lib{
-        top: -4vmin;
+        top: -4.5vmin;
         left: -10vmin;
       }
       .bootstrap {
@@ -207,7 +209,7 @@
     .fundamentals-wrap {
       height: 8vmin;
       .funds {
-        top: -7vmin;
+        top: -7.5vmin;
         left: -39vmin;
         font-size: 7.2vmin;
       }
@@ -230,23 +232,44 @@
     .backend {
       height: 3vmin;
       .be {
-        top: -4vmin;
-        left: -12vmin;
+        top: -5.4vmin;
+        left: -16vmin;
       }
       .sql {
-        left: -10vmin;
+        left: -18vmin;
         height: 12vmin;
       }
       .nodejs {
-        left: 10vmin;
+        left: 18vmin;
+        height: 12vmin;
+      }
+      .aws {
+        left: 0vmin;
         height: 12vmin;
       }
     }
+    .design-wrap {
+      height: 9vmin;
+      .design {
+        font-size: 4.4vmin;
+        top: 1.5vmin;
+        left: -8.7vmin;
+        width: 35vw;
+      }
+      .figma {
+        left: -16vmin;
+        height: 7.5vw;
+      }
+      .ai {
+        left: 16vmin;
+        height: 6.5vw;
+      }
+    }
     .version-control {
-      height: 6vmin;
+      height: 10vmin;
       .vc {
         font-size: 4.1vmin;
-        top: 3vmin;
+        top: 2vmin;
         left: -20.5vmin;
         width: 35vw;
       }
@@ -299,6 +322,12 @@
 .info-wrapper .stack-wrap .version-control .github:hover,
 .info-wrapper .stack-wrap .version-control .git:hover {
   height: 11.4vmin;
+}
+.info-wrapper .stack-wrap .design-wrap .figma:hover {
+  height: 12.8vmin;
+}
+.info-wrapper .stack-wrap .design-wrap .ai:hover {
+  height: 10.6vmin;
 }
 
 @media (max-width: 1430px) {
@@ -355,6 +384,14 @@
           top: 25%;
           left: -21vmin;
           width: max-content;
+        }
+      }
+      .design-wrap {
+        .figma {
+          height: 10vmin;
+        }
+        .ai {
+          height: 9vmin;
         }
       }
     }
