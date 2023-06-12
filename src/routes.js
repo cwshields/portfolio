@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Welcome from "./components/welcome/Welcome";
-import Home from "./components/home/Home";
-import ScrabbleGame from "./components/ScrabbleGame/ScrabbleGame";
+import Welcome from "./pages/welcome/Welcome";
+import Home from "./pages/home/Home";
+import ScrabbleGame from "./pages/ScrabbleGame/ScrabbleGame";
 
 export default (
   <Switch>
