@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../styles/ScrabbleGame.scss';
 import { Link } from "react-router-dom"
-import Tiles from '../Tiles/Tiles';
+import Tiles from '../ScrabbleGame/Tiles/Tiles';
 
 class ScrabbleGame extends Component {
   constructor(props) {
