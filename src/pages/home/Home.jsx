@@ -305,21 +305,29 @@ const Home = () => {
                   a user will be able to post, edit and share blogs, listings,
                   podcasts, guides and more.
                 </p>
-                Current features:
-                <ul>
-                  <li>Data driven home page</li>
-                  <li>Advanced routing</li>
-                  <li>Custom Logo Design</li>
-                  <li>Tag constructors</li>
-                </ul>
-                Coming soon:
-                <ul>
-                  <li>Blog posting/editing</li>
-                  <li>AWS backend</li>
-                  <li>Login functionality</li>
-                  <li>Brand Shop</li>
-                  <li>Contact form</li>
-                </ul>
+                <div className="features-wrap">
+                  <div className="features">
+                    <p>Current features:</p>
+                    <ul>
+                      <li>Data driven home page</li>
+                      <li>Advanced routing</li>
+                      <li>Custom Logo Design</li>
+                      <li>Axios Hooks API</li>
+                      <li>AWS backend</li>
+                      <li>Post sorting</li>
+                    </ul>
+                  </div>
+                  <div className="features">
+                    <p>Coming soon:</p>
+                    <ul>
+                      <li>Blog posting/editing</li>
+                      <li>Login functionality</li>
+                      <li>Brand Shop</li>
+                      <li>Contact form</li>
+                      <li>Tag constructors</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <h3>Older Projects:</h3>
@@ -437,9 +445,9 @@ const Home = () => {
                 <ul>
                   <li>Full-stack Web Development</li>
                   <li>RESTful API integration</li>
-                  <li>UI/UX</li>
-                  <li>VS Code</li>
+                  <li>CRUD Operations</li>
                   <li>React</li>
+                  <li>UI/UX</li>
                   <li>Javascript</li>
                   <li>Typescript</li>
                   <li>Node.js</li>
