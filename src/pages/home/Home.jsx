@@ -151,7 +151,7 @@ const Home = () => {
           <div className="fundamentals-wrap">
             <div className="funds stack-text">fundamentals</div>
             <img className="html logo" src={html} alt="HTML" />
-            <img className="css logo" src={css} alt="CSS.png" />
+            <img className="css logo" src={css} alt="CSS" />
             <img className="js logo" src={js} alt="JavaScript" />
             <img className="typescript logo" src={typescript} alt="Typescript" />
           </div>

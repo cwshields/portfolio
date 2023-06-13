@@ -153,14 +153,25 @@
     .libraries-wrap,
     .fundamentals-wrap,
     .backend,
-    .version-control, 
+    .version-control,
     .design-wrap {
-      .fw, .react, .vue, 
-      .bootstrap, .rbs, .sass, 
-      .html, .css, .js, .typescript, 
-      .be, .sql, .nodejs, 
-      .github, .git, 
-      .figma, .ai {
+      .fw,
+      .react,
+      .vue,
+      .bootstrap,
+      .rbs,
+      .sass,
+      .html,
+      .css,
+      .js,
+      .typescript,
+      .be,
+      .sql,
+      .nodejs,
+      .github,
+      .git,
+      .figma,
+      .ai {
         position: absolute;
         width: auto;
         height: 12vmin;
@@ -194,7 +205,7 @@
       }
     }
     .libraries-wrap {
-      .lib{
+      .lib {
         top: -4.5vmin;
         left: -10vmin;
       }
@@ -216,7 +227,10 @@
         left: -39vmin;
         font-size: 7.2vmin;
       }
-      .html, .css, .js, .typescript {
+      .html,
+      .css,
+      .js,
+      .typescript {
         height: 13vmin;
       }
       .html {
@@ -229,7 +243,7 @@
         left: 10vmin;
       }
       .typescript {
-        left: 28.5vmin;
+        left: 30vmin;
       }
     }
     .backend {
@@ -311,13 +325,13 @@
   height: 13.7vmin;
 }
 .info-wrapper .stack-wrap .libraries-wrap .logo:hover {
-  height: 12.5vmin;
+  height: 12.4vmin;
 }
 .info-wrapper .stack-wrap .libraries-wrap .sass:hover {
-  height: 11.5vmin;
+  height: 11.4vmin;
 }
 .info-wrapper .stack-wrap .fundamentals-wrap .logo:hover {
-  height: 13.9vmin;
+  height: 13.3vmin;
 }
 .info-wrapper .stack-wrap .backend .logo:hover {
   height: 12.5vmin;
@@ -467,6 +481,12 @@
   }
 }
 
+@media (max-width: 746px) {
+  .projects-page .projects-wrap .showcase-wrap .text .features-wrap {
+    display: block !important;
+  }
+}
+
 @media (max-width: 530px) {
   .info-wrapper {
     display: block;
@@ -513,7 +533,10 @@
     }
     .stack-wrap {
       height: 100vw;
-      margin: 18vmin 0;
+      margin: 25vmin 0;
+      .stack-text {
+        opacity: 0.15;
+      }
       .frameworks-wrap,
       .libraries-wrap,
       .fundamentals-wrap {
@@ -537,44 +560,74 @@
           font-size: 7vmin;
         }
         .bootstrap {
-          height: 15vmin;
+          height: 14vmin;
         }
         .rbs {
-          height: 15vmin;
+          height: 14vmin;
         }
         .sass {
-          height: 15vmin;
+          height: 14vmin;
         }
       }
       .fundamentals-wrap {
+        top: 1vmin;
         .funds {
           top: -10vmin;
           font-size: 8.5vmin;
         }
-        .html, .css, .js, .typescript {
-          height: 18vmin;
+        .html,
+        .css,
+        .js,
+        .typescript {
+          top: 6vmin;
+          height: 17vmin;
         }
       }
       .backend {
+        top: 2.5vmin;
         .be {
           font-size: 6vmin;
-          top: -6.5vmin;
+          top: -8vmin;
+          left: -17vmin;
         }
-        .sql, .nodejs {
+        .sql,
+        .aws,
+        .nodejs {
           height: 16vmin;
+        }
+        .sql {
+          left: -21vmin;
+        }
+        .nodejs {
+          left: 21vmin;
+        }
+      }
+      .design-wrap {
+        top: 4vmin;
+        .design {
+          font-size: 4.2vmin;
+        }
+        .figma {
+          height: 13vmin;
+        }
+        .ai {
+          height: 13vmin;
         }
       }
       .version-control {
+        top: 14vmin;
         .vc {
-          font-size: 3.8vmin;
+          font-size: 3.9vmin;
           left: -20vmin;
-          top: 50%;
+          top: 3vmin;
         }
         .github {
           height: 14vmin;
+          left: -30vmin;
         }
         .git {
           height: 15vmin;
+          left: 30vmin;
         }
       }
     }
