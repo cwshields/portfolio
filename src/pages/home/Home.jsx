@@ -5,6 +5,7 @@ import "../../styles/Projects.scss";
 
 import afp from "../../images/AFPShowcase.jpg";
 import bloglab from "../../images/BlogLab.jpg";
+import cavco from "../../images/CavcoHomes.jpg";
 import fuelrewards from "../../images/FuelRewards.jpg";
 import fueland from "../../images/FuelandInc.jpg";
 import devmountain from "../../images/DevMountain.jpg";
@@ -153,7 +154,11 @@ const Home = () => {
             <img className="html logo" src={html} alt="HTML" />
             <img className="css logo" src={css} alt="CSS" />
             <img className="js logo" src={js} alt="JavaScript" />
-            <img className="typescript logo" src={typescript} alt="Typescript" />
+            <img
+              className="typescript logo"
+              src={typescript}
+              alt="Typescript"
+            />
           </div>
           <div className="backend">
             <div className="be stack-text">backend</div>
@@ -180,11 +185,35 @@ const Home = () => {
         <div className="projects-wrap">
           <div className="showcase-wrap">
             <div className="showcase">
-              <img
-                className="proj-img"
-                src={fueland}
-                alt="drino-showcase.png"
-              />
+              <img className="proj-img" src={cavco} alt="cavco-showcase" />
+            </div>
+            <div className="text">
+              <div className="title-wrap">
+                <h1>Cavco Industries, Inc.</h1>
+              </div>
+              <p className="desc">
+                Cavco Industries is a leading builder of Manufactured Homes,
+                Modular Homes, Park Model RVs, Commercial Buildings and Vacation
+                Cabins in the United States.
+              </p>
+              <p className="desc">
+                At Cavco Industries, I maintained the parent and sister company
+                websites through Jira tickets involving a wide variety of
+                front-end related problems, that I was able to quickly resolve
+                by utilizing my expertise in, but not excluded to:
+              </p>
+              <ul>
+                <li>React/Typescript</li>
+                <li>Google Maps API</li>
+                <li>Advanced data handling</li>
+                <li>CMS management</li>
+                <li>Chat GPT prompts</li>
+              </ul>
+            </div>
+          </div>
+          <div className="showcase-wrap">
+            <div className="showcase">
+              <img className="proj-img" src={fueland} alt="drino-showcase" />
             </div>
             <div className="text">
               <div className="title-wrap">
@@ -219,7 +248,7 @@ const Home = () => {
                 <img
                   className="proj-img"
                   src={fuelrewards}
-                  alt="drino-showcase.png"
+                  alt="fuel-rewards-showcase"
                 />
               </a>
             </div>
@@ -289,7 +318,7 @@ const Home = () => {
                   <img
                     className="proj-img"
                     src={bloglab}
-                    alt="drino-showcase.png"
+                    alt="bloglab-showcase.png"
                   />
                 </a>
               </div>
