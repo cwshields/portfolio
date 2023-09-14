@@ -20,12 +20,12 @@ h2 {
   width: 100%;
   margin-top: 10vmin;
 }
-.projects-page {
+.experience-container {
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  .projects-wrap {
+  .experience-wrap {
     margin: 8vmin 5vmin 0;
     h3 {
       font-size: 27px;
@@ -116,8 +116,8 @@ h2 {
 }
 
 @media (max-width: 900px) {
-  .projects-page {
-    .projects-wrap {
+  .experience-container {
+    .experience-wrap {
       padding: 10vmin 0vmin;
       .showcase-wrap {
         height: 60%;
@@ -150,12 +150,12 @@ h2 {
       padding: 25px;
     }
   }
-  .projects-page {
+  .experience-container {
     height: 100%;
     .proj-wrap {
       height: 28vmin;
     }
-    .projects-wrap {
+    .experience-wrap {
       padding: 8vmin 0vmin;
       .showcase-wrap {
         height: 60%;
