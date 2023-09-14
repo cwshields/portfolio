@@ -3,15 +3,10 @@ import { Link } from "react-router-dom";
 import "../../styles/Home.scss";
 import "../../styles/Projects.scss";
 
-import afp from "../../images/AFPShowcase.jpg";
-import bloglab from "../../images/BlogLab.jpg";
-import cavco from "../../images/CavcoHomes.jpg";
-import fuelrewards from "../../images/FuelRewards.jpg";
-import fueland from "../../images/FuelandInc.jpg";
-import devmountain from "../../images/DevMountain.jpg";
-import drino from "../../images/DrinoShowcase.jpg";
+
 import meImg from "../../images/me.jpg";
 import meAngryImg from "../../images/me-angry.jpg";
+
 import sass from "../../images/logos/sass-logo.png";
 import html from "../../images/logos/html-logo.png";
 import bootstrap from "../../images/logos/bootstrap-logo.png";
@@ -31,6 +26,12 @@ import rbs from "../../images/logos/rbs-logo.png";
 import LinkedIn from "../../components/SocialMedia/LinkedIn";
 import Github from "../../components/SocialMedia/Github";
 import Twitter from "../../components/SocialMedia/Twitter";
+
+import proExpData from "../../data/professionalExperience";
+import personalExpData from "../../data/personalProjects";
+import Showcase from "../../components/Showcase/Showcase";
+
+import devmountain from "../../images/DevMountain.jpg";
 
 const imagesPath = {
   meImg: meImg,
@@ -181,279 +182,27 @@ const Home = () => {
       <div className="header-wrap">
         <h2>Professional Experience</h2>
       </div>
-      <div className="projects-page">
-        <div className="projects-wrap">
-          <div className="showcase-wrap">
-            <div className="showcase">
-              <img className="proj-img" src={cavco} alt="cavco-showcase" />
-            </div>
-            <div className="text">
-              <div className="title-wrap">
-                <h1>Cavco Industries, Inc.</h1>
-              </div>
-              <p className="desc">
-                Cavco Industries is a leading builder of Manufactured Homes,
-                Modular Homes, Park Model RVs, Commercial Buildings and Vacation
-                Cabins in the United States.
-              </p>
-              <p className="desc">
-                At Cavco Industries, I maintained the parent and sister company
-                websites through Jira tickets involving a wide variety of
-                front-end related problems, that I was able to quickly resolve
-                by utilizing my expertise in, but not excluded to:
-              </p>
-              <ul>
-                <li>React/Typescript</li>
-                <li>Google Maps API</li>
-                <li>Advanced data handling</li>
-                <li>CMS management</li>
-                <li>Chat GPT prompts</li>
-              </ul>
-            </div>
-          </div>
-          <div className="showcase-wrap">
-            <div className="showcase">
-              <img className="proj-img" src={fueland} alt="drino-showcase" />
-            </div>
-            <div className="text">
-              <div className="title-wrap">
-                <h1>Fueland Inc</h1>
-              </div>
-              <p className="desc">
-                At Fueland Inc I developed the landing page and signup form for
-                businesses to register their company and stores with the
-                Fueland's Fuel Reward program.
-              </p>
-              <p>It involved a number of technologies such as:</p>
-              <ul>
-                <li>React/Typescript</li>
-                <li>Login/Registration functionality</li>
-                <li>Responsive form selections</li>
-                <li>Password resetting</li>
-                <li>Signeasy form signing</li>
-                <li>Java backend</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="projects-wrap">
-          <div className="showcase-wrap">
-            <div className="showcase">
-              <a
-                href="https://www.fuelrewards.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                alt="Fuel Rewards"
-              >
-                <img
-                  className="proj-img"
-                  src={fuelrewards}
-                  alt="fuel-rewards-showcase"
-                />
-              </a>
-            </div>
-            <div className="text">
-              <div className="title-wrap">
-                <h1>Fuel Rewards Connect</h1>
-              </div>
-              <p className="desc">
-                At PDI Technologies I developed and maintained the front-end
-                Javascript workflow for Fuel Rewards Connect utilizing HTML,
-                CSS, JavaScript, Nunjucks, SASS, JSON, jQuery and Gulp building
-                the login, registration and success pages for sponsors of Shell
-                like Bank of America, Reddit, Sonesta, Red Bull, Dunkin Donuts,
-                CarAdvise, American Airlines, and many more.
-              </p>
-              <p>Features Include:</p>
-              <ul>
-                <li>Registration processes</li>
-                <li>Login functionality</li>
-                <li>CMS Utilization</li>
-                <li>Responsive form selections</li>
-                <li>Password resetting</li>
-                <li>Gulp workflows</li>
-              </ul>
-            </div>
-            <div className="project-footer-wrap">
-              <a
-                href="https://www.fuelrewards.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                alt="Fuel Rewards"
-              >
-                <img
-                  id="logo-fr"
-                  src="https://ed0c37be21f8ad72418b-ae99f0738c1a4f0c153c7aecac9360e1.ssl.cf1.rackcdn.com/2020/fuel-rewards-logo-1A.svg"
-                  alt="Fuel Rewards"
-                />
-              </a>
-              <a
-                href="https://pditechnologies.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                alt="PDI Technologies"
-              >
-                <img
-                  id="logo-pdi"
-                  src="https://pditechnologies.com/wp-content/uploads/2022/06/PDI_Logo.svg"
-                  alt="PDI Technologies"
-                />
-              </a>
-            </div>
-          </div>
+      <div className="experience-container">
+        <div className="experience-wrap">
+          {proExpData.map((data, index) => (
+            <Showcase data={data} key={index} />
+          ))}
         </div>
         <div className="header-wrap">
           <h2>Personal Projects</h2>
         </div>
-        <div className="projects-page">
-          <div className="projects-wrap">
-            <div className="showcase-wrap">
-              <div className="showcase">
-                <a
-                  href="https://bloglab.live/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  alt="BlogLab"
-                >
-                  <img
-                    className="proj-img"
-                    src={bloglab}
-                    alt="bloglab-showcase.png"
-                  />
-                </a>
-              </div>
-              <div className="text">
-                <div className="title-wrap">
-                  <h1>BlogLab</h1>
-                  <a
-                    name="github"
-                    className="github-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://github.com/cwshields/bloglab-web"
-                  >
-                    <Github />
-                    <div id="github-link" className="display-none">
-                      Github Link
-                    </div>
-                  </a>
-                </div>
-                <p className="desc">
-                  BlogLab is my current personal project that I'm building where
-                  a user will be able to post, edit and share blogs, listings,
-                  podcasts, guides and more.
-                </p>
-                <div className="features-wrap">
-                  <div className="features">
-                    <p>Current features:</p>
-                    <ul>
-                      <li>Data driven home page</li>
-                      <li>Advanced routing</li>
-                      <li>Custom Logo Design</li>
-                      <li>Axios Hooks API</li>
-                      <li>AWS backend</li>
-                      <li>Post sorting</li>
-                    </ul>
-                  </div>
-                  <div className="features">
-                    <p>Coming soon:</p>
-                    <ul>
-                      <li>Blog posting/editing</li>
-                      <li>Login functionality</li>
-                      <li>Brand Shop</li>
-                      <li>Contact form</li>
-                      <li>Tag constructors</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <h3>Older Projects:</h3>
-            <div className="showcase-wrap">
-              <div className="showcase">
-                <img
-                  className="proj-img"
-                  src={drino}
-                  alt="drino-showcase.png"
-                />
-              </div>
-              <div className="text">
-                <div className="title-wrap">
-                  <h1>Drino</h1>
-                  <a
-                    name="github"
-                    className="github-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://github.com/cwshields/drino-app"
-                  >
-                    <Github />
-                    <div id="github-link" className="display-none">
-                      Github Link
-                    </div>
-                  </a>
-                </div>
-                <p className="desc">
-                  This is a full-stack project I built for both sides of a
-                  buisiness; customer/employee relations. It is a fully RESTful
-                  design that includes:
-                </p>
-                <ul>
-                  <li>Landing page</li>
-                  <li>Login functionality</li>
-                  <li>Data statistics</li>
-                  <li>Customizable employee profile</li>
-                  <li>Contact form</li>
-                  <li>Administrator inbox</li>
-                  <li>Employee information list</li>
-                  <li>Template pages</li>
-                </ul>
-              </div>
-            </div>
-            <div className="showcase-wrap">
-              <div className="showcase">
-                <img className="proj-img" src={afp} alt="afp-showcase.png" />
-              </div>
-              <div className="text">
-                <div className="title-wrap">
-                  <h1>Andy Fancher Presents</h1>
-                  <a
-                    name="github"
-                    className="github-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://github.com/cwshields/AFP"
-                  >
-                    <Github />
-                    <div id="github-link" className="display-none">
-                      Github Link
-                    </div>
-                  </a>
-                </div>
-                <p className="desc">
-                  When he was 9 years old, Andy Fancher, found WWII memorabilia
-                  that inspired him to know more, but little to no information
-                  was known about the veterans he found. It later inspired him
-                  to go on a mission to find the untold stories of these heroes
-                  so the world could better know them in what became Andy
-                  Fancher Presents. On this platform, he could document these
-                  stories for the world to see and hear for themselves.
-                </p>
-                <p className="desc">
-                  His journey inspired me, knowing that so many amazing stories
-                  have been lost over time, so I used how I could help to design
-                  this website for him in hopes it could help his journey be
-                  successful.
-                </p>
-              </div>
-            </div>
+        <div className="experience-container">
+          <div className="experience-wrap">
+            {personalExpData.map((data, index) => (
+              <Showcase data={data} key={index} />
+            ))}
           </div>
         </div>
         <div className="header-wrap">
           <h2>Education</h2>
         </div>
-        <div className="projects-page">
-          <div className="projects-wrap">
+        <div className="experience-container">
+          <div className="experience-wrap">
             <div className="showcase-wrap">
               <div className="showcase">
                 <a
