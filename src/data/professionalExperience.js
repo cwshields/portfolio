@@ -23,7 +23,7 @@ const proExpData = [
     link: {
       url: "https://www.cavcohomes.com/",
       img: cavco,
-      alt: "Cavco Showcase",
+      alt: "Cavco Industries Showcase",
     },
     name: "Cavco Industries, Inc.",
     description: [
@@ -46,7 +46,7 @@ const proExpData = [
   },
   {
     link: {
-      url: "https://www.cavcohomes.com/",
+      url: "",
       img: fueland,
       alt: "Fueland Showcase",
     },

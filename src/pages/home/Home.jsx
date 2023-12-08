@@ -141,41 +141,42 @@ const Home = () => {
         <div className="stack-wrap">
           <div className="frameworks-wrap">
             <div className="fw stack-text">frameworks</div>
-            <img className="react logo" src={react} alt="React" />
-            <img className="vue logo" src={vue} alt="Vue" />
+            <img className="react logo" src={react} alt="React" title="ReactJS" />
+            <img className="vue logo" src={vue} alt="Vue" title="VueJS" />
           </div>
           <div className="libraries-wrap">
             <div className="lib stack-text">libraries</div>
-            <img className="bootstrap logo" src={bootstrap} alt="Bootstrap" />
-            <img className="rbs logo" src={rbs} alt="React Bootstrap" />
-            <img className="sass logo" src={sass} alt="SASS" />
+            <img className="bootstrap logo" src={bootstrap} alt="Bootstrap" title="Bootstrap" />
+            <img className="rbs logo" src={rbs} alt="React Bootstrap" title="React Bootstrap" />
+            <img className="sass logo" src={sass} alt="SASS" title="SASS" />
           </div>
           <div className="fundamentals-wrap">
             <div className="funds stack-text">fundamentals</div>
-            <img className="html logo" src={html} alt="HTML" />
-            <img className="css logo" src={css} alt="CSS" />
-            <img className="js logo" src={js} alt="JavaScript" />
+            <img className="html logo" src={html} alt="HTML" title="HTML" />
+            <img className="css logo" src={css} alt="CSS" title="CSS" />
+            <img className="js logo" src={js} alt="JavaScript" title="Javascript" />
             <img
               className="typescript logo"
               src={typescript}
               alt="Typescript"
+              title="Typescript"
             />
           </div>
           <div className="backend">
             <div className="be stack-text">backend</div>
-            <img className="sql logo" src={sql} alt="SQL" />
-            <img className="nodejs logo" src={nodejs} alt="NodeJS" />
-            <img className="aws logo" src={aws} alt="AWS" />
+            <img className="sql logo" src={sql} alt="SQL" title="PostgreSQL" />
+            <img className="nodejs logo" src={nodejs} alt="NodeJS" title="NodeJS" />
+            <img className="aws logo" src={aws} alt="AWS" title="Amazon Web Services" />
           </div>
           <div className="design-wrap">
             <div className="design stack-text">design</div>
-            <img className="figma logo" src={figma} alt="Figma" />
-            <img className="ai logo" src={ai} alt="Illustrator" />
+            <img className="figma logo" src={figma} alt="Figma" title="Figma" />
+            <img className="ai logo" src={ai} alt="Illustrator" title="Illustrator" />
           </div>
           <div className="version-control">
             <div className="vc stack-text">version control</div>
-            <img className="github logo" src={github} alt="Github" />
-            <img className="git logo" src={git} alt="Git" />
+            <img className="github logo" src={github} alt="Github" title="Github" />
+            <img className="git logo" src={git} alt="Git" title="Git" />
           </div>
         </div>
       </div>

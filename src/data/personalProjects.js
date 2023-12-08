@@ -37,7 +37,7 @@ const personalExpData = [
   },
   {
     link: {
-      url: "",
+      url: "https://bloglab.live/",
       img: drino,
       alt: "BlogLab Showcase",
     },

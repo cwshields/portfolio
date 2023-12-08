@@ -327,9 +327,6 @@
 .info-wrapper .stack-wrap .libraries-wrap .logo:hover {
   height: 12.4vmin;
 }
-.info-wrapper .stack-wrap .libraries-wrap .sass:hover {
-  height: 11.4vmin;
-}
 .info-wrapper .stack-wrap .fundamentals-wrap .logo:hover {
   height: 13.3vmin;
 }
@@ -337,7 +334,8 @@
   height: 12.5vmin;
 }
 .info-wrapper .stack-wrap .version-control .github:hover,
-.info-wrapper .stack-wrap .version-control .git:hover {
+.info-wrapper .stack-wrap .version-control .git:hover,
+  .info-wrapper .stack-wrap .libraries-wrap .sass:hover {
   height: 11.4vmin;
 }
 .info-wrapper .stack-wrap .design-wrap .figma:hover {
