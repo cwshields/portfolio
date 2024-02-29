@@ -1,4 +1,4 @@
-import bloglab from "../images/BlogLab.jpg";
+import bloglab from "../images/BlogLabShowcase.jpg";
 import drino from "../images/DrinoShowcase.jpg";
 import afp from "../images/AFPShowcase.jpg";
 
@@ -23,10 +23,11 @@ const personalExpData = [
         "Advanced routing",
         "Custom Logo Design",
         "Axios Hooks API",
-        "AWS backend",
+        "AWS Lambda",
         "Post sorting",
       ],
       [
+        "Strapi Backend",
         "Blog posting/editing",
         "Login functionality",
         "Brand Shop",
@@ -39,7 +40,7 @@ const personalExpData = [
     link: {
       url: "",
       img: drino,
-      alt: "BlogLab Showcase",
+      alt: "Drino Showcase",
     },
     name: "Drino",
     description: [
@@ -71,7 +72,7 @@ const personalExpData = [
     name: "Andy Fancher Presents",
     description: [
       "When he was 9 years old, Andy Fancher, found WWII memorabilia that inspired him to know more, but little to no information was known about the veterans he found. It later inspired him to go on a mission to find the untold stories of these heroes so the world could better know them in what became Andy Fancher Presents. On this platform, he could document these stories for the world to see and hear for themselves.",
-      "This was the first website I built professionally, and now it is a setpice to humble beginnings meanwhile being an excellent foundation for my advancement as a software developer.",
+      "This was the first website I built professionally, and now it is a set piece to humble beginnings meanwhile being an excellent foundation for my advancement as a software developer.",
     ],
     github: {
       url: "https://github.com/cwshields/AFP",

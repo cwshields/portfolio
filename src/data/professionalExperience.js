@@ -32,7 +32,6 @@ const proExpData = [
       "At Cavco Industries, I maintained the parent and sister company websites through Jira tickets involving a wide variety of front-end related problems, that I was able to quickly resolve by utilizing my expertise in, but not excluded to:",
     ],
     github: {
-      url: "https://github.com/",
     },
     subheader: [""],
     features: [
@@ -56,7 +55,6 @@ const proExpData = [
       "At Fueland Inc I developed the landing page and signup form for businesses to register their company and stores with the Fueland's Fuel Reward program.",
     ],
     github: {
-      url: "https://github.com/",
     },
     subheader: ["It involved a number of technologies such as:"],
     features: [
@@ -81,7 +79,6 @@ const proExpData = [
       "At PDI Technologies I developed and maintained the front-end Javascript workflow for Fuel Rewards Connect utilizing HTML, CSS, JavaScript, Nunjucks, SASS, JSON, jQuery and Gulp building the login, registration and success pages for sponsors of Shell like Bank of America, Reddit, Sonesta, Red Bull, Dunkin Donuts, CarAdvise, American Airlines, and various others.",
     ],
     github: {
-      url: "https://github.com/",
     },
     subheader: ["Features Include:"],
     features: [
