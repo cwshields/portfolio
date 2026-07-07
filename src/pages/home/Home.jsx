@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "../../styles/Home.scss";
 import "../../styles/Projects.scss";
 
-
 import meImg from "../../images/me.jpg";
 import meAngryImg from "../../images/me-angry.jpg";
 
@@ -141,20 +140,40 @@ const Home = () => {
         <div className="stack-wrap">
           <div className="frameworks-wrap">
             <div className="fw stack-text">frameworks</div>
-            <img className="react logo" src={react} alt="React" title="ReactJS" />
+            <img
+              className="react logo"
+              src={react}
+              alt="React"
+              title="ReactJS"
+            />
             <img className="vue logo" src={vue} alt="Vue" title="VueJS" />
           </div>
           <div className="libraries-wrap">
             <div className="lib stack-text">libraries</div>
-            <img className="bootstrap logo" src={bootstrap} alt="Bootstrap" title="Bootstrap" />
-            <img className="rbs logo" src={rbs} alt="React Bootstrap" title="React Bootstrap" />
+            <img
+              className="bootstrap logo"
+              src={bootstrap}
+              alt="Bootstrap"
+              title="Bootstrap"
+            />
+            <img
+              className="rbs logo"
+              src={rbs}
+              alt="React Bootstrap"
+              title="React Bootstrap"
+            />
             <img className="sass logo" src={sass} alt="SASS" title="SASS" />
           </div>
           <div className="fundamentals-wrap">
             <div className="funds stack-text">fundamentals</div>
             <img className="html logo" src={html} alt="HTML" title="HTML" />
             <img className="css logo" src={css} alt="CSS" title="CSS" />
-            <img className="js logo" src={js} alt="JavaScript" title="Javascript" />
+            <img
+              className="js logo"
+              src={js}
+              alt="JavaScript"
+              title="Javascript"
+            />
             <img
               className="typescript logo"
               src={typescript}
@@ -165,17 +184,37 @@ const Home = () => {
           <div className="backend">
             <div className="be stack-text">backend</div>
             <img className="sql logo" src={sql} alt="SQL" title="PostgreSQL" />
-            <img className="nodejs logo" src={nodejs} alt="NodeJS" title="NodeJS" />
-            <img className="aws logo" src={aws} alt="AWS" title="Amazon Web Services" />
+            <img
+              className="nodejs logo"
+              src={nodejs}
+              alt="NodeJS"
+              title="NodeJS"
+            />
+            <img
+              className="aws logo"
+              src={aws}
+              alt="AWS"
+              title="Amazon Web Services"
+            />
           </div>
           <div className="design-wrap">
             <div className="design stack-text">design</div>
             <img className="figma logo" src={figma} alt="Figma" title="Figma" />
-            <img className="ai logo" src={ai} alt="Illustrator" title="Illustrator" />
+            <img
+              className="ai logo"
+              src={ai}
+              alt="Illustrator"
+              title="Illustrator"
+            />
           </div>
           <div className="version-control">
             <div className="vc stack-text">version control</div>
-            <img className="github logo" src={github} alt="Github" title="Github" />
+            <img
+              className="github logo"
+              src={github}
+              alt="Github"
+              title="Github"
+            />
             <img className="git logo" src={git} alt="Git" title="Git" />
           </div>
         </div>
@@ -206,18 +245,11 @@ const Home = () => {
           <div className="experience-wrap">
             <div className="showcase-wrap">
               <div className="showcase">
-                <a
-                  href="https://devmountain.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  alt="DevMountain"
-                >
-                  <img
-                    className="proj-img"
-                    src={devmountain}
-                    alt="drino-showcase.png"
-                  />
-                </a>
+                <img
+                  className="proj-img"
+                  src={devmountain}
+                  alt="drino-showcase.png"
+                />
               </div>
               <div className="text">
                 <div className="title-wrap">
@@ -234,7 +266,7 @@ const Home = () => {
                   <li>Full-stack Web Development</li>
                   <li>RESTful API integration</li>
                   <li>CRUD Operations</li>
-                  <li>React</li>
+                  <li>React v16</li>
                   <li>UI/UX</li>
                   <li>Javascript</li>
                   <li>Typescript</li>
