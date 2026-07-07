@@ -5,7 +5,7 @@ import afp from "../images/AFPShowcase.jpg";
 const personalExpData = [
   {
     link: {
-      url: "https://bloglab.live/",
+      url: "https://bloglab.dev/",
       img: bloglab,
       alt: "BlogLab Showcase",
     },
