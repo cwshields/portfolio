@@ -15,6 +15,13 @@ import {
 } from "./wordFinder";
 import { scoreMove } from "./scoring";
 import { validateWords } from "./dictionary";
+import {
+  loadFromLocalStorage,
+  saveToLocalStorage,
+  clearLocalStorage,
+  downloadSaveFile,
+  readSaveFileAsState,
+} from "./persistence";
 
 // creates a fresh 15x15 board, carrying bonus-square info per cell
 function buildBoard() {
@@ -57,7 +64,8 @@ class ScrabbleGame extends Component {
       bag: [],
       // true while awaiting the dictionary API response for a submitted word
       validating: false,
-      // message shown when a submitted move is rejected or can't be verified
+      // message shown when a submitted move is rejected, can't be verified,
+      // or a file import fails
       validationError: null,
       // indices (within the current player's rack) selected for a letter trade
       selectedIndices: [],
@@ -65,13 +73,50 @@ class ScrabbleGame extends Component {
       // { type: 'rack', index } or { type: 'board', row, col, letter }
       dragSource: null,
     };
+    this.fileInputRef = React.createRef();
   }
 
   componentDidMount = () => {
+    const saved = loadFromLocalStorage();
+    if (saved) {
+      if (window.confirm("Resume your saved Scrabble game?")) {
+        this.setState(saved);
+        return;
+      }
+      clearLocalStorage();
+    }
     const bag = createBag();
     const { drawn: p1inv, remainingBag: r1 } = drawTiles(bag, RACK_SIZE);
     const { drawn: p2inv, remainingBag: r2 } = drawTiles(r1, RACK_SIZE);
     this.setState({ bag: r2, p1inv, p2inv });
+  };
+
+  autosaveState = () => {
+    saveToLocalStorage(this.state);
+  };
+
+  handleSaveToFile = () => {
+    downloadSaveFile(this.state);
+  };
+
+  handleLoadFileClick = () => {
+    if (
+      !window.confirm("Loading a file will replace your current game. Continue?")
+    )
+      return;
+    this.fileInputRef.current.click();
+  };
+
+  handleFileSelected = async (e) => {
+    const file = e.target.files[0];
+    e.target.value = null;
+    if (!file) return;
+    try {
+      const state = await readSaveFileAsState(file);
+      this.setState(state, this.autosaveState);
+    } catch (err) {
+      this.setState({ validationError: err.message });
+    }
   };
 
   // updates the board with the letter placed/removed at (row, col), and keeps the
@@ -150,7 +195,7 @@ class ScrabbleGame extends Component {
       validating: false,
       validationError: null,
       selectedIndices: [],
-    });
+    }, this.autosaveState);
   };
 
   // toggles whether a rack letter (by index in the current player's rack) is
@@ -272,7 +317,7 @@ class ScrabbleGame extends Component {
       p1turn: !p1turn,
       selectedIndices: [],
       validationError: null,
-    });
+    }, this.autosaveState);
   };
 
   // skips the current player's turn without placing any tiles; only allowed
@@ -284,7 +329,7 @@ class ScrabbleGame extends Component {
       p1turn: !p1turn,
       validationError: null,
       selectedIndices: [],
-    });
+    }, this.autosaveState);
   };
 
   // rebuilds the whole game from scratch after the player confirms
@@ -310,7 +355,7 @@ class ScrabbleGame extends Component {
       validating: false,
       validationError: null,
       selectedIndices: [],
-    });
+    }, this.autosaveState);
   };
 
   submit = async () => {
@@ -550,6 +595,23 @@ class ScrabbleGame extends Component {
                   {selectedIndices.length > 1 ? "s" : ""}
                 </button>
               )}
+              <button onClick={this.handleSaveToFile} className="save-file-button">
+                Save to File
+              </button>
+              <button
+                onClick={this.handleLoadFileClick}
+                className="load-file-button"
+                disabled={validating}
+              >
+                Load from File
+              </button>
+              <input
+                type="file"
+                accept="application/json"
+                ref={this.fileInputRef}
+                onChange={this.handleFileSelected}
+                className="file-input"
+              />
             </div>
             <div className="turn">
               Player {p1turn ? 1 : 2}'s turn

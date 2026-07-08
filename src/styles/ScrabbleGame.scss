@@ -236,6 +236,41 @@ h3 {
       cursor: not-allowed;
     }
   }
+  .save-file-button {
+    font-size: 14px;
+    width: 124px;
+    height: 34px;
+    color: #f1f1f1;
+    background-color: #2b2f3b;
+    border: 1px solid #7f848b;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #353b4a;
+    }
+  }
+  .load-file-button {
+    font-size: 14px;
+    width: 124px;
+    height: 34px;
+    color: #f1f1f1;
+    background-color: #362b3b;
+    border: 1px solid #7f848b;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #453a4a;
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  .file-input {
+    display: none;
+  }
 }
 .turn {
   width: 100%;
