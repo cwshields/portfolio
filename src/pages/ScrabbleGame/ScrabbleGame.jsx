@@ -510,64 +510,66 @@ class ScrabbleGame extends Component {
               )),
             )}
           </div>
-          <div className="tutorial">
-            <h3>How to play</h3>
-            Drag letters from your rack onto empty squares to spell a word. Drag
-            a placed letter to move it, or drag it back onto your rack to pick
-            it back up. The first word must cross the center star; later words
-            must connect to the board. DW/TW/DL/TL squares boost newly placed
-            letters. Submit checks the dictionary and ends your turn.
-          </div>
-          <div className="button-wrap">
-            <button onClick={this.resetGame} className="reset-button">
-              Reset Game
-            </button>
-            <button
-              onClick={this.passTurn}
-              className="pass-button"
-              disabled={validating || pendingCount > 0}
-              title={
-                pendingCount > 0 ? "Clear placed tiles before passing." : ""
-              }
-            >
-              Pass turn
-            </button>
-            {selectedIndices.length > 0 && (
+          <div className="sidebar">
+            <div className="tutorial">
+              <h3>How to play</h3>
+              Drag letters from your rack onto empty squares to spell a word. Drag
+              a placed letter to move it, or drag it back onto your rack to pick
+              it back up. The first word must cross the center star; later words
+              must connect to the board. DW/TW/DL/TL squares boost newly placed
+              letters. Submit checks the dictionary and ends your turn.
+            </div>
+            <div className="button-wrap">
+              <button onClick={this.resetGame} className="reset-button">
+                Reset Game
+              </button>
               <button
-                onClick={this.tradeLetters}
-                className="trade-button"
-                disabled={
-                  validating || pendingCount > 0 || bag.length < RACK_SIZE
-                }
+                onClick={this.passTurn}
+                className="pass-button"
+                disabled={validating || pendingCount > 0}
                 title={
-                  bag.length < RACK_SIZE
-                    ? "Need at least 7 letters left in the pool to trade."
-                    : ""
+                  pendingCount > 0 ? "Clear placed tiles before passing." : ""
                 }
               >
-                Trade {selectedIndices.length} letter
-                {selectedIndices.length > 1 ? "s" : ""}
+                Pass turn
               </button>
+              {selectedIndices.length > 0 && (
+                <button
+                  onClick={this.tradeLetters}
+                  className="trade-button"
+                  disabled={
+                    validating || pendingCount > 0 || bag.length < RACK_SIZE
+                  }
+                  title={
+                    bag.length < RACK_SIZE
+                      ? "Need at least 7 letters left in the pool to trade."
+                      : ""
+                  }
+                >
+                  Trade {selectedIndices.length} letter
+                  {selectedIndices.length > 1 ? "s" : ""}
+                </button>
+              )}
+            </div>
+            <div className="turn">
+              Player {p1turn ? 1 : 2}'s turn
+              {firstTurn ? " — first word must cover the center ★" : ""}
+            </div>
+            <div className="pending-count">Tiles placed: {pendingCount}</div>
+            {pendingScore !== null && (
+              <div className="pending-score">Current score: {pendingScore}</div>
             )}
+            {validationError && (
+              <div className="validation-error">{validationError}</div>
+            )}
+            <button
+              onClick={this.submit}
+              className="submit"
+              disabled={validating || pendingCount === 0}
+            >
+              {validating ? "Checking…" : "Submit"}
+            </button>
           </div>
-          <div className="turn">
-            Player {p1turn ? 1 : 2}'s turn
-            {firstTurn ? " — first word must cover the center ★" : ""}
-          </div>
-          <div className="pending-count">Tiles placed: {pendingCount}</div>
-          {pendingScore !== null && (
-            <div className="pending-score">Current score: {pendingScore}</div>
-          )}
-          {validationError && (
-            <div className="validation-error">{validationError}</div>
-          )}
-          <button
-            onClick={this.submit}
-            className="submit"
-            disabled={validating || pendingCount === 0}
-          >
-            {validating ? "Checking…" : "Submit"}
-          </button>
         </div>
         {this.renderRack(p2inv, !p1turn)}
         <div className="score">Score: {p2score}</div>
