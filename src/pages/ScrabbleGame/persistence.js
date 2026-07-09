@@ -11,6 +11,13 @@ function isLetterArray(arr, maxLength) {
     && arr.every((letter) => LETTER_RE.test(letter));
 }
 
+// a rack can hold nulls: gaps left by letters currently placed (pending) on the board
+function isRackArray(arr, maxLength) {
+  return Array.isArray(arr)
+    && arr.length <= maxLength
+    && arr.every((letter) => letter === null || LETTER_RE.test(letter));
+}
+
 function isValidCell(cell, row, col) {
   return cell
     && typeof cell === 'object'
@@ -18,7 +25,9 @@ function isValidCell(cell, row, col) {
     && cell.col === col
     && (cell.letter === null || LETTER_RE.test(cell.letter))
     && typeof cell.locked === 'boolean'
-    && typeof cell.pending === 'boolean';
+    && typeof cell.pending === 'boolean'
+    && (cell.rackIndex === null
+      || (Number.isInteger(cell.rackIndex) && cell.rackIndex >= 0));
 }
 
 function isValidBoard(board) {
@@ -64,8 +73,8 @@ export function isPersistableState(candidate) {
   } = candidate;
   return isValidBoard(board)
     && isLetterArray(bag)
-    && isLetterArray(p1inv, RACK_SIZE)
-    && isLetterArray(p2inv, RACK_SIZE)
+    && isRackArray(p1inv, RACK_SIZE)
+    && isRackArray(p2inv, RACK_SIZE)
     && typeof p1score === 'number' && Number.isFinite(p1score) && p1score >= 0
     && typeof p2score === 'number' && Number.isFinite(p2score) && p2score >= 0
     && typeof p1turn === 'boolean'

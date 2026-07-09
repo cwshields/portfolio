@@ -18,7 +18,6 @@ import { validateWords } from "./dictionary";
 import {
   loadFromLocalStorage,
   saveToLocalStorage,
-  clearLocalStorage,
   downloadSaveFile,
   readSaveFileAsState,
 } from "./persistence";
@@ -35,6 +34,9 @@ function buildBoard() {
         letter: null,
         locked: false,
         pending: false,
+        // which rack slot a pending letter came from, so it can be returned
+        // to that exact slot instead of the rack reflowing
+        rackIndex: null,
         bonus: getBonus(row, col),
         isCenter: isCenter(row, col),
       });
@@ -104,11 +106,8 @@ function ScrabbleGame() {
   useEffect(() => {
     const saved = loadFromLocalStorage();
     if (saved) {
-      if (window.confirm("Resume your saved Scrabble game?")) {
-        patchState(saved);
-        return;
-      }
-      clearLocalStorage();
+      patchState(saved);
+      return;
     }
     const startingBag = createBag();
     const { drawn: p1Rack, remainingBag: r1 } = drawTiles(startingBag, RACK_SIZE);
@@ -141,25 +140,42 @@ function ScrabbleGame() {
     }
   };
 
+  // puts a returning letter back at its preferred rack slot, but only if that slot
+  // is still empty — a shuffle since the letter was placed may have moved a different
+  // letter into it, in which case we fall back to whatever slot is actually empty
+  // instead of clobbering the letter that's sitting there now
+  const returnLetterToSlot = (inv, letter, preferredIndex) => {
+    if (preferredIndex != null && inv[preferredIndex] == null) {
+      inv[preferredIndex] = letter;
+      return;
+    }
+    const idx = inv.findIndex((l) => l == null);
+    if (idx !== -1) inv[idx] = letter;
+    else inv.push(letter);
+  };
+
   // updates the board with the letter placed/removed at (row, col), and keeps the
-  // current player's rack in sync (placing a letter removes it from the rack,
-  // clearing a cell returns it)
-  const updateInv = (row, col, newVal, oldVal) => {
+  // current player's rack in sync. Placing a letter leaves a gap (null) at its
+  // rack slot rather than removing it, so the rest of the rack doesn't reflow;
+  // clearing a cell returns the letter to the rack slot it came from (or the
+  // nearest empty slot, if a shuffle has since filled the original one).
+  const updateInv = (row, col, newVal, oldVal, newRackIndex, oldRackIndex) => {
     if (newVal === oldVal) return;
     const invKey = p1turn ? "p1inv" : "p2inv";
     const inv = (p1turn ? p1inv : p2inv).slice();
 
-    if (newVal) {
-      const idx = inv.indexOf(newVal);
-      if (idx === -1) return;
-      inv.splice(idx, 1);
-    }
-    if (oldVal) inv.push(oldVal);
+    if (newVal) inv[newRackIndex] = null;
+    if (oldVal) returnLetterToSlot(inv, oldVal, oldRackIndex);
 
     const newBoard = board.map((r) =>
       r.map((cell) =>
         cell.row === row && cell.col === col
-          ? { ...cell, letter: newVal || null, pending: !!newVal }
+          ? {
+              ...cell,
+              letter: newVal || null,
+              pending: !!newVal,
+              rackIndex: newVal ? newRackIndex : null,
+            }
           : cell,
       ),
     );
@@ -172,36 +188,67 @@ function ScrabbleGame() {
     });
   };
 
-  // clears pending letters back to empty and returns them to the current player's rack;
-  // used when a move is rejected for shape/connectivity/dictionary reasons
-  const rejectMove = (errorMessage) => {
-    const pendingLetters = getPendingCells(board).map((c) => c.letter);
+  // clears pending letters back to empty and returns them to the current player's rack,
+  // each to the slot it originally came from; shared by rejectMove (a submitted move is
+  // invalid) and clearPending (player manually resets their in-progress placement)
+  const returnPendingToRack = () => {
+    const pendingCells = getPendingCells(board);
     const newBoard = board.map((r) =>
       r.map((cell) =>
-        cell.pending ? { ...cell, letter: null, pending: false } : cell,
+        cell.pending
+          ? { ...cell, letter: null, pending: false, rackIndex: null }
+          : cell,
       ),
     );
     const invKey = p1turn ? "p1inv" : "p2inv";
-    const inv = (p1turn ? p1inv : p2inv).concat(pendingLetters);
+    const inv = (p1turn ? p1inv : p2inv).slice();
+    pendingCells.forEach((c) => {
+      returnLetterToSlot(inv, c.letter, c.rackIndex);
+    });
+    return { board: newBoard, [invKey]: inv };
+  };
+
+  // used when a move is rejected for shape/connectivity/dictionary reasons
+  const rejectMove = (errorMessage) => {
     patchState({
-      board: newBoard,
-      [invKey]: inv,
+      ...returnPendingToRack(),
       validationError: errorMessage,
       validating: false,
     });
   };
 
+  // lets the current player manually clear their in-progress placement
+  // without submitting or ending their turn
+  const clearPending = () => {
+    if (countPendingCells(board) === 0) return;
+    patchState({ ...returnPendingToRack(), validationError: null });
+  };
+
+  // shuffles the current player's rack order; cosmetic only, does not cost a turn
+  const shuffleRack = () => {
+    const invKey = p1turn ? "p1inv" : "p2inv";
+    patchState({ [invKey]: shuffle(p1turn ? p1inv : p2inv) });
+  };
+
   // locks the pending letters in place, adds the move's score to the current player's
-  // total, advances the turn, and refills the current player's rack from the shared bag
+  // total, advances the turn, and refills the current player's rack from the shared bag,
+  // filling the gaps left by played letters so remaining tiles keep their positions
   const acceptMove = (moveScore, drawCount) => {
     const newBoard = board.map((r) =>
       r.map((cell) =>
-        cell.pending ? { ...cell, locked: true, pending: false } : cell,
+        cell.pending
+          ? { ...cell, locked: true, pending: false, rackIndex: null }
+          : cell,
       ),
     );
     const { drawn, remainingBag } = drawTiles(bag, drawCount);
     const invKey = p1turn ? "p1inv" : "p2inv";
-    const inv = (p1turn ? p1inv : p2inv).concat(drawn);
+    const inv = (p1turn ? p1inv : p2inv).slice();
+    let drawIdx = 0;
+    for (let i = 0; i < inv.length && drawIdx < drawn.length; i++) {
+      if (inv[i] == null) inv[i] = drawn[drawIdx++];
+    }
+    while (drawIdx < drawn.length) inv.push(drawn[drawIdx++]);
     const scoreKey = p1turn ? "p1score" : "p2score";
 
     const updates = {
@@ -245,6 +292,7 @@ function ScrabbleGame() {
         row: cell.row,
         col: cell.col,
         letter: cell.letter,
+        rackIndex: cell.rackIndex,
       },
     });
   };
@@ -259,19 +307,29 @@ function ScrabbleGame() {
     if (!dragSource) return;
 
     if (dragSource.type === "rack") {
-      if (dragSource.index === targetIndex) {
+      const rack = p1turn ? p1inv : p2inv;
+      if (dragSource.index === targetIndex || targetIndex >= rack.length) {
         patchState({ dragSource: null });
         return;
       }
       const invKey = p1turn ? "p1inv" : "p2inv";
-      const rack = (p1turn ? p1inv : p2inv).slice();
-      const [moved] = rack.splice(dragSource.index, 1);
-      rack.splice(targetIndex, 0, moved);
-      patchState({ [invKey]: rack, dragSource: null });
+      const newRack = rack.slice();
+      [newRack[dragSource.index], newRack[targetIndex]] = [
+        newRack[targetIndex],
+        newRack[dragSource.index],
+      ];
+      patchState({ [invKey]: newRack, dragSource: null });
       return;
     }
 
-    updateInv(dragSource.row, dragSource.col, "", dragSource.letter);
+    updateInv(
+      dragSource.row,
+      dragSource.col,
+      "",
+      dragSource.letter,
+      null,
+      dragSource.rackIndex,
+    );
     patchState({ dragSource: null });
   };
 
@@ -290,12 +348,24 @@ function ScrabbleGame() {
         patchState({ dragSource: null });
         return;
       }
-      updateInv(cell.row, cell.col, letter, cell.letter || "");
+      updateInv(
+        cell.row,
+        cell.col,
+        letter,
+        cell.letter || "",
+        dragSource.index,
+        cell.rackIndex,
+      );
       patchState({ dragSource: null });
       return;
     }
 
-    const { row: srcRow, col: srcCol, letter: srcLetter } = dragSource;
+    const {
+      row: srcRow,
+      col: srcCol,
+      letter: srcLetter,
+      rackIndex: srcRackIndex,
+    } = dragSource;
     if (srcRow === cell.row && srcCol === cell.col) {
       patchState({ dragSource: null });
       return;
@@ -303,10 +373,15 @@ function ScrabbleGame() {
     const newBoard = board.map((r) =>
       r.map((c) => {
         if (c.row === srcRow && c.col === srcCol) {
-          return { ...c, letter: cell.letter || null, pending: !!cell.letter };
+          return {
+            ...c,
+            letter: cell.letter || null,
+            pending: !!cell.letter,
+            rackIndex: cell.letter ? cell.rackIndex : null,
+          };
         }
         if (c.row === cell.row && c.col === cell.col) {
-          return { ...c, letter: srcLetter, pending: true };
+          return { ...c, letter: srcLetter, pending: true, rackIndex: srcRackIndex };
         }
         return c;
       }),
@@ -476,6 +551,26 @@ function ScrabbleGame() {
       }
     >
       {letters.map((letter, index) => {
+        if (!letter) {
+          // a played letter's slot: kept empty (rather than removed) so the
+          // rest of the rack doesn't shift, until a redraw or undo fills it
+          return (
+            <div
+              key={index}
+              className="letter empty"
+              onDragOver={isActive ? (e) => e.preventDefault() : undefined}
+              onDrop={
+                isActive
+                  ? (e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleRackDrop(index);
+                    }
+                  : undefined
+              }
+            />
+          );
+        }
         const selected = isActive && selectedIndices.includes(index);
         const dragging =
           isActive &&
@@ -506,6 +601,40 @@ function ScrabbleGame() {
           </div>
         );
       })}
+    </div>
+  );
+
+  // small icon-only buttons shown next to the active player's rack: shuffle
+  // reorders their letters, clear resets any letters they've placed but not submitted
+  const renderRackActions = (pendingCount) => (
+    <div className="rack-actions">
+      <button
+        onClick={shuffleRack}
+        className="icon-button round-icon-button"
+        title="Shuffle your letters"
+        aria-label="Shuffle your letters"
+        disabled={validating}
+      >
+        <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.8-1.1 2-1.7 3.3-1.7H22" />
+          <path d="m18 2 4 4-4 4" />
+          <path d="M2 6h1.4c1.3 0 2.5.6 3.3 1.7l6.1 8.6c.8 1.1 2 1.7 3.3 1.7H22" />
+          <path d="m18 14 4 4-4 4" />
+        </svg>
+      </button>
+      <button
+        onClick={clearPending}
+        className="icon-button round-icon-button"
+        title="Clear placed letters"
+        aria-label="Clear placed letters"
+        disabled={validating || pendingCount === 0}
+      >
+        <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21" />
+          <path d="M22 21H7" />
+          <path d="m5 11 9 9" />
+        </svg>
+      </button>
     </div>
   );
 
@@ -576,7 +705,10 @@ function ScrabbleGame() {
       </div>
       <div className="letters-left">Tiles left: {bag.length}</div>
       <div className="score">Score: {p1score}</div>
-      {renderRack(p1inv, p1turn)}
+      <div className="rack-row">
+        {renderRack(p1inv, p1turn)}
+        {p1turn && renderRackActions(pendingCount)}
+      </div>
       <div className="tile-wrap">
         <div className="tile-container">
           {board.map((row) =>
@@ -663,7 +795,10 @@ function ScrabbleGame() {
           </div>
         </div>
       </div>
-      {renderRack(p2inv, !p1turn)}
+      <div className="rack-row">
+        {renderRack(p2inv, !p1turn)}
+        {!p1turn && renderRackActions(pendingCount)}
+      </div>
       <div className="score">Score: {p2score}</div>
     </div>
   );
