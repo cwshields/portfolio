@@ -72,11 +72,14 @@
   white-space: nowrap;
 }
 .tile-wrap {
-  display: flex;
-  justify-content: center;
-  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  align-self: stretch;
+  gap: 32px;
 }
 .tile-container {
+  grid-column: 2;
   width: 675px;
 }
 .tile-div {
@@ -159,11 +162,10 @@ h3 {
   margin: .5em 0 .9em;
 }
 .sidebar {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  margin-left: 32px;
-  width: 210px;
+  grid-column: 3;
+  justify-self: start;
+  box-sizing: border-box;
+  width: 255px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -180,96 +182,100 @@ h3 {
   padding: 14px;
   font-size: 15px;
 }
-.button-wrap {
+.trade-button {
+  font-size: 14px;
+  width: 124px;
+  height: 34px;
+  color: #f1f1f1;
+  background-color: #2b3b3a;
+  border: 1px solid #7f848b;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #354a48;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+.icon-button {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 50px;
+  color: #dfdfdf;
+  background-color: #121a22;
+  opacity: 0.85;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-size: 1rem;
+  font-family: monospace;
 
-  .reset-button {
-    font-size: 14px;
-    width: 100px;
-    height: 34px;
-    color: #f1f1f1;
-    background-color: #3b2b2b;
-    border: 1px solid #7f848b;
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #4a3535;
-    }
+  span {
+    white-space: nowrap;
   }
-  .trade-button {
-    font-size: 14px;
-    width: 124px;
-    height: 34px;
-    color: #f1f1f1;
-    background-color: #2b3b3a;
-    border: 1px solid #7f848b;
-    border-radius: 4px;
-    cursor: pointer;
 
-    &:hover {
-      background-color: #354a48;
-    }
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+  svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    stroke: #dfdfdf;
+    stroke-width: 2;
   }
-  .pass-button {
-    font-size: 14px;
-    width: 124px;
-    height: 34px;
-    color: #f1f1f1;
-    background-color: #3b3b2b;
-    border: 1px solid #7f848b;
-    border-radius: 4px;
-    cursor: pointer;
 
-    &:hover {
-      background-color: #4a4835;
-    }
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+  &:hover {
+    opacity: 1;
   }
-  .save-file-button {
-    font-size: 14px;
-    width: 124px;
-    height: 34px;
-    color: #f1f1f1;
-    background-color: #2b2f3b;
-    border: 1px solid #7f848b;
-    border-radius: 4px;
-    cursor: pointer;
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+.top-actions {
+  position: fixed;
+  z-index: 5;
+  top: 3.4rem;
+  right: 3.4rem;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 14px;
+}
+.file-input {
+  display: none;
+}
+.bottom-actions {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
 
-    &:hover {
-      background-color: #353b4a;
-    }
+  .icon-button {
+    padding: 0 14px;
   }
-  .load-file-button {
-    font-size: 14px;
-    width: 124px;
-    height: 34px;
-    color: #f1f1f1;
-    background-color: #362b3b;
-    border: 1px solid #7f848b;
-    border-radius: 4px;
-    cursor: pointer;
+}
+.cta-button {
+  background-color: #f4d35e;
+  color: #19212b;
+  opacity: 1;
+  font-weight: bold;
 
-    &:hover {
-      background-color: #453a4a;
-    }
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+  svg {
+    stroke: #19212b;
   }
-  .file-input {
-    display: none;
+  &:hover {
+    background-color: #f7dd7c;
+  }
+  &:disabled {
+    opacity: 0.5;
+    background-color: #f4d35e;
+    cursor: not-allowed;
   }
 }
 .turn {
@@ -293,13 +299,4 @@ h3 {
   color: #e08585;
   font-size: 14px;
   text-align: center;
-}
-.submit {
-  font-size: 16px;
-  width: 100px;
-  height: 36px;
-
-  &:disabled {
-    opacity: 0.6;
-  }
 }

@@ -531,6 +531,49 @@ class ScrabbleGame extends Component {
             </div>
           </svg>
         </Link>
+        <div className="top-actions">
+          <button onClick={this.resetGame} className="icon-button" title="Reset game" aria-label="Reset game">
+            <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 12a9 9 0 1 1 2.64 6.36" />
+              <path d="M3 21v-6h6" />
+            </svg>
+            <span>New Game</span>
+          </button>
+          <button
+            onClick={this.handleSaveToFile}
+            className="icon-button"
+            title="Save to file"
+            aria-label="Save to file"
+          >
+            <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 3v12" />
+              <path d="M7 10l5 5 5-5" />
+              <path d="M5 21h14" />
+            </svg>
+            <span>Save</span>
+          </button>
+          <button
+            onClick={this.handleLoadFileClick}
+            className="icon-button"
+            title="Load from file"
+            aria-label="Load from file"
+            disabled={validating}
+          >
+            <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 21V9" />
+              <path d="M7 14l5-5 5 5" />
+              <path d="M5 3h14" />
+            </svg>
+            <span>Load</span>
+          </button>
+          <input
+            type="file"
+            accept="application/json"
+            ref={this.fileInputRef}
+            onChange={this.handleFileSelected}
+            className="file-input"
+          />
+        </div>
         <div className="letters-left">Letters left: {bag.length}</div>
         <div className="score">Score: {p1score}</div>
         {this.renderRack(p1inv, p1turn)}
@@ -564,55 +607,23 @@ class ScrabbleGame extends Component {
               must connect to the board. DW/TW/DL/TL squares boost newly placed
               letters. Submit checks the dictionary and ends your turn.
             </div>
-            <div className="button-wrap">
-              <button onClick={this.resetGame} className="reset-button">
-                Reset Game
-              </button>
+            {selectedIndices.length > 0 && (
               <button
-                onClick={this.passTurn}
-                className="pass-button"
-                disabled={validating || pendingCount > 0}
+                onClick={this.tradeLetters}
+                className="trade-button"
+                disabled={
+                  validating || pendingCount > 0 || bag.length < RACK_SIZE
+                }
                 title={
-                  pendingCount > 0 ? "Clear placed tiles before passing." : ""
+                  bag.length < RACK_SIZE
+                    ? "Need at least 7 letters left in the pool to trade."
+                    : ""
                 }
               >
-                Pass turn
+                Trade {selectedIndices.length} letter
+                {selectedIndices.length > 1 ? "s" : ""}
               </button>
-              {selectedIndices.length > 0 && (
-                <button
-                  onClick={this.tradeLetters}
-                  className="trade-button"
-                  disabled={
-                    validating || pendingCount > 0 || bag.length < RACK_SIZE
-                  }
-                  title={
-                    bag.length < RACK_SIZE
-                      ? "Need at least 7 letters left in the pool to trade."
-                      : ""
-                  }
-                >
-                  Trade {selectedIndices.length} letter
-                  {selectedIndices.length > 1 ? "s" : ""}
-                </button>
-              )}
-              <button onClick={this.handleSaveToFile} className="save-file-button">
-                Save to File
-              </button>
-              <button
-                onClick={this.handleLoadFileClick}
-                className="load-file-button"
-                disabled={validating}
-              >
-                Load from File
-              </button>
-              <input
-                type="file"
-                accept="application/json"
-                ref={this.fileInputRef}
-                onChange={this.handleFileSelected}
-                className="file-input"
-              />
-            </div>
+            )}
             <div className="turn">
               Player {p1turn ? 1 : 2}'s turn
               {firstTurn ? " — first word must cover the center ★" : ""}
@@ -624,13 +635,32 @@ class ScrabbleGame extends Component {
             {validationError && (
               <div className="validation-error">{validationError}</div>
             )}
-            <button
-              onClick={this.submit}
-              className="submit"
-              disabled={validating || pendingCount === 0}
-            >
-              {validating ? "Checking…" : "Submit"}
-            </button>
+            <div className="bottom-actions">
+              <button
+                onClick={this.passTurn}
+                className="icon-button skip-button"
+                disabled={validating || pendingCount > 0}
+                title={
+                  pendingCount > 0 ? "Clear placed tiles before passing." : ""
+                }
+              >
+                <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 5l7 7-7 7" />
+                  <path d="M13 5l7 7-7 7" />
+                </svg>
+                <span>Skip turn</span>
+              </button>
+              <button
+                onClick={this.submit}
+                className="icon-button cta-button"
+                disabled={validating || pendingCount === 0}
+              >
+                <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                <span>{validating ? "Checking…" : "Submit"}</span>
+              </button>
+            </div>
           </div>
         </div>
         {this.renderRack(p2inv, !p1turn)}
