@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import "../../styles/ScrabbleGame.scss";
 import { Link } from "react-router-dom";
 import Tiles from "../ScrabbleGame/Tiles/Tiles";
@@ -44,87 +44,108 @@ function buildBoard() {
   return board;
 }
 
-class ScrabbleGame extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // p1turn is to cycle between turns
-      p1turn: true,
-      // when firstTurn is false, the player will have to use letters currently on the board
-      firstTurn: true,
-      // p#inv is the players current inventory of letters
-      p1inv: [],
-      p2inv: [],
-      // adds the moveScore to the applicable player once a word is confirmed
-      p1score: 0,
-      p2score: 0,
-      // the board is a 15x15 grid of cell objects: { row, col, letter, locked, pending, bonus, isCenter }
-      board: buildBoard(),
-      // shared pool of letters both players draw from
-      bag: [],
-      // true while awaiting the dictionary API response for a submitted word
-      validating: false,
-      // message shown when a submitted move is rejected, can't be verified,
-      // or a file import fails
-      validationError: null,
-      // indices (within the current player's rack) selected for a letter trade
-      selectedIndices: [],
-      // the letter currently being dragged, if any: either
-      // { type: 'rack', index } or { type: 'board', row, col, letter }
-      dragSource: null,
-    };
-    this.fileInputRef = React.createRef();
-  }
+const initialState = {
+  // p1turn is to cycle between turns
+  p1turn: true,
+  // when firstTurn is false, the player will have to use letters currently on the board
+  firstTurn: true,
+  // p#inv is the players current inventory of letters
+  p1inv: [],
+  p2inv: [],
+  // adds the moveScore to the applicable player once a word is confirmed
+  p1score: 0,
+  p2score: 0,
+  // the board is a 15x15 grid of cell objects: { row, col, letter, locked, pending, bonus, isCenter }
+  board: buildBoard(),
+  // shared pool of letters both players draw from
+  bag: [],
+  // true while awaiting the dictionary API response for a submitted word
+  validating: false,
+  // message shown when a submitted move is rejected, can't be verified,
+  // or a file import fails
+  validationError: null,
+  // indices (within the current player's rack) selected for a letter trade
+  selectedIndices: [],
+  // the letter currently being dragged, if any: either
+  // { type: 'rack', index } or { type: 'board', row, col, letter }
+  dragSource: null,
+};
 
-  componentDidMount = () => {
+// merges partial updates into state, mirroring class-style this.setState(partial);
+// also accepts an updater function, mirroring this.setState(prevState => partial)
+function stateReducer(state, action) {
+  const updates = typeof action === "function" ? action(state) : action;
+  return { ...state, ...updates };
+}
+
+function ScrabbleGame() {
+  const [state, patchState] = useReducer(stateReducer, initialState);
+  const {
+    p1turn,
+    firstTurn,
+    p1inv,
+    p2inv,
+    p1score,
+    p2score,
+    board,
+    bag,
+    validating,
+    validationError,
+    selectedIndices,
+    dragSource,
+  } = state;
+  const fileInputRef = useRef(null);
+
+  // writes the given partial update, merged over current state, to localStorage;
+  // used alongside patchState(updates) wherever the class used
+  // this.setState(updates, this.autosaveState)
+  const persist = (updates) => saveToLocalStorage({ ...state, ...updates });
+
+  useEffect(() => {
     const saved = loadFromLocalStorage();
     if (saved) {
       if (window.confirm("Resume your saved Scrabble game?")) {
-        this.setState(saved);
+        patchState(saved);
         return;
       }
       clearLocalStorage();
     }
-    const bag = createBag();
-    const { drawn: p1inv, remainingBag: r1 } = drawTiles(bag, RACK_SIZE);
-    const { drawn: p2inv, remainingBag: r2 } = drawTiles(r1, RACK_SIZE);
-    this.setState({ bag: r2, p1inv, p2inv });
+    const startingBag = createBag();
+    const { drawn: p1Rack, remainingBag: r1 } = drawTiles(startingBag, RACK_SIZE);
+    const { drawn: p2Rack, remainingBag: r2 } = drawTiles(r1, RACK_SIZE);
+    patchState({ bag: r2, p1inv: p1Rack, p2inv: p2Rack });
+  }, []);
+
+  const handleSaveToFile = () => {
+    downloadSaveFile(state);
   };
 
-  autosaveState = () => {
-    saveToLocalStorage(this.state);
-  };
-
-  handleSaveToFile = () => {
-    downloadSaveFile(this.state);
-  };
-
-  handleLoadFileClick = () => {
+  const handleLoadFileClick = () => {
     if (
       !window.confirm("Loading a file will replace your current game. Continue?")
     )
       return;
-    this.fileInputRef.current.click();
+    fileInputRef.current.click();
   };
 
-  handleFileSelected = async (e) => {
+  const handleFileSelected = async (e) => {
     const file = e.target.files[0];
     e.target.value = null;
     if (!file) return;
     try {
-      const state = await readSaveFileAsState(file);
-      this.setState(state, this.autosaveState);
+      const loaded = await readSaveFileAsState(file);
+      patchState(loaded);
+      saveToLocalStorage(loaded);
     } catch (err) {
-      this.setState({ validationError: err.message });
+      patchState({ validationError: err.message });
     }
   };
 
   // updates the board with the letter placed/removed at (row, col), and keeps the
   // current player's rack in sync (placing a letter removes it from the rack,
   // clearing a cell returns it)
-  updateInv = (row, col, newVal, oldVal) => {
+  const updateInv = (row, col, newVal, oldVal) => {
     if (newVal === oldVal) return;
-    const { board, p1turn, p1inv, p2inv } = this.state;
     const invKey = p1turn ? "p1inv" : "p2inv";
     const inv = (p1turn ? p1inv : p2inv).slice();
 
@@ -143,7 +164,7 @@ class ScrabbleGame extends Component {
       ),
     );
 
-    this.setState({
+    patchState({
       board: newBoard,
       [invKey]: inv,
       validationError: null,
@@ -153,8 +174,7 @@ class ScrabbleGame extends Component {
 
   // clears pending letters back to empty and returns them to the current player's rack;
   // used when a move is rejected for shape/connectivity/dictionary reasons
-  rejectMove = (errorMessage) => {
-    const { board, p1turn, p1inv, p2inv } = this.state;
+  const rejectMove = (errorMessage) => {
     const pendingLetters = getPendingCells(board).map((c) => c.letter);
     const newBoard = board.map((r) =>
       r.map((cell) =>
@@ -163,7 +183,7 @@ class ScrabbleGame extends Component {
     );
     const invKey = p1turn ? "p1inv" : "p2inv";
     const inv = (p1turn ? p1inv : p2inv).concat(pendingLetters);
-    this.setState({
+    patchState({
       board: newBoard,
       [invKey]: inv,
       validationError: errorMessage,
@@ -173,8 +193,7 @@ class ScrabbleGame extends Component {
 
   // locks the pending letters in place, adds the move's score to the current player's
   // total, advances the turn, and refills the current player's rack from the shared bag
-  acceptMove = (moveScore, drawCount) => {
-    const { board, p1turn, bag, p1inv, p2inv, p1score, p2score } = this.state;
+  const acceptMove = (moveScore, drawCount) => {
     const newBoard = board.map((r) =>
       r.map((cell) =>
         cell.pending ? { ...cell, locked: true, pending: false } : cell,
@@ -185,7 +204,7 @@ class ScrabbleGame extends Component {
     const inv = (p1turn ? p1inv : p2inv).concat(drawn);
     const scoreKey = p1turn ? "p1score" : "p2score";
 
-    this.setState({
+    const updates = {
       board: newBoard,
       bag: remainingBag,
       [invKey]: inv,
@@ -195,13 +214,15 @@ class ScrabbleGame extends Component {
       validating: false,
       validationError: null,
       selectedIndices: [],
-    }, this.autosaveState);
+    };
+    patchState(updates);
+    persist(updates);
   };
 
   // toggles whether a rack letter (by index in the current player's rack) is
   // selected for a trade; only meaningful for the active player's own rack
-  toggleLetterSelect = (index) => {
-    this.setState((prev) => ({
+  const toggleLetterSelect = (index) => {
+    patchState((prev) => ({
       selectedIndices: prev.selectedIndices.includes(index)
         ? prev.selectedIndices.filter((i) => i !== index)
         : [...prev.selectedIndices, index],
@@ -210,15 +231,15 @@ class ScrabbleGame extends Component {
 
   // records which rack letter a drag started from; only meaningful for the
   // active player's own rack
-  handleRackDragStart = (index) => {
-    this.setState({ dragSource: { type: "rack", index } });
+  const handleRackDragStart = (index) => {
+    patchState({ dragSource: { type: "rack", index } });
   };
 
   // records that a drag started from an already-placed (pending, unlocked)
   // board tile, so it can be moved elsewhere on the board or back to the rack
-  handleBoardDragStart = (cell) => {
+  const handleBoardDragStart = (cell) => {
     if (cell.locked || !cell.letter) return;
-    this.setState({
+    patchState({
       dragSource: {
         type: "board",
         row: cell.row,
@@ -228,57 +249,55 @@ class ScrabbleGame extends Component {
     });
   };
 
-  handleDragEnd = () => {
-    this.setState({ dragSource: null });
+  const handleDragEnd = () => {
+    patchState({ dragSource: null });
   };
 
   // drop target is the rack: reorders the rack (rack-origin drag), or returns
   // a placed letter from the board back to the rack (board-origin drag)
-  handleRackDrop = (targetIndex) => {
-    const { dragSource, p1turn, p1inv, p2inv } = this.state;
+  const handleRackDrop = (targetIndex) => {
     if (!dragSource) return;
 
     if (dragSource.type === "rack") {
       if (dragSource.index === targetIndex) {
-        this.setState({ dragSource: null });
+        patchState({ dragSource: null });
         return;
       }
       const invKey = p1turn ? "p1inv" : "p2inv";
       const rack = (p1turn ? p1inv : p2inv).slice();
       const [moved] = rack.splice(dragSource.index, 1);
       rack.splice(targetIndex, 0, moved);
-      this.setState({ [invKey]: rack, dragSource: null });
+      patchState({ [invKey]: rack, dragSource: null });
       return;
     }
 
-    this.updateInv(dragSource.row, dragSource.col, "", dragSource.letter);
-    this.setState({ dragSource: null });
+    updateInv(dragSource.row, dragSource.col, "", dragSource.letter);
+    patchState({ dragSource: null });
   };
 
   // drop target is a board cell: places a letter dragged from the rack
   // (reusing the same inventory bookkeeping as typing a letter in directly),
   // or moves/swaps a letter dragged from elsewhere on the board
-  handleBoardDrop = (cell) => {
-    const { dragSource, p1turn, p1inv, p2inv, board } = this.state;
+  const handleBoardDrop = (cell) => {
     if (!dragSource || cell.locked) {
-      this.setState({ dragSource: null });
+      patchState({ dragSource: null });
       return;
     }
 
     if (dragSource.type === "rack") {
       const letter = (p1turn ? p1inv : p2inv)[dragSource.index];
       if (!letter) {
-        this.setState({ dragSource: null });
+        patchState({ dragSource: null });
         return;
       }
-      this.updateInv(cell.row, cell.col, letter, cell.letter || "");
-      this.setState({ dragSource: null });
+      updateInv(cell.row, cell.col, letter, cell.letter || "");
+      patchState({ dragSource: null });
       return;
     }
 
     const { row: srcRow, col: srcCol, letter: srcLetter } = dragSource;
     if (srcRow === cell.row && srcCol === cell.col) {
-      this.setState({ dragSource: null });
+      patchState({ dragSource: null });
       return;
     }
     const newBoard = board.map((r) =>
@@ -292,13 +311,12 @@ class ScrabbleGame extends Component {
         return c;
       }),
     );
-    this.setState({ board: newBoard, dragSource: null, validationError: null });
+    patchState({ board: newBoard, dragSource: null, validationError: null });
   };
 
   // returns the selected letters to the bag, shuffles, and draws the same number
   // of replacements for the current player; costs the player their turn
-  tradeLetters = () => {
-    const { selectedIndices, p1turn, p1inv, p2inv, bag } = this.state;
+  const tradeLetters = () => {
     if (selectedIndices.length === 0 || bag.length < RACK_SIZE) return;
     const rack = p1turn ? p1inv : p2inv;
     const invKey = p1turn ? "p1inv" : "p2inv";
@@ -311,43 +329,46 @@ class ScrabbleGame extends Component {
       returnedLetters.length,
     );
 
-    this.setState({
+    const updates = {
       [invKey]: keptLetters.concat(drawn),
       bag: remainingBag,
       p1turn: !p1turn,
       selectedIndices: [],
       validationError: null,
-    }, this.autosaveState);
+    };
+    patchState(updates);
+    persist(updates);
   };
 
   // skips the current player's turn without placing any tiles; only allowed
   // when no letters are currently pending on the board
-  passTurn = () => {
-    const { validating, board, p1turn } = this.state;
+  const passTurn = () => {
     if (validating || countPendingCells(board) > 0) return;
-    this.setState({
+    const updates = {
       p1turn: !p1turn,
       validationError: null,
       selectedIndices: [],
-    }, this.autosaveState);
+    };
+    patchState(updates);
+    persist(updates);
   };
 
   // rebuilds the whole game from scratch after the player confirms
-  resetGame = () => {
+  const resetGame = () => {
     if (
       !window.confirm(
         "Reset the game? This will clear the board and start a new match.",
       )
     )
       return;
-    const bag = createBag();
-    const { drawn: p1inv, remainingBag: r1 } = drawTiles(bag, RACK_SIZE);
-    const { drawn: p2inv, remainingBag: r2 } = drawTiles(r1, RACK_SIZE);
-    this.setState({
+    const newBag = createBag();
+    const { drawn: p1Rack, remainingBag: r1 } = drawTiles(newBag, RACK_SIZE);
+    const { drawn: p2Rack, remainingBag: r2 } = drawTiles(r1, RACK_SIZE);
+    const updates = {
       p1turn: true,
       firstTurn: true,
-      p1inv,
-      p2inv,
+      p1inv: p1Rack,
+      p2inv: p2Rack,
       p1score: 0,
       p2score: 0,
       board: buildBoard(),
@@ -355,38 +376,39 @@ class ScrabbleGame extends Component {
       validating: false,
       validationError: null,
       selectedIndices: [],
-    }, this.autosaveState);
+    };
+    patchState(updates);
+    persist(updates);
   };
 
-  submit = async () => {
-    if (this.state.validating) return;
-    const { board, firstTurn } = this.state;
+  const submit = async () => {
+    if (validating) return;
     const pendingCells = getPendingCells(board);
 
     const line = validateLineShape(pendingCells);
-    if (!line.valid) return this.rejectMove(line.error);
+    if (!line.valid) return rejectMove(line.error);
 
     const contig = validateContiguous(board, pendingCells, line.orientation);
-    if (!contig.valid) return this.rejectMove(contig.error);
+    if (!contig.valid) return rejectMove(contig.error);
 
     if (firstTurn) {
       const fm = validateFirstMove(pendingCells);
-      if (!fm.valid) return this.rejectMove(fm.error);
+      if (!fm.valid) return rejectMove(fm.error);
     } else {
       const conn = validateConnected(board, pendingCells);
-      if (!conn.valid) return this.rejectMove(conn.error);
+      if (!conn.valid) return rejectMove(conn.error);
     }
 
     const wordsResult = extractWords(board, pendingCells, line.orientation);
-    if (!wordsResult.valid) return this.rejectMove(wordsResult.error);
+    if (!wordsResult.valid) return rejectMove(wordsResult.error);
     const formedWords = wordsResult.words;
 
-    this.setState({ validating: true, validationError: null });
+    patchState({ validating: true, validationError: null });
     let results;
     try {
       results = await validateWords(formedWords.map((w) => w.word));
     } catch (e) {
-      this.setState({
+      patchState({
         validating: false,
         validationError: "Network error — please try submitting again.",
       });
@@ -395,7 +417,7 @@ class ScrabbleGame extends Component {
 
     const networkFailure = results.find((r) => r.error === "network");
     if (networkFailure) {
-      this.setState({
+      patchState({
         validating: false,
         validationError: `Couldn't verify "${networkFailure.word.toUpperCase()}" — network error, try again.`,
       });
@@ -403,21 +425,20 @@ class ScrabbleGame extends Component {
     }
     const invalidWord = results.find((r) => !r.valid);
     if (invalidWord) {
-      this.setState({ validating: false });
-      return this.rejectMove(
+      patchState({ validating: false });
+      return rejectMove(
         `"${invalidWord.word.toUpperCase()}" is not a valid word.`,
       );
     }
 
     const moveScore = scoreMove(formedWords);
-    this.acceptMove(moveScore, pendingCells.length);
+    acceptMove(moveScore, pendingCells.length);
   };
 
   // computes what the current pending placement would score if submitted right now;
   // returns null when the placement isn't (yet) a valid, scoreable word shape, mirroring
   // the shape/connectivity checks in submit() but skipping the dictionary lookup
-  getPendingScore = () => {
-    const { board, firstTurn } = this.state;
+  const getPendingScore = () => {
     const pendingCells = getPendingCells(board);
     if (pendingCells.length === 0) return null;
 
@@ -441,233 +462,211 @@ class ScrabbleGame extends Component {
 
   // renders a player's rack; only the active player's letters are selectable for a
   // trade and draggable (to reorder within the rack or drop onto the board)
-  renderRack = (letters, isActive) => {
-    const { selectedIndices, dragSource } = this.state;
-    return (
-      <div
-        className="letters"
-        onDragOver={isActive ? (e) => e.preventDefault() : undefined}
-        onDrop={
-          isActive
-            ? (e) => {
-                e.preventDefault();
-                this.handleRackDrop(letters.length);
+  const renderRack = (letters, isActive) => (
+    <div
+      className="letters"
+      onDragOver={isActive ? (e) => e.preventDefault() : undefined}
+      onDrop={
+        isActive
+          ? (e) => {
+              e.preventDefault();
+              handleRackDrop(letters.length);
+            }
+          : undefined
+      }
+    >
+      {letters.map((letter, index) => {
+        const selected = isActive && selectedIndices.includes(index);
+        const dragging =
+          isActive &&
+          dragSource &&
+          dragSource.type === "rack" &&
+          dragSource.index === index;
+        return (
+          <div
+            key={index}
+            className={`letter${isActive ? " selectable" : ""}${selected ? " selected" : ""}${dragging ? " dragging" : ""}`}
+            onClick={isActive ? () => toggleLetterSelect(index) : undefined}
+            draggable={isActive}
+            onDragStart={isActive ? () => handleRackDragStart(index) : undefined}
+            onDragEnd={isActive ? handleDragEnd : undefined}
+            onDragOver={isActive ? (e) => e.preventDefault() : undefined}
+            onDrop={
+              isActive
+                ? (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleRackDrop(index);
+                  }
+                : undefined
+            }
+          >
+            {letter}
+            <span className="letter-value">{SCORES[letter]}</span>
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  const pendingCount = countPendingCells(board);
+  const pendingScore = getPendingScore();
+
+  return (
+    <div className="scrabble-game">
+      <Link to="/home" className="back">
+        <svg
+          className="arrow"
+          viewBox="0 0 75 75"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-labelledby="back-button"
+        >
+          <path
+            d="m32 56c1.104 0 2-.896 2-2v-39.899l14.552 15.278c.393.413.92.621 1.448.621.495
+                    0 .992-.183 1.379-.552.8-.762.831-2.028.069-2.828l-16.619-17.448c-.756-.755-1.76-1.172-2.829-1.172s-2.073.417-2.862
+                    1.207l-16.586 17.414c-.762.8-.731 2.066.069 2.828s2.067.731 2.828-.069l14.551-15.342v39.962c0 1.104.896 2 2 2z"
+          />
+          <div id="back-button" className="display-none">
+            Back Button
+          </div>
+        </svg>
+      </Link>
+      <div className="top-actions">
+        <button onClick={resetGame} className="icon-button" title="Reset game" aria-label="Reset game">
+          <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 12a9 9 0 1 1 2.64 6.36" />
+            <path d="M3 21v-6h6" />
+          </svg>
+          <span>New Game</span>
+        </button>
+        <button
+          onClick={handleSaveToFile}
+          className="icon-button"
+          title="Save to file"
+          aria-label="Save to file"
+        >
+          <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 3v12" />
+            <path d="M7 10l5 5 5-5" />
+            <path d="M5 21h14" />
+          </svg>
+          <span>Save</span>
+        </button>
+        <button
+          onClick={handleLoadFileClick}
+          className="icon-button"
+          title="Load from file"
+          aria-label="Load from file"
+          disabled={validating}
+        >
+          <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 21V9" />
+            <path d="M7 14l5-5 5 5" />
+            <path d="M5 3h14" />
+          </svg>
+          <span>Load</span>
+        </button>
+        <input
+          type="file"
+          accept="application/json"
+          ref={fileInputRef}
+          onChange={handleFileSelected}
+          className="file-input"
+        />
+      </div>
+      <div className="letters-left">Tiles left: {bag.length}</div>
+      <div className="score">Score: {p1score}</div>
+      {renderRack(p1inv, p1turn)}
+      <div className="tile-wrap">
+        <div className="tile-container">
+          {board.map((row) =>
+            row.map((cell) => (
+              <Tiles
+                key={`${cell.col},${cell.row}`}
+                cell={cell}
+                onDropLetter={handleBoardDrop}
+                onDragStartLetter={handleBoardDragStart}
+                onDragEnd={handleDragEnd}
+                dragging={
+                  !!dragSource &&
+                  dragSource.type === "board" &&
+                  dragSource.row === cell.row &&
+                  dragSource.col === cell.col
+                }
+                disabled={validating}
+              />
+            )),
+          )}
+        </div>
+        <div className="sidebar">
+          <div className="tutorial">
+            <h3>How to play</h3>
+            Drag letters from your rack onto empty squares to spell a word. Drag
+            a placed letter to move it, or drag it back onto your rack to pick
+            it back up. The first word must cross the center star; later words
+            must connect to the board. DW/TW/DL/TL squares boost newly placed
+            letters. Submit checks the dictionary and ends your turn.
+          </div>
+          {selectedIndices.length > 0 && (
+            <button
+              onClick={tradeLetters}
+              className="trade-button"
+              disabled={
+                validating || pendingCount > 0 || bag.length < RACK_SIZE
               }
-            : undefined
-        }
-      >
-        {letters.map((letter, index) => {
-          const selected = isActive && selectedIndices.includes(index);
-          const dragging =
-            isActive &&
-            dragSource &&
-            dragSource.type === "rack" &&
-            dragSource.index === index;
-          return (
-            <div
-              key={index}
-              className={`letter${isActive ? " selectable" : ""}${selected ? " selected" : ""}${dragging ? " dragging" : ""}`}
-              onClick={
-                isActive ? () => this.toggleLetterSelect(index) : undefined
-              }
-              draggable={isActive}
-              onDragStart={
-                isActive ? () => this.handleRackDragStart(index) : undefined
-              }
-              onDragEnd={isActive ? this.handleDragEnd : undefined}
-              onDragOver={isActive ? (e) => e.preventDefault() : undefined}
-              onDrop={
-                isActive
-                  ? (e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      this.handleRackDrop(index);
-                    }
-                  : undefined
+              title={
+                bag.length < RACK_SIZE
+                  ? "Need at least 7 letters left in the pool to trade."
+                  : ""
               }
             >
-              {letter}
-              <span className="letter-value">{SCORES[letter]}</span>
-            </div>
-          );
-        })}
-      </div>
-    );
-  };
-
-  render() {
-    const {
-      board,
-      p1turn,
-      p1inv,
-      p2inv,
-      p1score,
-      p2score,
-      validating,
-      validationError,
-      firstTurn,
-      bag,
-      selectedIndices,
-      dragSource,
-    } = this.state;
-    const pendingCount = countPendingCells(board);
-    const pendingScore = this.getPendingScore();
-    return (
-      <div className="scrabble-game">
-        <Link to="/home" className="back">
-          <svg
-            className="arrow"
-            viewBox="0 0 75 75"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-labelledby="back-button"
-          >
-            <path
-              d="m32 56c1.104 0 2-.896 2-2v-39.899l14.552 15.278c.393.413.92.621 1.448.621.495
-                      0 .992-.183 1.379-.552.8-.762.831-2.028.069-2.828l-16.619-17.448c-.756-.755-1.76-1.172-2.829-1.172s-2.073.417-2.862
-                      1.207l-16.586 17.414c-.762.8-.731 2.066.069 2.828s2.067.731 2.828-.069l14.551-15.342v39.962c0 1.104.896 2 2 2z"
-            />
-            <div id="back-button" className="display-none">
-              Back Button
-            </div>
-          </svg>
-        </Link>
-        <div className="top-actions">
-          <button onClick={this.resetGame} className="icon-button" title="Reset game" aria-label="Reset game">
-            <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 12a9 9 0 1 1 2.64 6.36" />
-              <path d="M3 21v-6h6" />
-            </svg>
-            <span>New Game</span>
-          </button>
-          <button
-            onClick={this.handleSaveToFile}
-            className="icon-button"
-            title="Save to file"
-            aria-label="Save to file"
-          >
-            <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 3v12" />
-              <path d="M7 10l5 5 5-5" />
-              <path d="M5 21h14" />
-            </svg>
-            <span>Save</span>
-          </button>
-          <button
-            onClick={this.handleLoadFileClick}
-            className="icon-button"
-            title="Load from file"
-            aria-label="Load from file"
-            disabled={validating}
-          >
-            <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 21V9" />
-              <path d="M7 14l5-5 5 5" />
-              <path d="M5 3h14" />
-            </svg>
-            <span>Load</span>
-          </button>
-          <input
-            type="file"
-            accept="application/json"
-            ref={this.fileInputRef}
-            onChange={this.handleFileSelected}
-            className="file-input"
-          />
-        </div>
-        <div className="letters-left">Letters left: {bag.length}</div>
-        <div className="score">Score: {p1score}</div>
-        {this.renderRack(p1inv, p1turn)}
-        <div className="tile-wrap">
-          <div className="tile-container">
-            {board.map((row) =>
-              row.map((cell) => (
-                <Tiles
-                  key={`${cell.col},${cell.row}`}
-                  cell={cell}
-                  onDropLetter={this.handleBoardDrop}
-                  onDragStartLetter={this.handleBoardDragStart}
-                  onDragEnd={this.handleDragEnd}
-                  dragging={
-                    !!dragSource &&
-                    dragSource.type === "board" &&
-                    dragSource.row === cell.row &&
-                    dragSource.col === cell.col
-                  }
-                  disabled={validating}
-                />
-              )),
-            )}
+              Trade {selectedIndices.length} letter
+              {selectedIndices.length > 1 ? "s" : ""}
+            </button>
+          )}
+          <div className="turn">
+            Player {p1turn ? 1 : 2}'s turn
+            {firstTurn ? " — first word must cover the center ★" : ""}
           </div>
-          <div className="sidebar">
-            <div className="tutorial">
-              <h3>How to play</h3>
-              Drag letters from your rack onto empty squares to spell a word. Drag
-              a placed letter to move it, or drag it back onto your rack to pick
-              it back up. The first word must cross the center star; later words
-              must connect to the board. DW/TW/DL/TL squares boost newly placed
-              letters. Submit checks the dictionary and ends your turn.
-            </div>
-            {selectedIndices.length > 0 && (
-              <button
-                onClick={this.tradeLetters}
-                className="trade-button"
-                disabled={
-                  validating || pendingCount > 0 || bag.length < RACK_SIZE
-                }
-                title={
-                  bag.length < RACK_SIZE
-                    ? "Need at least 7 letters left in the pool to trade."
-                    : ""
-                }
-              >
-                Trade {selectedIndices.length} letter
-                {selectedIndices.length > 1 ? "s" : ""}
-              </button>
-            )}
-            <div className="turn">
-              Player {p1turn ? 1 : 2}'s turn
-              {firstTurn ? " — first word must cover the center ★" : ""}
-            </div>
-            <div className="pending-count">Tiles placed: {pendingCount}</div>
-            {pendingScore !== null && (
-              <div className="pending-score">Current score: {pendingScore}</div>
-            )}
-            {validationError && (
-              <div className="validation-error">{validationError}</div>
-            )}
-            <div className="bottom-actions">
-              <button
-                onClick={this.passTurn}
-                className="icon-button skip-button"
-                disabled={validating || pendingCount > 0}
-                title={
-                  pendingCount > 0 ? "Clear placed tiles before passing." : ""
-                }
-              >
-                <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 5l7 7-7 7" />
-                  <path d="M13 5l7 7-7 7" />
-                </svg>
-                <span>Skip turn</span>
-              </button>
-              <button
-                onClick={this.submit}
-                className="icon-button cta-button"
-                disabled={validating || pendingCount === 0}
-              >
-                <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
-                <span>{validating ? "Checking…" : "Submit"}</span>
-              </button>
-            </div>
+          <div className="pending-count">Tiles placed: {pendingCount}</div>
+          {pendingScore !== null && (
+            <div className="pending-score">Current score: {pendingScore}</div>
+          )}
+          {validationError && (
+            <div className="validation-error">{validationError}</div>
+          )}
+          <div className="bottom-actions">
+            <button
+              onClick={passTurn}
+              className="icon-button skip-button"
+              disabled={validating || pendingCount > 0}
+              title={
+                pendingCount > 0 ? "Clear placed tiles before passing." : ""
+              }
+            >
+              <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 5l7 7-7 7" />
+                <path d="M13 5l7 7-7 7" />
+              </svg>
+              <span>Pass</span>
+            </button>
+            <button
+              onClick={submit}
+              className="icon-button cta-button"
+              disabled={validating || pendingCount === 0}
+            >
+              <svg viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+              <span>{validating ? "Checking…" : "Submit"}</span>
+            </button>
           </div>
         </div>
-        {this.renderRack(p2inv, !p1turn)}
-        <div className="score">Score: {p2score}</div>
       </div>
-    );
-  }
+      {renderRack(p2inv, !p1turn)}
+      <div className="score">Score: {p2score}</div>
+    </div>
+  );
 }
 
 export default ScrabbleGame;
