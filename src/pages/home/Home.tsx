@@ -94,7 +94,6 @@ const Home = () => {
                       </div>
                     </a>
                     <a
-                      name="github"
                       className="media-link"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -106,7 +105,6 @@ const Home = () => {
                       </div>
                     </a>
                     <a
-                      name="twitter"
                       className="media-link"
                       target="_blank"
                       rel="noopener noreferrer"

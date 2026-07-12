@@ -1,6 +1,7 @@
 import cavco from "../images/CavcoHomes.jpg";
 import fueland from "../images/FuelandInc.jpg";
 import fuelrewards from "../images/FuelRewards.jpg";
+import { ShowcaseData } from "./types";
 
 // const initialData = [
 //   {
@@ -19,7 +20,7 @@ import fuelrewards from "../images/FuelRewards.jpg";
 //   },
 // ];
 
-const proExpData = [
+const proExpData: ShowcaseData[] = [
   {
     link: {
       url: "https://www.cavcohomes.com/",

@@ -1,8 +1,13 @@
 import React from "react";
 import "../../styles/Projects.scss";
 import Github from "../../components/SocialMedia/Github";
+import { ShowcaseData } from "../../data/types";
 
-export default function Showcase(props) {
+interface ShowcaseProps {
+  data: ShowcaseData;
+}
+
+export default function Showcase(props: ShowcaseProps) {
   console.log("props: ", props.data);
   return (
     <div className="showcase-wrap">
@@ -12,7 +17,6 @@ export default function Showcase(props) {
             href={props.data.link.url}
             target="_blank"
             rel="noopener noreferrer"
-            alt={props.data.link.alt}
           >
             <img
               className="proj-img"
@@ -29,7 +33,6 @@ export default function Showcase(props) {
           <h1>{props.data.name}</h1>
           {props.data.github.url ? (
             <a
-              name="github"
               className="github-link"
               target="_blank"
               rel="noopener noreferrer"
@@ -80,7 +83,6 @@ export default function Showcase(props) {
             href="https://www.fuelrewards.com/"
             target="_blank"
             rel="noopener noreferrer"
-            alt="Fuel Rewards"
           >
             <img
               id="logo-fr"
@@ -92,7 +94,6 @@ export default function Showcase(props) {
             href="https://pditechnologies.com/"
             target="_blank"
             rel="noopener noreferrer"
-            alt="PDI Technologies"
           >
             <img
               id="logo-pdi"

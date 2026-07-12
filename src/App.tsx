@@ -5,13 +5,13 @@ import routes from "./routes";
 
 class App extends Component {
 
-  wheel = (e) => {
+  wheel = (e: React.WheelEvent<HTMLDivElement>) => {
     console.log(e.deltaY)
   }
-  
+
   render() {
     return (
-      <div /*onWheel={(e) => this.wheel(e)}*/ className="App">
+      <div className="App">
         <BrowserRouter>
           {routes}
         </BrowserRouter>
