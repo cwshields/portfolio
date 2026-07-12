@@ -38,9 +38,15 @@
 .rack-actions {
   grid-column: 3;
   display: flex;
+  align-items: center;
   gap: 8px;
   justify-self: start;
   margin-left: 14px;
+}
+.hint-counter {
+  font-size: 12px;
+  color: #9aa5b1;
+  white-space: nowrap;
 }
 .letter {
   position: relative;
@@ -145,6 +151,18 @@
   }
   &.dragging {
     opacity: 0.4;
+  }
+  &.highlighted {
+    border-width: 2px;
+    border-color: #f4d35e;
+  }
+  &.word-valid {
+    border-width: 2px;
+    border-color: #4caf50;
+  }
+  &.word-invalid {
+    border-width: 2px;
+    border-color: #e05252;
   }
 }
 .tile {
@@ -295,6 +313,79 @@ h3 {
 .file-input {
   display: none;
 }
+.history-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  width: 300px;
+  height: 100vh;
+  padding: 20px;
+  background-color: #121a22ee;
+  border-left: 1px solid #434957;
+  overflow-y: auto;
+  text-align: left;
+  font-size: 15px;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
+  transform: translateX(100%);
+  transition: transform 250ms ease;
+
+  &.open {
+    transform: translateX(0);
+  }
+}
+.history-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    margin: 0;
+  }
+}
+.history-empty {
+  margin-top: 12px;
+  color: #9aa5b1;
+  font-size: 14px;
+}
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+.history-row {
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background-color: #19212bd7;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-color: #f4d35e;
+  }
+}
+.history-row-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #9aa5b1;
+}
+.history-row-words {
+  font-size: 15px;
+  font-weight: bold;
+}
+.history-row-score {
+  font-size: 13px;
+  color: #f4d35e;
+}
+.history-row-meta {
+  font-size: 13px;
+  color: #9aa5b1;
+}
 .bottom-actions {
   margin-top: auto;
   width: 100%;
@@ -345,4 +436,252 @@ h3 {
   color: #e08585;
   font-size: 14px;
   text-align: center;
+}
+.game-over-offer {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #3a2f1bd7;
+  border: 1px solid #f4d35e;
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 14px;
+  line-height: 1.3rem;
+
+  p {
+    margin: 0 0 12px;
+  }
+}
+.game-over-offer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  .icon-button {
+    padding: 0 14px;
+    height: 36px;
+    font-size: 14px;
+  }
+}
+.game-over {
+  width: 100%;
+  text-align: center;
+
+  h3 {
+    margin: 0 0 0.4em;
+    color: #f4d35e;
+  }
+  p {
+    margin: 0;
+    font-size: 16px;
+  }
+}
+.letter.hidden-letter {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #2b3038,
+    #2b3038 4px,
+    #353b45 4px,
+    #353b45 8px
+  );
+}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0d1117cc;
+}
+.modal {
+  box-sizing: border-box;
+  width: 320px;
+  max-width: 90vw;
+  padding: 24px;
+  background-color: #19212b;
+  border: 1px solid #434957;
+  border-radius: 10px;
+  text-align: left;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
+
+  h3 {
+    margin: 0 0 18px;
+    text-align: center;
+    font-family: monospace;
+  }
+}
+.modal-section {
+  margin-bottom: 18px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+.modal-label {
+  font-size: 13px;
+  color: #9aa5b1;
+  margin-bottom: 8px;
+}
+.modal-options {
+  display: flex;
+  gap: 8px;
+}
+.modal-option {
+  flex: 1;
+  padding: 10px 6px;
+  font-size: 14px;
+  color: #dfdfdf;
+  background-color: #121a22;
+  border: 1px solid #434957;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+
+  &:hover {
+    border-color: #7f848b;
+  }
+  &.selected {
+    border-color: #f4d35e;
+    color: #f4d35e;
+    background-color: #2b2517;
+  }
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+
+  .icon-button {
+    height: 38px;
+    padding: 0 16px;
+  }
+}
+.debug-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  box-sizing: border-box;
+  width: 320px;
+  height: 100vh;
+  padding: 20px;
+  background-color: #121a22ee;
+  border-right: 1px solid #434957;
+  overflow-y: auto;
+  text-align: left;
+  font-size: 14px;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
+}
+.debug-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    margin: 0;
+    color: #f4d35e;
+  }
+}
+.debug-section {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #2a323d;
+
+  &:first-of-type {
+    margin-top: 18px;
+    padding-top: 0;
+    border-top: none;
+  }
+}
+.debug-label {
+  font-size: 12px;
+  color: #9aa5b1;
+  margin-bottom: 8px;
+}
+.debug-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  input {
+    cursor: pointer;
+  }
+}
+.debug-toggle-spaced {
+  margin-top: 10px;
+}
+.debug-bag-contents {
+  margin-top: 8px;
+  padding: 8px;
+  font-size: 12px;
+  font-family: monospace;
+  line-height: 1.6;
+  color: #dfdfdf;
+  background-color: #19212b;
+  border: 1px solid #434957;
+  border-radius: 4px;
+  word-break: break-word;
+}
+.debug-row {
+  display: flex;
+  gap: 8px;
+}
+.debug-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.debug-input {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  font-size: 13px;
+  font-family: monospace;
+  text-transform: uppercase;
+  color: #f1f1f1;
+  background-color: #19212b;
+  border: 1px solid #434957;
+  border-radius: 4px;
+
+  &::placeholder {
+    text-transform: uppercase;
+    color: #5b6472;
+  }
+}
+.debug-button {
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #f1f1f1;
+  background-color: #2b3b3a;
+  border: 1px solid #7f848b;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: #354a48;
+  }
+}
+.debug-bot-log {
+  font-size: 13px;
+  line-height: 1.4;
+}
+.debug-bot-log-top {
+  margin-top: 8px;
+
+  ol {
+    margin: 4px 0 0;
+    padding-left: 20px;
+  }
+}
+.debug-empty {
+  font-size: 13px;
+  color: #9aa5b1;
 }
