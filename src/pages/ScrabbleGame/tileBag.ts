@@ -1,6 +1,12 @@
 export const RACK_SIZE = 7;
 
-const LETTER_DISTRIBUTION = [
+interface LetterDistributionEntry {
+  name: string;
+  score: number;
+  count: number;
+}
+
+const LETTER_DISTRIBUTION: LetterDistributionEntry[] = [
   { name: 'a', score: 1, count: 9 },
   { name: 'b', score: 3, count: 2 },
   { name: 'c', score: 3, count: 2 },
@@ -29,12 +35,15 @@ const LETTER_DISTRIBUTION = [
   { name: 'z', score: 10, count: 1 },
 ];
 
-export const SCORES = LETTER_DISTRIBUTION.reduce((acc, { name, score }) => {
-  acc[name] = score;
-  return acc;
-}, {});
+export const SCORES: Record<string, number> = LETTER_DISTRIBUTION.reduce(
+  (acc: Record<string, number>, { name, score }) => {
+    acc[name] = score;
+    return acc;
+  },
+  {},
+);
 
-export function shuffle(arr) {
+export function shuffle<T>(arr: T[]): T[] {
   const shuffled = arr.slice();
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -45,14 +54,19 @@ export function shuffle(arr) {
   return shuffled;
 }
 
-export function createBag() {
-  const bag = [];
+export function createBag(): string[] {
+  const bag: string[] = [];
   LETTER_DISTRIBUTION.forEach(({ name, count }) => {
     for (let i = 0; i < count; i++) bag.push(name);
   });
   return shuffle(bag);
 }
 
-export function drawTiles(bag, count) {
+export interface DrawResult<T> {
+  drawn: T[];
+  remainingBag: T[];
+}
+
+export function drawTiles<T>(bag: T[], count: number): DrawResult<T> {
   return { drawn: bag.slice(0, count), remainingBag: bag.slice(count) };
 }

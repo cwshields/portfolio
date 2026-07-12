@@ -1,6 +1,7 @@
 import { SCORES } from './tileBag';
+import { FormedWord } from './types';
 
-export function scoreWord(formedWord) {
+export function scoreWord(formedWord: FormedWord): number {
   let wordMultiplier = 1;
   let letterTotal = 0;
   formedWord.cells.forEach((cell) => {
@@ -16,6 +17,6 @@ export function scoreWord(formedWord) {
   return letterTotal * wordMultiplier;
 }
 
-export function scoreMove(formedWords) {
+export function scoreMove(formedWords: FormedWord[]): number {
   return formedWords.reduce((sum, word) => sum + scoreWord(word), 0);
 }
