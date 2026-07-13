@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { StateUpdate } from "../gameState";
 import { hasAnyLegalMove } from "../moveFinder";
 import { scoreMove, scoreWord } from "../scoring";
 import { drawTiles, RACK_SIZE, shuffle } from "../tileBag";

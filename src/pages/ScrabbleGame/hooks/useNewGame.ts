@@ -1,4 +1,4 @@
-import { buildBoard, StateUpdate } from "../gameState";
+import { buildBoard } from "../gameState";
 import { createBag, drawTiles, RACK_SIZE } from "../tileBag";
 
 export function useNewGame(

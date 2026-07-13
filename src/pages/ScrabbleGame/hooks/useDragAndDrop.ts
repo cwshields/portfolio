@@ -1,5 +1,3 @@
-import { StateUpdate } from "../gameState";
-
 export function useDragAndDrop(
   state: GameState,
   patchState: (updates: StateUpdate) => void,

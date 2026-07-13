@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { StateUpdate } from "../gameState";
 import { loadFromLocalStorage } from "../persistence";
 import { loadDictionary } from "../wordList";
 

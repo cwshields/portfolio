@@ -1,4 +1,4 @@
-import { applyCellsToBoardAndRack, HINT_LIMIT, StateUpdate } from "../gameState";
+import { applyCellsToBoardAndRack, HINT_LIMIT } from "../gameState";
 import { findRankedMoves } from "../moveFinder";
 import { shuffle } from "../tileBag";
 import { countPendingCells } from "../wordFinder";

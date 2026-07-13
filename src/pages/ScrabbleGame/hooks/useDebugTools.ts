@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { StateUpdate } from "../gameState";
 import { hasAnyLegalMove } from "../moveFinder";
 import { drawTiles, RACK_SIZE, shuffle } from "../tileBag";
 import { loadDictionary } from "../wordList";

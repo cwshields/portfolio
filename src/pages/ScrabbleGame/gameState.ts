@@ -1,6 +1,49 @@
 import { BOARD_SIZE, getBonus, isCenter } from "./boardLayout";
 
-export type StateUpdate = Partial<GameState> | ((state: GameState) => Partial<GameState>);
+export const initialState: GameState = {
+  // p1turn is to cycle between turns
+  p1turn: true,
+  // when firstTurn is false, the player will have to use letters currently on the board
+  firstTurn: true,
+  // p#inv is the players current inventory of letters
+  p1inv: [],
+  p2inv: [],
+  // adds the moveScore to the applicable player once a word is confirmed
+  p1score: 0,
+  p2score: 0,
+  // the board is a 15x15 grid of cell objects: { row, col, letter, locked, pending, bonus, isCenter }
+  board: buildBoard(),
+  // shared pool of letters both players draw from
+  bag: [],
+  validating: false,
+  validationError: null,
+  selectedIndices: [],
+  dragSource: null,
+  gameOverOffer: false,
+  gameOver: false,
+  findingHint: false,
+  dictionaryTries: null,
+  // number of hints each player has used so far this game, capped at HINT_LIMIT
+  p1hintsUsed: 0,
+  p2hintsUsed: 0,
+  // chronological log of turns: word plays, passes, and trades, for the history sidebar
+  moveHistory: [],
+  showHistory: false,
+  hoveredTurnCells: null,
+  // '1p' (player 2 is a bot) or '2p' (local hotseat); chosen via the new-game modal
+  gameMode: "2p",
+  // 'easy' | 'medium' | 'hard' when gameMode is '1p', otherwise null
+  botDifficulty: null,
+  showNewGameModal: false,
+  botThinking: false,
+  debugMode: false,
+  debugRevealBotRack: false,
+  debugAllowMoveLocked: false,
+  debugBotMoveLog: null,
+};
+
+// each player gets this many hints for the whole game
+export const HINT_LIMIT = 3;
 
 // creates a fresh 15x15 board, carrying bonus-square info per cell
 export function buildBoard(): Board {
@@ -67,51 +110,6 @@ export function applyCellsToBoardAndRack(currentBoard: Board, rack: Rack, newCel
   );
   return { board: newBoard, rack: workingRack };
 }
-
-export const initialState: GameState = {
-  // p1turn is to cycle between turns
-  p1turn: true,
-  // when firstTurn is false, the player will have to use letters currently on the board
-  firstTurn: true,
-  // p#inv is the players current inventory of letters
-  p1inv: [],
-  p2inv: [],
-  // adds the moveScore to the applicable player once a word is confirmed
-  p1score: 0,
-  p2score: 0,
-  // the board is a 15x15 grid of cell objects: { row, col, letter, locked, pending, bonus, isCenter }
-  board: buildBoard(),
-  // shared pool of letters both players draw from
-  bag: [],
-  validating: false,
-  validationError: null,
-  selectedIndices: [],
-  dragSource: null,
-  gameOverOffer: false,
-  gameOver: false,
-  findingHint: false,
-  dictionaryTries: null,
-  // number of hints each player has used so far this game, capped at HINT_LIMIT
-  p1hintsUsed: 0,
-  p2hintsUsed: 0,
-  // chronological log of turns: word plays, passes, and trades, for the history sidebar
-  moveHistory: [],
-  showHistory: false,
-  hoveredTurnCells: null,
-  // '1p' (player 2 is a bot) or '2p' (local hotseat); chosen via the new-game modal
-  gameMode: "2p",
-  // 'easy' | 'medium' | 'hard' when gameMode is '1p', otherwise null
-  botDifficulty: null,
-  showNewGameModal: false,
-  botThinking: false,
-  debugMode: false,
-  debugRevealBotRack: false,
-  debugAllowMoveLocked: false,
-  debugBotMoveLog: null,
-};
-
-// each player gets this many hints for the whole game
-export const HINT_LIMIT = 3;
 
 // merges partial updates into state, mirroring class-style this.setState(partial);
 // also accepts an updater function, mirroring this.setState(prevState => partial)

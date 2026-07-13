@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { StateUpdate } from "../gameState";
 import { downloadSaveFile, readSaveFileAsState, saveToLocalStorage } from "../persistence";
 
 export function useFileTransfer(state: GameState, patchState: (updates: StateUpdate) => void): FileTransfer {

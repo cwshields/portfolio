@@ -1,4 +1,4 @@
-interface GameState extends Required<PersistableState> {
+interface GameState extends Required<PersistableState>, DebugFlags {
   // true while awaiting the dictionary API response for a submitted word
   validating: boolean;
   // message shown when a submitted move is rejected, can't be verified,
@@ -32,6 +32,26 @@ interface GameState extends Required<PersistableState> {
   // true while the hidden debug panel is open (toggled with Ctrl+Shift+D);
   // none of the debug-* fields below are persisted to a save
   debugMode: boolean;
+}
+
+type StateUpdate = Partial<GameState> | ((state: GameState) => Partial<GameState>);
+
+interface TileInteractionProps {
+  disabled: boolean;
+  debugMovable: boolean;
+  onDropLetter: (cell: Cell) => void;
+  onDragStartLetter: (cell: Cell) => void;
+  onDragEnd: () => void;
+}
+
+interface BoardGridProps extends TileInteractionProps {
+  board: Board;
+  dragSource: DragSource | null;
+  highlightedCellKeys: Set<string> | null;
+  pendingWordStatus: Map<string, "valid" | "invalid"> | null;
+}
+
+interface DebugFlags {
   // debug: reveals the bot's rack (normally hidden) in '1p' mode
   debugRevealBotRack: boolean;
   // debug: lets a submitted (locked) board tile be dragged to another cell
@@ -42,19 +62,7 @@ interface GameState extends Required<PersistableState> {
   debugBotMoveLog: DebugBotMoveLog | null;
 }
 
-interface BoardGridProps {
-  board: Board;
-  dragSource: DragSource | null;
-  highlightedCellKeys: Set<string> | null;
-  pendingWordStatus: Map<string, "valid" | "invalid"> | null;
-  disabled: boolean;
-  debugMovable: boolean;
-  onDropLetter: (cell: Cell) => void;
-  onDragStartLetter: (cell: Cell) => void;
-  onDragEnd: () => void;
-}
-
-interface DebugPanelProps {
+interface DebugPanelProps extends DebugFlags {
   p1inv: Rack;
   p2inv: Rack;
   bag: string[];
@@ -62,40 +70,57 @@ interface DebugPanelProps {
   botDifficulty: BotDifficulty | null;
   p1Label: string;
   p2Label: string;
-  debugRevealBotRack: boolean;
-  debugAllowMoveLocked: boolean;
-  debugBotMoveLog: DebugBotMoveLog | null;
   onClose: () => void;
-  onReshuffleRack: (player: 1 | 2) => void;
+  onReshuffleRack: (player: PlayerNum) => void;
   onResetHints: () => void;
   onToggleRevealBotRack: () => void;
   onToggleAllowMoveLocked: () => void;
   onForceStalemateCheck: () => void;
-  onSetRack: (player: 1 | 2, letters: string) => void;
+  onSetRack: (player: PlayerNum, letters: string) => void;
 }
 
-interface GameSidebarProps {
-  gameOverOffer: boolean;
+type PlayerNum = 1 | 2;
+
+interface PendingMoveState {
+  pendingCount: number;
+  validating: boolean;
   gameOver: boolean;
-  p1score: number;
-  p2score: number;
+}
+
+interface GameSidebarProps extends ScoreTurnState, PendingMoveState {
+  gameOverOffer: boolean;
   playerLabel: (isP1: boolean) => string;
   botTurnActive: boolean;
   botThinking: boolean;
   botLabel: string;
-  p1turn: boolean;
-  firstTurn: boolean;
   pendingScore: number | null;
   validationError: string | null;
   selectedCount: number;
   bagLength: number;
-  validating: boolean;
-  pendingCount: number;
   onEndGame: () => void;
   onDismissGameOverOffer: () => void;
   onTradeLetters: () => void;
   onPassTurn: () => void;
   onSubmit: () => void;
+}
+
+interface ScoreTurnState {
+  p1score: number;
+  p2score: number;
+  p1turn: boolean;
+  firstTurn: boolean;
+}
+
+interface PersistableState extends ScoreTurnState {
+  board: Board;
+  bag: string[];
+  p1inv: Rack;
+  p2inv: Rack;
+  p1hintsUsed?: number;
+  p2hintsUsed?: number;
+  moveHistory?: MoveHistoryEntry[];
+  gameMode?: GameMode;
+  botDifficulty?: BotDifficulty | null;
 }
 
 interface ShowcaseData {
@@ -136,9 +161,7 @@ type Bonus = "TW" | "DW" | "TL" | "DL";
 
 type Orientation = "horizontal" | "vertical";
 
-interface Cell {
-  row: number;
-  col: number;
+interface Cell extends Position {
   letter: string | null;
   locked: boolean;
   pending: boolean;
@@ -155,9 +178,7 @@ type Board = Cell[][];
 type RackSlot = string | null;
 type Rack = RackSlot[];
 
-interface FormedWordCell {
-  row: number;
-  col: number;
+interface FormedWordCell extends Position {
   letter: string;
   isNew: boolean;
   bonus: Bonus | null;
@@ -194,9 +215,7 @@ interface Tries {
   reverse: TrieNode;
 }
 
-interface NewCell {
-  row: number;
-  col: number;
+interface NewCell extends Position {
   letter: string;
 }
 
@@ -219,15 +238,12 @@ interface HistoryWord {
   score: number;
 }
 
-interface HistoryCell {
-  row: number;
-  col: number;
-}
+interface HistoryCell extends Position {}
 
 type HistoryEntryType = "play" | "pass" | "trade";
 
 interface MoveHistoryEntry {
-  player: 1 | 2;
+  player: PlayerNum;
   type: HistoryEntryType;
   words: HistoryWord[];
   score: number;
@@ -235,26 +251,7 @@ interface MoveHistoryEntry {
   count?: number;
 }
 
-interface PersistableState {
-  board: Board;
-  bag: string[];
-  p1inv: Rack;
-  p2inv: Rack;
-  p1score: number;
-  p2score: number;
-  p1turn: boolean;
-  firstTurn: boolean;
-  p1hintsUsed?: number;
-  p2hintsUsed?: number;
-  moveHistory?: MoveHistoryEntry[];
-  gameMode?: GameMode;
-  botDifficulty?: BotDifficulty | null;
-}
-
-interface DebugBotMoveLogEntry {
-  word: string;
-  score: number;
-}
+type DebugBotMoveLogEntry = HistoryWord;
 
 type BotMoveOutcome = "played" | "traded" | "passed";
 
@@ -321,11 +318,11 @@ interface BotPlayer {
 
 interface DebugTools {
   closeDebugPanel: () => void;
-  debugReshuffleRack: (player: 1 | 2) => void;
+  debugReshuffleRack: (player: PlayerNum) => void;
   debugResetHints: () => void;
   debugToggleRevealBotRack: () => void;
   debugToggleAllowMoveLocked: () => void;
-  debugSetRack: (player: 1 | 2, lettersString: string) => void;
+  debugSetRack: (player: PlayerNum, lettersString: string) => void;
   debugForceStalemateCheck: () => Promise<void>;
 }
 
@@ -345,23 +342,15 @@ interface NewGameModalProps {
   canCancel: boolean;
 }
 
-interface TilesProps {
+interface TilesProps extends TileInteractionProps {
   cell: Cell;
-  onDropLetter: (cell: Cell) => void;
-  onDragStartLetter: (cell: Cell) => void;
-  onDragEnd: () => void;
   dragging: boolean;
   highlighted: boolean;
   wordCheck: "valid" | "invalid" | null;
-  disabled: boolean;
-  debugMovable: boolean;
 }
 
-interface RackActionsProps {
-  pendingCount: number;
+interface RackActionsProps extends PendingMoveState {
   hintsUsed: number;
-  validating: boolean;
-  gameOver: boolean;
   findingHint: boolean;
   onShuffle: () => void;
   onClear: () => void;
