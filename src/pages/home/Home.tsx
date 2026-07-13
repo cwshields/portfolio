@@ -22,9 +22,7 @@ import css from "../../images/logos/css-logo.png";
 import react from "../../images/logos/react-logo.png";
 import typescript from "../../images/logos/typescript_logo.png";
 import rbs from "../../images/logos/rbs-logo.png";
-import LinkedIn from "../../components/SocialMedia/LinkedIn";
-import Github from "../../components/SocialMedia/Github";
-import Twitter from "../../components/SocialMedia/Twitter";
+import { LinkedIn, Github, Gmail } from "../../components/SocialMedia/SocialMedia";
 
 import proExpData from "../../data/professionalExperience";
 import personalExpData from "../../data/personalProjects";
@@ -73,14 +71,20 @@ const Home = () => {
                     <div className="first">Chase</div>
                     <div className="last">Shields</div>
                   </div>
-                  <a
-                    className="email"
-                    href="mailto:cwshields2@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    cwshields2@gmail.com
-                  </a>
+                  <div className="live-wrap">
+                    <div className="live-dot-container">
+                      <div className="live-dot"></div>
+                      <div className="live-dot-pulse"></div>
+                    </div>
+                    <a
+                      className="email"
+                      href="mailto:cwshields2@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      cwshields2@gmail.com
+                    </a>
+                  </div>
                   <div className="media">
                     <a
                       className="media-link"
@@ -108,11 +112,11 @@ const Home = () => {
                       className="media-link"
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://twitter.com/ChaseShields6"
+                      href="https://www.gmail.com/"
                     >
-                      <Twitter />
-                      <div id="twitter-link" className="display-none">
-                        Twitter Link
+                      <Gmail />
+                      <div id="gmail-link" className="display-none">
+                        Gmail Link
                       </div>
                     </a>
                   </div>
@@ -126,12 +130,6 @@ const Home = () => {
                 with motivated, supportive people.
               </p>
               <p>Scroll down to check out some of my work!</p>
-              <p>
-                Beta:{" "}
-                <Link className="scrabble-link" to="/scrabble-game">
-                  Words with Friends clone
-                </Link>
-              </p>
             </div>
           </div>
         </div>

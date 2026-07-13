@@ -1,9 +1,34 @@
+import scrabble from "../images/scrabble.jpg";
 import bloglab from "../images/BlogLabShowcase.jpg";
 import drino from "../images/DrinoShowcase.jpg";
 import afp from "../images/AFPShowcase.jpg";
 import { ShowcaseData } from "./types";
 
 const personalExpData: ShowcaseData[] = [
+  {
+    link: {
+      url: "/scrabble-game",
+      img: scrabble,
+      alt: "Scrabble Game Showcase",
+    },
+    name: "Scrabble Game",
+    description: [
+      "A Words with Friends style Scrabble clone built with React and TypeScript. Play locally against a friend or against a computer opponent with adjustable difficulty, complete with dictionary-backed word validation and scoring.",
+    ],
+    github: {
+      url: "https://github.com/cwshields/portfolio",
+    },
+    subheader: [""],
+    features: [
+      [
+        "1 or 2 player local play with adjustable bot difficulty",
+        "Drag-and-drop tile placement",
+        "Real-time word validation against a full dictionary",
+        "In-game hints and move history with word highlighting",
+        "Save/load game progress to a file",
+      ],
+    ],
+  },
   {
     link: {
       url: "https://bloglab.dev/",
@@ -72,7 +97,7 @@ const personalExpData: ShowcaseData[] = [
     },
     name: "Andy Fancher Presents",
     description: [
-      "When he was 9 years old, Andy Fancher, found WWII memorabilia that inspired him to know more, but little to no information was known about the veterans he found. It later inspired him to go on a mission to find the untold stories of these heroes so the world could better know them in what became Andy Fancher Presents. On this platform, he could document these stories for the world to see and hear for themselves.",
+      "Inspired by WWII memorabilia and the stories of those who served, Andy Fancher went on a mission to find the untold stories of these heroes so the world could better know them in what became Andy Fancher Presents. On this platform, he could document these stories for the world to see and hear for themselves.",
       "This was the first website I built professionally, and now it is a set piece to humble beginnings meanwhile being an excellent foundation for my advancement as a software developer.",
     ],
     github: {

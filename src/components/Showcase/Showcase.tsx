@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/Projects.scss";
-import Github from "../../components/SocialMedia/Github";
+import { Github } from "../../components/SocialMedia/SocialMedia";
 import { ShowcaseData } from "../../data/types";
 
 interface ShowcaseProps {
@@ -8,7 +8,6 @@ interface ShowcaseProps {
 }
 
 export default function Showcase(props: ShowcaseProps) {
-  console.log("props: ", props.data);
   return (
     <div className="showcase-wrap">
       <div className="showcase">
@@ -25,7 +24,11 @@ export default function Showcase(props: ShowcaseProps) {
             />
           </a>
         ) : (
-          <img className="proj-img" src={props.data.link.img} alt={props.data.link.alt} />
+          <img
+            className="proj-img"
+            src={props.data.link.img}
+            alt={props.data.link.alt}
+          />
         )}
       </div>
       <div className="text">
@@ -39,9 +42,7 @@ export default function Showcase(props: ShowcaseProps) {
               href={props.data.github.url}
             >
               <Github />
-              <div className="display-none">
-                Github Link
-              </div>
+              <div className="display-none">Github Link</div>
             </a>
           ) : null}
         </div>

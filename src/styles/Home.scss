@@ -1,6 +1,10 @@
 @import "./mixins.scss";
 @import "./variables.scss";
 
+$live-dot-container-size: 20px;
+$live-dot-size: 12px;
+$live-dot-offset: ($live-dot-container-size - $live-dot-size) / 2;
+
 @keyframes shake {
   0% {
     transform: translate(1px, 1px) rotate(-2deg);
@@ -91,12 +95,61 @@
                 font-size: 4vw;
               }
             }
-            .email {
-              color: #74a3c4;
-              font-size: 1.5vw;
-            }
-            .email:hover {
-              text-decoration: underline;
+            .live-wrap {
+              display: flex;
+              align-items: center;
+              .live-dot-container {
+                margin: 0 6px;
+                position: relative;
+                width: $live-dot-container-size;
+                height: $live-dot-container-size;
+              }
+
+              /* The solid green dot */
+              .live-dot {
+                width: $live-dot-size;
+                height: $live-dot-size;
+                background-color: #28a745;
+                border-radius: 50%;
+                position: absolute;
+                top: $live-dot-offset;
+                left: $live-dot-offset;
+              }
+
+              /* The pulsing outer ring */
+              .live-dot-pulse {
+                content: "";
+                display: block;
+                width: $live-dot-container-size;
+                height: $live-dot-container-size;
+                background-color: #28a745;
+                border-radius: 50%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0.6;
+                animation: pulse 2s infinite ease-out;
+              }
+
+              @keyframes pulse {
+                0% {
+                  transform: scale(0.8);
+                  opacity: 0.8;
+                }
+                100% {
+                  transform: scale(2.4);
+                  opacity: 0;
+                }
+              }
+              .email {
+                display: inline-block;
+                color: #74a3c4;
+                font-size: 1.25vw;
+                padding-bottom: 4px;
+              }
+              .email:hover {
+                text-decoration: underline;
+              }
             }
             .media {
               @include flex(row, space-between, left);
@@ -121,6 +174,9 @@
                 transform: scaleX(1);
               }
               .media-svg {
+                display: block;
+                width: 100%;
+                height: 100%;
                 fill: #dfdfdf;
               }
             }
@@ -335,7 +391,7 @@
 }
 .info-wrapper .stack-wrap .version-control .github:hover,
 .info-wrapper .stack-wrap .version-control .git:hover,
-  .info-wrapper .stack-wrap .libraries-wrap .sass:hover {
+.info-wrapper .stack-wrap .libraries-wrap .sass:hover {
   height: 11.5vmin;
 }
 .info-wrapper .stack-wrap .design-wrap .figma:hover {
