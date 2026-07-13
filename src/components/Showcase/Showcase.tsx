@@ -1,11 +1,6 @@
 import React from "react";
 import "../../styles/Projects.scss";
 import { Github } from "../../components/SocialMedia/SocialMedia";
-import { ShowcaseData } from "../../data/types";
-
-interface ShowcaseProps {
-  data: ShowcaseData;
-}
 
 export default function Showcase(props: ShowcaseProps) {
   return (

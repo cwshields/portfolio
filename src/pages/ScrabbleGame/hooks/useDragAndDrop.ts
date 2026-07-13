@@ -1,13 +1,4 @@
-import { GameState, StateUpdate } from "../gameState";
-import { Cell } from "../types";
-
-export interface DragAndDrop {
-  handleRackDragStart: (index: number) => void;
-  handleBoardDragStart: (cell: Cell) => void;
-  handleDragEnd: () => void;
-  handleRackDrop: (targetIndex: number) => void;
-  handleBoardDrop: (cell: Cell) => void;
-}
+import { StateUpdate } from "../gameState";
 
 export function useDragAndDrop(
   state: GameState,

@@ -1,14 +1,6 @@
 import React, { useRef } from "react";
-import { GameState, StateUpdate } from "../gameState";
+import { StateUpdate } from "../gameState";
 import { downloadSaveFile, readSaveFileAsState, saveToLocalStorage } from "../persistence";
-
-export interface FileTransfer {
-  persist: (updates: Partial<GameState>) => void;
-  fileInputRef: React.RefObject<HTMLInputElement>;
-  handleSaveToFile: () => void;
-  handleLoadFileClick: () => void;
-  handleFileSelected: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
-}
 
 export function useFileTransfer(state: GameState, patchState: (updates: StateUpdate) => void): FileTransfer {
   const fileInputRef = useRef<HTMLInputElement>(null);

@@ -1,17 +1,6 @@
 import React from "react";
 import { HINT_LIMIT } from "../gameState";
 
-interface RackActionsProps {
-  pendingCount: number;
-  hintsUsed: number;
-  validating: boolean;
-  gameOver: boolean;
-  findingHint: boolean;
-  onShuffle: () => void;
-  onClear: () => void;
-  onHint: () => void;
-}
-
 // small icon-only buttons shown next to the active player's rack: shuffle
 // reorders their letters, clear resets any letters they've placed but not submitted,
 // and hint offers one of the active player's better available moves, up to HINT_LIMIT uses

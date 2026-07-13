@@ -1,13 +1,4 @@
 import { BOARD_SIZE } from './boardLayout';
-import {
-  Board,
-  Cell,
-  FormedWord,
-  LineShapeResult,
-  Orientation,
-  ValidationResult,
-  WordsResult,
-} from './types';
 
 export function getPendingCells(board: Board): Cell[] {
   const cells: Cell[] = [];

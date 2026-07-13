@@ -1,5 +1,4 @@
 import { shuffle } from "./tileBag";
-import { BotDifficulty, BotMoveOutcome, DebugBotMoveLog, RankedMove } from "./types";
 
 // how much of a difficulty's move pool to skip from the top of the best-first
 // ranked move list, and how many candidates wide that pool is; easy draws from
@@ -27,15 +26,6 @@ export function pickBotMovePool(rankedMoves: RankedMove[], difficulty: BotDiffic
 // how many of the top ranked candidates to keep for the debug panel's bot
 // move inspector
 const BOT_LOG_TOP_COUNT = 8;
-
-interface BuildBotMoveLogParams {
-  difficulty: BotDifficulty | null;
-  rackSize: number;
-  rankedMoves: RankedMove[];
-  poolCount: number;
-  move: RankedMove | null;
-  outcome: BotMoveOutcome;
-}
 
 // snapshot of a completed bot move search, for the debug panel's inspector
 export function buildBotMoveLog({ difficulty, rackSize, rankedMoves, poolCount, move, outcome }: BuildBotMoveLogParams): DebugBotMoveLog {

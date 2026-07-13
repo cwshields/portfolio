@@ -1,24 +1,6 @@
 import cavco from "../images/CavcoHomes.jpg";
 import fueland from "../images/FuelandInc.jpg";
 import fuelrewards from "../images/FuelRewards.jpg";
-import { ShowcaseData } from "./types";
-
-// const initialData = [
-//   {
-//     link: {
-//       url: "",
-//       img: null,
-//       alt: "",
-//     },
-//     name: "",
-//     description: [""],
-//     github: {
-//       url: "",
-//     },
-//     subheader: [""],
-//     features: [["", ""]],
-//   },
-// ];
 
 const proExpData: ShowcaseData[] = [
   {

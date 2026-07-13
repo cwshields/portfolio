@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { GameState, StateUpdate } from "../gameState";
+import { StateUpdate } from "../gameState";
 import { hasAnyLegalMove } from "../moveFinder";
 import { scoreMove, scoreWord } from "../scoring";
 import { drawTiles, RACK_SIZE, shuffle } from "../tileBag";
@@ -14,29 +14,7 @@ import {
   validateLineShape,
 } from "../wordFinder";
 import { loadDictionary } from "../wordList";
-import { FormedWord, MoveHistoryEntry, Rack, Tries } from "../types";
 import { dedupeCells } from "../gameState";
-
-export interface MoveActions {
-  updateInv: (
-    row: number,
-    col: number,
-    newVal: string,
-    oldVal: string,
-    newRackIndex: number | null,
-    oldRackIndex: number | null,
-  ) => void;
-  rejectMove: (errorMessage: string | null) => void;
-  clearPending: () => void;
-  shuffleRackAction: () => void;
-  toggleLetterSelect: (index: number) => void;
-  submit: () => Promise<void>;
-  getPendingScore: () => number | null;
-  pendingWordStatus: Map<string, "valid" | "invalid"> | null;
-  tradeLetters: () => void;
-  passTurn: () => void;
-  maybeCheckStalemate: (nextState: GameState) => Promise<void>;
-}
 
 // puts a returning letter back at its preferred rack slot, but only if that slot
 // is still empty — a shuffle since the letter was placed may have moved a different

@@ -1,5 +1,3 @@
-import { TrieNode } from './types';
-
 // minimal trie: children is a plain object keyed by letter, isWord marks a
 // node that terminates a real word (as opposed to just being a prefix of one)
 function makeNode(): TrieNode {

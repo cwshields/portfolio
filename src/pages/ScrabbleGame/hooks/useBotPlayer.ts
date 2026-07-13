@@ -1,15 +1,10 @@
 import { useEffect } from "react";
 import { buildBotMoveLog, pickBotMovePool } from "../bot";
-import { applyCellsToBoardAndRack, dedupeCells, GameState, StateUpdate } from "../gameState";
+import { applyCellsToBoardAndRack, dedupeCells, StateUpdate } from "../gameState";
 import { findRankedMoves } from "../moveFinder";
 import { scoreWord } from "../scoring";
 import { drawTiles, RACK_SIZE, shuffle } from "../tileBag";
-import { MoveHistoryEntry, Tries } from "../types";
 import { loadDictionary } from "../wordList";
-
-export interface BotPlayer {
-  playBotTurn: () => Promise<void>;
-}
 
 export function useBotPlayer(
   state: GameState,

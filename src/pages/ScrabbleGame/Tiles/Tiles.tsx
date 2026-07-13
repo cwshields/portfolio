@@ -1,18 +1,5 @@
 import React, { Component } from "react";
 import { SCORES } from '../tileBag';
-import { Cell } from '../types';
-
-interface TilesProps {
-  cell: Cell;
-  onDropLetter: (cell: Cell) => void;
-  onDragStartLetter: (cell: Cell) => void;
-  onDragEnd: () => void;
-  dragging: boolean;
-  highlighted: boolean;
-  wordCheck: 'valid' | 'invalid' | null;
-  disabled: boolean;
-  debugMovable: boolean;
-}
 
 class Tiles extends Component<TilesProps> {
   handleDragStart = () => {

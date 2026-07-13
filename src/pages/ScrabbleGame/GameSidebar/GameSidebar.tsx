@@ -1,29 +1,4 @@
-import React from "react";
 import { RACK_SIZE } from "../tileBag";
-
-interface GameSidebarProps {
-  gameOverOffer: boolean;
-  gameOver: boolean;
-  p1score: number;
-  p2score: number;
-  playerLabel: (isP1: boolean) => string;
-  botTurnActive: boolean;
-  botThinking: boolean;
-  botLabel: string;
-  p1turn: boolean;
-  firstTurn: boolean;
-  pendingScore: number | null;
-  validationError: string | null;
-  selectedCount: number;
-  bagLength: number;
-  validating: boolean;
-  pendingCount: number;
-  onEndGame: () => void;
-  onDismissGameOverOffer: () => void;
-  onTradeLetters: () => void;
-  onPassTurn: () => void;
-  onSubmit: () => void;
-}
 
 // tutorial blurb, stalemate/game-over banners, turn indicator, trade button,
 // and the pass/submit action buttons shown beside the board

@@ -1,18 +1,5 @@
 import React from "react";
 import { SCORES } from "../tileBag";
-import { DragSource, Rack as RackType } from "../types";
-
-interface RackProps {
-  letters: RackType;
-  isActive: boolean;
-  hideLetters?: boolean;
-  selectedIndices: number[];
-  dragSource: DragSource | null;
-  onToggleSelect: (index: number) => void;
-  onDragStart: (index: number) => void;
-  onDragEnd: () => void;
-  onDrop: (index: number) => void;
-}
 
 // renders a player's rack; only the active player's letters are selectable for a
 // trade and draggable (to reorder within the rack or drop onto the board).

@@ -1,5 +1,4 @@
 import { buildTrie, reverseWord } from './trie';
-import { Tries } from './types';
 
 // word list is sourced from sindresorhus/word-list (MIT), itself derived from
 // the SCOWL project. It's the single source of truth for word legality: the

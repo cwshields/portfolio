@@ -1,14 +1,4 @@
 import React from "react";
-import { HistoryCell, MoveHistoryEntry } from "../types";
-
-interface HistoryPanelProps {
-  showHistory: boolean;
-  moveHistory: MoveHistoryEntry[];
-  playerLabel: (isP1: boolean) => string;
-  onToggleHistory: () => void;
-  onSetHoveredTurn: (cells: HistoryCell[]) => void;
-  onClearHoveredTurn: () => void;
-}
 
 // sidebar listing every turn played so far, latest first; hovering a row
 // highlights that turn's words on the board via onSetHoveredTurn

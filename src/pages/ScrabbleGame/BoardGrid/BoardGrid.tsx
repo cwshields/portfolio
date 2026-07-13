@@ -1,18 +1,4 @@
-import React from "react";
 import Tiles from "../Tiles/Tiles";
-import { Board, Cell, DragSource } from "../types";
-
-interface BoardGridProps {
-  board: Board;
-  dragSource: DragSource | null;
-  highlightedCellKeys: Set<string> | null;
-  pendingWordStatus: Map<string, "valid" | "invalid"> | null;
-  disabled: boolean;
-  debugMovable: boolean;
-  onDropLetter: (cell: Cell) => void;
-  onDragStartLetter: (cell: Cell) => void;
-  onDragEnd: () => void;
-}
 
 // the 15x15 grid of board tiles
 function BoardGrid({

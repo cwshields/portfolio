@@ -2,7 +2,6 @@ import scrabble from "../images/scrabble.jpg";
 import bloglab from "../images/BlogLabShowcase.jpg";
 import drino from "../images/DrinoShowcase.jpg";
 import afp from "../images/AFPShowcase.jpg";
-import { ShowcaseData } from "./types";
 
 const personalExpData: ShowcaseData[] = [
   {

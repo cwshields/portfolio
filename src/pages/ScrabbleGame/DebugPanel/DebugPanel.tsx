@@ -1,25 +1,4 @@
 import React, { useState } from "react";
-import { BotDifficulty, DebugBotMoveLog, GameMode, Rack } from '../types';
-
-interface DebugPanelProps {
-  p1inv: Rack;
-  p2inv: Rack;
-  bag: string[];
-  gameMode: GameMode;
-  botDifficulty: BotDifficulty | null;
-  p1Label: string;
-  p2Label: string;
-  debugRevealBotRack: boolean;
-  debugAllowMoveLocked: boolean;
-  debugBotMoveLog: DebugBotMoveLog | null;
-  onClose: () => void;
-  onReshuffleRack: (player: 1 | 2) => void;
-  onResetHints: () => void;
-  onToggleRevealBotRack: () => void;
-  onToggleAllowMoveLocked: () => void;
-  onForceStalemateCheck: () => void;
-  onSetRack: (player: 1 | 2, letters: string) => void;
-}
 
 // hidden developer panel (toggled via Ctrl+Shift+D) for poking at game state
 // directly while testing: redrawing either player's rack from the bag,
@@ -203,7 +182,7 @@ function DebugPanel({
               <div className="debug-bot-log-top">
                 <div>Top candidates:</div>
                 <ol>
-                  {debugBotMoveLog.top.map((m, i) => (
+                  {debugBotMoveLog.top.map((m: any, i: any) => (
                     <li key={i}>
                       {m.word.toUpperCase()} — {m.score}
                     </li>

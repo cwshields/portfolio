@@ -1,16 +1,9 @@
 import { getBonus, isCenter } from './boardLayout';
 import { RACK_SIZE } from './tileBag';
-import { Board, BotDifficulty, Cell, GameMode, MoveHistoryEntry, PersistableState, Rack } from './types';
 
 const STORAGE_KEY = 'scrabble-game-save';
 const SAVE_VERSION = 1;
 const LETTER_RE = /^[a-z]$/;
-
-export interface SavePayload {
-  version: number;
-  savedAt: string;
-  state: PersistableState;
-}
 
 function isLetterArray(arr: unknown, maxLength?: number): arr is string[] {
   return Array.isArray(arr)

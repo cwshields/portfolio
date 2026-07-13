@@ -1,14 +1,5 @@
-import { buildBoard, GameState, StateUpdate } from "../gameState";
+import { buildBoard, StateUpdate } from "../gameState";
 import { createBag, drawTiles, RACK_SIZE } from "../tileBag";
-import { BotDifficulty, GameMode } from "../types";
-
-export interface NewGame {
-  openNewGameModal: () => void;
-  closeNewGameModal: () => void;
-  startNewGame: (mode: GameMode, difficulty: BotDifficulty | null) => void;
-  endGame: () => void;
-  dismissGameOverOffer: () => void;
-}
 
 export function useNewGame(
   patchState: (updates: StateUpdate) => void,

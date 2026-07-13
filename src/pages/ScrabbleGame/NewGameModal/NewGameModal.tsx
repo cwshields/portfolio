@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import { BotDifficulty, GameMode } from '../types';
 
 const DIFFICULTIES: BotDifficulty[] = ["easy", "medium", "hard"];
-
-interface NewGameModalProps {
-  onStart: (mode: GameMode, difficulty: BotDifficulty | null) => void;
-  onCancel: () => void;
-  canCancel: boolean;
-}
 
 // player/difficulty picker shown before a game starts; onStart receives
 // ('1p' | '2p', difficulty | null) so the caller can build a fresh game

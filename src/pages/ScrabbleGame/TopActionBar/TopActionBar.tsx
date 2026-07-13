@@ -1,16 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-interface TopActionBarProps {
-  onNewGame: () => void;
-  onSaveToFile: () => void;
-  onLoadFileClick: () => void;
-  onFileSelected: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  fileInputRef: React.RefObject<HTMLInputElement>;
-  loadDisabled: boolean;
-  onToggleHistory: () => void;
-}
-
 // back link plus the New Game / Save / Load / History buttons shown above the board
 function TopActionBar({
   onNewGame,

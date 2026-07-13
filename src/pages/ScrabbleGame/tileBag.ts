@@ -1,11 +1,5 @@
 export const RACK_SIZE = 7;
 
-interface LetterDistributionEntry {
-  name: string;
-  score: number;
-  count: number;
-}
-
 const LETTER_DISTRIBUTION: LetterDistributionEntry[] = [
   { name: 'a', score: 1, count: 9 },
   { name: 'b', score: 3, count: 2 },
@@ -60,11 +54,6 @@ export function createBag(): string[] {
     for (let i = 0; i < count; i++) bag.push(name);
   });
   return shuffle(bag);
-}
-
-export interface DrawResult<T> {
-  drawn: T[];
-  remainingBag: T[];
 }
 
 export function drawTiles<T>(bag: T[], count: number): DrawResult<T> {

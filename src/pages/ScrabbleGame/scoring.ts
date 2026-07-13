@@ -1,5 +1,4 @@
 import { SCORES } from './tileBag';
-import { FormedWord } from './types';
 
 export function scoreWord(formedWord: FormedWord): number {
   let wordMultiplier = 1;

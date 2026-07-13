@@ -1,5 +1,3 @@
-import { Bonus } from './types';
-
 export const BOARD_SIZE = 15;
 export const CENTER_ROW = 8;
 export const CENTER_COL = 8;

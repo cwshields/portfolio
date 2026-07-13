@@ -1,19 +1,9 @@
 import { useEffect } from "react";
-import { GameState, StateUpdate } from "../gameState";
+import { StateUpdate } from "../gameState";
 import { hasAnyLegalMove } from "../moveFinder";
 import { drawTiles, RACK_SIZE, shuffle } from "../tileBag";
-import { Rack, Tries } from "../types";
 import { loadDictionary } from "../wordList";
 
-export interface DebugTools {
-  closeDebugPanel: () => void;
-  debugReshuffleRack: (player: 1 | 2) => void;
-  debugResetHints: () => void;
-  debugToggleRevealBotRack: () => void;
-  debugToggleAllowMoveLocked: () => void;
-  debugSetRack: (player: 1 | 2, lettersString: string) => void;
-  debugForceStalemateCheck: () => Promise<void>;
-}
 
 export function useDebugTools(state: GameState, patchState: (updates: StateUpdate) => void): DebugTools {
   const { board, p1inv, p2inv, bag, firstTurn } = state;

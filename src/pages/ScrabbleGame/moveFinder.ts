@@ -8,7 +8,6 @@ import {
   extractWords,
 } from './wordFinder';
 import { scoreMove } from './scoring';
-import { Board, Candidate, Cell, NewCell, Orientation, RankedMove, TrieNode, Tries } from './types';
 
 // Finds legal plays for a rack against the current (locked-only) board, using
 // a dictionary trie for fast prefix pruning. The search below is a candidate
@@ -23,16 +22,6 @@ import { Board, Candidate, Cell, NewCell, Orientation, RankedMove, TrieNode, Tri
 // reverse reading order), a second trie built from reversed words is used to
 // validate that growing left part; once a placement point is chosen the
 // normal forward trie takes over to walk the rest of the word rightward.
-
-interface Position {
-  row: number;
-  col: number;
-}
-
-interface WalkCell extends Position {
-  letter: string;
-  isNew: boolean;
-}
 
 function getCell(board: Board, row: number, col: number): Cell | null {
   if (row < 1 || row > BOARD_SIZE || col < 1 || col > BOARD_SIZE) return null;

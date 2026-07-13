@@ -1,13 +1,8 @@
-import { applyCellsToBoardAndRack, GameState, HINT_LIMIT, StateUpdate } from "../gameState";
+import { applyCellsToBoardAndRack, HINT_LIMIT, StateUpdate } from "../gameState";
 import { findRankedMoves } from "../moveFinder";
 import { shuffle } from "../tileBag";
-import { RankedMove, Tries } from "../types";
 import { countPendingCells } from "../wordFinder";
 import { loadDictionary } from "../wordList";
-
-export interface Hints {
-  giveHint: () => Promise<void>;
-}
 
 // hints are drawn from this many of the best-scoring candidates rather than
 // always handing back the single highest-scoring move, so a hint is a solid

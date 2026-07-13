@@ -17,7 +17,6 @@ import NewGameModal from "./NewGameModal/NewGameModal";
 import Rack from "./Rack/Rack";
 import RackActions from "./RackActions/RackActions";
 import TopActionBar from "./TopActionBar/TopActionBar";
-import { HistoryCell } from "./types";
 import { countPendingCells } from "./wordFinder";
 
 function ScrabbleGame() {
