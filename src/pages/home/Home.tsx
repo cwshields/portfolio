@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "../../styles/Home.scss";
 import "../../styles/Projects.scss";
 
-import meImg from "../../images/me.jpg";
-import meAngryImg from "../../images/me-angry.jpg";
+import meImg from "../../images/me.webp";
+import meAngryImg from "../../images/me-angry.webp";
 
 import sass from "../../images/logos/sass-logo.png";
 import html from "../../images/logos/html-logo.png";
@@ -28,7 +28,7 @@ import proExpData from "../../data/professionalExperience";
 import personalExpData from "../../data/personalProjects";
 import Showcase from "../../components/Showcase/Showcase";
 
-import devmountain from "../../images/DevMountain.jpg";
+import devmountain from "../../images/DevMountain.webp";
 
 const imagesPath = {
   meImg: meImg,

@@ -1,7 +1,7 @@
-import scrabble from "../images/scrabble.jpg";
-import bloglab from "../images/BlogLabShowcase.jpg";
-import drino from "../images/DrinoShowcase.jpg";
-import afp from "../images/AFPShowcase.jpg";
+import scrabble from "../images/scrabble.webp";
+import bloglab from "../images/BlogLabShowcase.webp";
+import drino from "../images/DrinoShowcase.webp";
+import afp from "../images/AFPShowcase.webp";
 
 const personalExpData: ShowcaseData[] = [
   {

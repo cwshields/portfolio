@@ -1,6 +1,6 @@
-import cavco from "../images/CavcoHomes.jpg";
-import fueland from "../images/FuelandInc.jpg";
-import fuelrewards from "../images/FuelRewards.jpg";
+import cavco from "../images/CavcoHomes.webp";
+import fueland from "../images/FuelandInc.webp";
+import fuelrewards from "../images/FuelRewards.webp";
 
 const proExpData: ShowcaseData[] = [
   {
