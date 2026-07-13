@@ -31,6 +31,7 @@
   height: 100%;
   width: 100%;
   background-image: linear-gradient(200deg, #223347 0%, #19212b 100%);
+  isolation: isolate;
 }
 
 ::-webkit-scrollbar {

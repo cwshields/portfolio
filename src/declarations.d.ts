@@ -428,3 +428,22 @@ interface DragAndDrop {
   handleRackDrop: (targetIndex: number) => void;
   handleBoardDrop: (cell: Cell) => void;
 }
+
+interface Hexagon {
+  baseX: number;
+  baseY: number;
+  glow: number;
+  targetGlow: number;
+}
+
+interface Point {
+  x: number;
+  y: number;
+}
+
+interface Sweep {
+  start: Point;
+  end: Point;
+  startTime: number;
+  duration: number;
+}

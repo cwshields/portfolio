@@ -1,4 +1,3 @@
-import React from "react";
 import "../../styles/Projects.scss";
 import { Github } from "../../components/SocialMedia/SocialMedia";
 
@@ -9,7 +8,9 @@ export default function Showcase(props: ShowcaseProps) {
         {props.data.link.url ? (
           <a
             href={props.data.link.url}
-            target="_blank"
+            {...(props.data.name === "Scrabble Game"
+              ? {}
+              : { target: "_blank" })}
             rel="noopener noreferrer"
           >
             <img
