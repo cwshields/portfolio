@@ -297,7 +297,7 @@ export function useMoveActions(
   // when there's nothing pending, the shape isn't (yet) a complete word, or the
   // dictionary hasn't finished loading. A cell touched by more than one word
   // (e.g. a cross word) reads invalid if any of its words is invalid.
-  const pendingWordStatus = useMemo((): Map<string, "valid" | "invalid"> | null => {
+  const pendingWordStatus = useMemo((): Map<string, WordCheckStatus> | null => {
     if (!dictionaryTries) return null;
     const pendingCells = getPendingCells(board);
     if (pendingCells.length === 0) return null;
@@ -317,7 +317,7 @@ export function useMoveActions(
     const wordsResult = extractWords(board, pendingCells, line.orientation);
     if (!wordsResult.valid) return null;
 
-    const status = new Map<string, "valid" | "invalid">();
+    const status = new Map<string, WordCheckStatus>();
     wordsResult.words.forEach((w) => {
       const valid = isWord(dictionaryTries.forward, w.word);
       w.cells.forEach((c) => {
