@@ -24,6 +24,7 @@ const personalExpData: ShowcaseData[] = [
         "Drag-and-drop tile placement",
         "Real-time word validation against a full dictionary",
         "In-game hints and move history with word highlighting",
+        "Shuffle or clear your rack, trade letters, or pass your turn",
         "Save/load game progress to a file",
       ],
     ],
@@ -50,20 +51,20 @@ const personalExpData: ShowcaseData[] = [
         "Axios Hooks API",
         "AWS Lambda",
         "Post sorting",
+        "Contact form",
       ],
       [
         "Strapi Backend",
         "Blog posting/editing",
         "Login functionality",
         "Brand Shop",
-        "Contact form",
         "Tag constructors",
       ],
     ],
   },
   {
     link: {
-      url: "",
+      url: "https://github.com/cwshields/drino-app",
       img: drino,
       alt: "Drino Showcase",
     },
@@ -90,7 +91,7 @@ const personalExpData: ShowcaseData[] = [
   },
   {
     link: {
-      url: "",
+      url: "https://github.com/cwshields/AFP",
       img: afp,
       alt: "AFP Showcase",
     },
