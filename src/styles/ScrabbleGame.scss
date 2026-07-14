@@ -10,6 +10,27 @@
   font-size: 30px;
   text-align: center;
 }
+.scrabble-game-content {
+  display: contents;
+}
+.scrabble-mobile-blocker {
+  display: none;
+}
+@media (max-width: 850px) {
+  .scrabble-game-content {
+    display: none;
+  }
+  .scrabble-mobile-blocker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 32px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+}
 .letters-score {
   display: flex;
   align-items: center;
