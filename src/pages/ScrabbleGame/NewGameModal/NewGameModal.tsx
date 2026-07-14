@@ -9,7 +9,10 @@ function NewGameModal({ onStart, onCancel, canCancel }: NewGameModalProps) {
   const [difficulty, setDifficulty] = useState<BotDifficulty>("medium");
 
   const handleStart = () => {
-    onStart(playerCount === 1 ? "1p" : "2p", playerCount === 1 ? difficulty : null);
+    onStart(
+      playerCount === 1 ? "1p" : "2p",
+      playerCount === 1 ? difficulty : null,
+    );
   };
 
   return (
@@ -31,7 +34,7 @@ function NewGameModal({ onStart, onCancel, canCancel }: NewGameModalProps) {
               className={`modal-option${playerCount === 2 ? " selected" : ""}`}
               onClick={() => setPlayerCount(2)}
             >
-              2 Players
+              2 Players*
             </button>
           </div>
         </div>
@@ -52,13 +55,20 @@ function NewGameModal({ onStart, onCancel, canCancel }: NewGameModalProps) {
             </div>
           </div>
         )}
+        {playerCount === 2 && (
+          <p style={{ fontSize: "0.9rem", color: "gray" }}>*Local play only</p>
+        )}
         <div className="modal-actions">
           {canCancel && (
             <button type="button" onClick={onCancel} className="icon-button">
               Cancel
             </button>
           )}
-          <button type="button" onClick={handleStart} className="icon-button cta-button">
+          <button
+            type="button"
+            onClick={handleStart}
+            className="icon-button cta-button"
+          >
             Start Game
           </button>
         </div>
